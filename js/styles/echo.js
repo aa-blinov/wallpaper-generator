@@ -47,8 +47,11 @@ export const echo = {
     for (let i = 0; i < copies; i++) {
       const phi = (i / copies) * Math.PI * 2;
       const alpha = Math.pow(opts.decay, i);
-      if (opts.paletteMode === "By angle") ctx.strokeStyle = cols[Math.floor(i / copies * (cols.length - 1))];
-      else if (opts.paletteMode === "By distance") ctx.strokeStyle = cols[Math.floor(alpha * (cols.length - 1))];
+      // `i/copies` для первой копии (i=0) всегда даёт индекс 0 — самый
+      // тёмный, почти сливающийся с фоном цвет — независимо от copies.
+      // При copies=1 это единственная копия, и она была невидима.
+      if (opts.paletteMode === "By angle") ctx.strokeStyle = cols[1 + Math.floor(i / copies * (cols.length - 2))];
+      else if (opts.paletteMode === "By distance") ctx.strokeStyle = cols[1 + Math.floor(alpha * (cols.length - 2))];
       else ctx.strokeStyle = fg;
       ctx.globalAlpha = alpha;
       ctx.beginPath();

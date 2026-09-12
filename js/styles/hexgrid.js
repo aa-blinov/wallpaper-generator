@@ -103,9 +103,12 @@ export const hexgrid = {
           ctx.fill();
           ctx.globalAlpha = 1;
         }
-        // Обводка всегда (если толщина > 0)
-        if (opts.strokeWidth > 0) {
+        // Обводка всегда (если толщина > 0). fillStrength=0 и strokeWidth=0
+        // оба по отдельности легитимные минимумы слайдеров, но вместе
+        // отключают рендер целиком — холст оставался пустым фоном.
+        if (opts.strokeWidth > 0 || fillStrength <= 0) {
           ctx.strokeStyle = fg;
+          ctx.lineWidth = opts.strokeWidth > 0 ? opts.strokeWidth : 1;
           ctx.globalAlpha = Math.min(1, 0.4 + fillStrength * 0.6);
           ctx.stroke();
           ctx.globalAlpha = 1;

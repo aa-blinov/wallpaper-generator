@@ -82,8 +82,14 @@ export const mandelbrot = {
           const m = Math.sqrt(zr2 + zi2);
           t = (iter + 1 - Math.log(Math.log(Math.max(1.0001, m))) / Math.log(2));
           t /= maxIter;
-          t = (t * cycle) % 1;
-          if (t < 0) t += 1;
+          let raw = (t * cycle) % 1;
+          if (raw < 0) raw += 1;
+          // Было `raw` напрямую — при cyclePalette=0 (минимум слайдера) все
+          // внешние точки схлопывались в ramp(0), тот же тёмный стоп, что и
+          // у "внутренних" точек множества, и картинка выглядела сплошной/
+          // пустой. Сдвигаем диапазон, чтобы внешние точки никогда не
+          // совпадали с ramp(0) вне зависимости от cycle.
+          t = 0.12 + raw * 0.88;
         }
         const col = ramp(t);
         const m = /rgb\((\d+),(\d+),(\d+)\)/.exec(col);

@@ -42,7 +42,9 @@ export const ripples = {
 
     for (let i = 0; i < cs.length; i++) {
       const rmax = Math.max(w, h);
-      ctx.strokeStyle = ramp(i / Math.max(1, cs.length - 1));
+      // При centers=1 (минимум слайдера) это ramp(0) — тёмный стоп,
+      // почти сливающийся с фоном, единственный центр пропадал.
+      ctx.strokeStyle = cs.length > 1 ? ramp(i / (cs.length - 1)) : ramp(0.6);
       const cx = cs[i][0], cy = cs[i][1];
       for (let r = L; r < rmax; r += L) {
         const fade = Math.pow(opts.decay, r / L) * 0.8;

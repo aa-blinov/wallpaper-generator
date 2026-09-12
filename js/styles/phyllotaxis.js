@@ -61,10 +61,16 @@ export const phyllotaxis = {
       const x = cx + Math.cos(ang) * r;
       const y = cy + Math.sin(ang) * r;
       // Радиус точки — колеблется по палитре + размер чуть зависит от позиции.
-      const radius = dotMin + (dotMax - dotMin) * (0.4 + 0.6 * Math.sin(i * 0.13));
+      // Множитель колеблется в [-0.2, 1.0] (0.4+0.6*sin), поэтому при
+      // dotMin near 0 и большом (dotMax-dotMin) радиус мог уйти в минус —
+      // ctx.arc() с отрицательным радиусом кидает исключение и рвёт рендер.
+      const radius = Math.max(0.1, dotMin + (dotMax - dotMin) * (0.4 + 0.6 * Math.sin(i * 0.13)));
       // Цвет: чередуем по палитре через `paletteCycle`.
       // paletteCycle=0 — все точки одного цвета, paletteCycle=1 — полный цикл по палитре.
-      const paletteT = (i * paletteCycle / count) % 1;
+      // ramp(0) — самый тёмный стоп палитры, который почти сливается с
+      // фоном (тот же баг, что был в дефолте) — сдвигаем диапазон, чтобы
+      // paletteCycle=0 (минимум слайдера) не давал невидимый рендер.
+      const paletteT = 0.2 + ((i * paletteCycle / count) % 1) * 0.8;
       const color = state.ramp(paletteT);
       ctx.fillStyle = color;
       ctx.beginPath();

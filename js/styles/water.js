@@ -42,9 +42,13 @@ export const water = {
     // Только для каждой 4-й строки — ускоряем
     const img = ctx.createImageData(w, h);
     const data = img.data;
-    const baseR = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.0)))[1];
-    const baseG = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.0)))[2];
-    const baseB = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.0)))[3];
+    // ramp(0.0) — самый тёмный стоп палитры, почти сливающийся с фоном;
+    // это значение ещё и домножается на `base` (0..1) ниже, темнея дальше.
+    // При низкочастотном шуме (малый scale/octaves) `v` почти постоянна
+    // по всему холсту, и весь рендер схлопывался в один near-bg цвет.
+    const baseR = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.35)))[1];
+    const baseG = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.35)))[2];
+    const baseB = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.35)))[3];
     const hiR = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.9)))[1];
     const hiG = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.9)))[2];
     const hiB = +(/rgb\((\d+),(\d+),(\d+)\)/.exec(ramp(0.9)))[3];

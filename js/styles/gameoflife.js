@@ -29,7 +29,12 @@ export const gameoflife = {
     const rows = Math.ceil(h / cell);
     let grid = new Uint8Array(cols * rows);
     for (let i = 0; i < grid.length; i++) grid[i] = rng() < opts.density ? 1 : 0;
+    // age красит клетку через colors[age % length] — при generations=0 цикл
+    // ниже не запускается ни разу, age остаётся 0 для всех клеток, а
+    // colors[0] в большинстве палитр это самый тёмный стоп, почти
+    // сливающийся с фоном. Живые клетки должны стартовать с age=1.
     const age = new Uint16Array(cols * rows);
+    for (let i = 0; i < grid.length; i++) if (grid[i]) age[i] = 1;
 
     const steps = Math.round(opts.generations);
     for (let s = 0; s < steps; s++) {

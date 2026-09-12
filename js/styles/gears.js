@@ -67,7 +67,13 @@ export const gears = {
       for (let i = 0; i < cols; i++) {
         const cx = (i + 0.5) * w / cols;
         const cy = (j + 0.5) * h / rows;
-        drawGear(cx, cy, radius, innerR, teeth, ramp(((j * cols + i) % (cols * rows)) / (cols * rows)));
+        // При cols=1,rows=1 (минимум слайдеров) это ramp(0/1)=ramp(0) —
+        // тёмный стоп палитры, почти сливающийся с фоном; единственная
+        // шестерня пропадала. Считаем долю от общего числа шестерён минус
+        // одна, чтобы избежать деления, дающего 0 при единственной ячейке.
+        const n = cols * rows;
+        const idx = j * cols + i;
+        drawGear(cx, cy, radius, innerR, teeth, n > 1 ? ramp(idx / (n - 1)) : ramp(0.6));
       }
     }
 

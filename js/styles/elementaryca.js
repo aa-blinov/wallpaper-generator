@@ -59,7 +59,11 @@ export const elementaryca = {
       for (let x = 0; x < cols; x++) {
         const i = (y * cols + x) * 4;
         if (row[x]) {
-          const c = opts.colorMode === "Single color" ? fgRgb : ramp[y % ramp.length];
+          // ramp[0] обычно почти совпадает с фоном (тот же паттерн, что и
+          // везде): при `y % ramp.length === 0` (например, самая первая
+          // строка) живая клетка была бы неотличима от фона. Пропускаем
+          // индекс 0 для "живых" клеток.
+          const c = opts.colorMode === "Single color" ? fgRgb : ramp[1 + (y % (ramp.length - 1))];
           data[i] = c[0]; data[i + 1] = c[1]; data[i + 2] = c[2]; data[i + 3] = 255;
         } else {
           data[i] = bgRgb[0]; data[i + 1] = bgRgb[1]; data[i + 2] = bgRgb[2]; data[i + 3] = 255;

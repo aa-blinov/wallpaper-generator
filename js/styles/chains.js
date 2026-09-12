@@ -35,7 +35,12 @@ export const chains = {
 
     const C = Math.max(1, Math.round(opts.chains));
     const L = Math.max(2, Math.round(opts.links));
-    const linkLen = Math.min(w, h) / (C * 2.4);
+    // Было `min(w,h)/(C*2.4)` — не учитывал L (links). При малом C или
+    // большом L суммарная длина цепи (linkLen*L) вылетала далеко за
+    // пределы канваса (например C=1,L=14 давал x0=-547px при ширине 480px),
+    // и цепь рендерилась полностью за кадром. max(...) подстраивает
+    // делитель под оба параметра, не трогая дефолтный масштаб.
+    const linkLen = Math.min(w, h) / Math.max(C * 2.4, L * 0.9);
     const linkR = linkLen * 0.7;
 
     for (let c = 0; c < C; c++) {

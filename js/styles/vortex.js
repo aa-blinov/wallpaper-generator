@@ -38,7 +38,9 @@ export const vortex = {
 
     for (let a = 0; a < arms; a++) {
       const phi0 = (a / arms) * Math.PI * 2;
-      ctx.strokeStyle = ramp(a / Math.max(1, arms - 1));
+      // При arms=1 (минимум слайдера) это ramp(0/1)=ramp(0) — тёмный стоп
+      // палитры, почти сливающийся с фоном, и единственный рукав пропадал.
+      ctx.strokeStyle = arms > 1 ? ramp(a / (arms - 1)) : ramp(0.6);
       ctx.beginPath();
       const samples = 600;
       for (let i = 0; i <= samples; i++) {

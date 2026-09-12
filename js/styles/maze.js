@@ -74,7 +74,10 @@ export const maze = {
     }
 
     // Рисуем стены.
-    ctx.strokeStyle = ramp(opts.branchColor);
+    // branchColor=0 (минимум слайдера) даёт ramp(0) — тёмный стоп палитры,
+    // почти неотличимый от фона; сдвигаем диапазон, чтобы стены оставались
+    // видимыми на всём диапазоне слайдера.
+    ctx.strokeStyle = ramp(0.2 + opts.branchColor * 0.8);
     ctx.lineWidth = opts.lineWidth;
     ctx.lineCap = "square";
     ctx.beginPath();

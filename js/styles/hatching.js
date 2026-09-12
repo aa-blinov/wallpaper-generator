@@ -56,13 +56,17 @@ export const hatching = {
       const t = noise(mx * opts.densityScale, my * opts.densityScale) * 0.5 + 0.5;
       if (t > 0.3) lines.push([ax, ay, bx, by, t]);
     }
-    ctx.beginPath();
+    // Было: globalAlpha менялся в цикле, но действует только на момент
+    // stroke() — единственный вызов в конце красил ВСЕ линии альфой
+    // последней добавленной (в дефолте ~0.03, холст выглядел пустым).
+    // Каждой линии нужен свой stroke().
     for (const [ax, ay, bx, by, t] of lines) {
       ctx.globalAlpha = (t - 0.3) / 0.7;
+      ctx.beginPath();
       ctx.moveTo(ax, ay);
       ctx.lineTo(bx, by);
+      ctx.stroke();
     }
-    ctx.stroke();
     ctx.globalAlpha = 1;
 
     if (opts.bgTint > 0) {

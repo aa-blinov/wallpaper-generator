@@ -54,11 +54,11 @@ export const penrose = {
     }
     const depth = Math.round(opts.depth);
     for (let i = 0; i < depth; i++) triangles = subdivide(triangles);
-    return { triangles, w, h };
+    return { triangles, w, h, depth };
   },
 
   paint(ctx, opts, state) {
-    const { triangles, w, h } = state;
+    const { triangles, w, h, depth } = state;
     const palette = opts.palette;
     ctx.fillStyle = palette.bg;
     ctx.fillRect(0, 0, w, h);
@@ -66,7 +66,13 @@ export const penrose = {
     const cols = palette.colors;
     const R = Math.min(w, h) * 0.48;
     const cx = w / 2, cy = h / 2;
-    ctx.lineWidth = opts.strokeWidth;
+    // Обводка красится фоном специально (визуальные зазоры между тайлами),
+    // но каждая деflation-итерация уменьшает треугольники в ~PHI раз — при
+    // depth=8 (16k+ крошечных треугольников) фиксированный strokeWidth=3
+    // толще самих фигур, и обводка фоном полностью съедает заливку.
+    // Ограничиваем толщину долей от оценочного размера треугольника.
+    const minEdge = R / Math.pow(PHI, depth);
+    ctx.lineWidth = Math.min(opts.strokeWidth, minEdge * 0.5);
     ctx.strokeStyle = palette.bg;
 
     for (const t of triangles) {
