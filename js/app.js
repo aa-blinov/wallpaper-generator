@@ -260,8 +260,24 @@ function switchStyle(id) {
   const def = getStyle(id);
   state.params = { ...def.defaults };
   initParams();
+  updateModeAvailability();
   scheduleRender({ heavy: true });
   updateUrlHash();
+}
+
+// Большинство стилей не реализуют animate() (это чисто статичные узоры) —
+// startAnimation() раньше всё равно вызывал style.animate(...) вслепую,
+// что бросало исключение на первом кадре и молча зависало с активной
+// вкладкой "Animated", ничего не делая. Прячем/дизейблим вкладку и
+// откатываемся на static при переключении на такой стиль.
+function updateModeAvailability() {
+  const supportsAnimation = typeof getStyle(state.styleId).animate === "function";
+  const animBtn = $('#modeTabs button[data-mode="animated"]');
+  if (animBtn) {
+    animBtn.disabled = !supportsAnimation;
+    animBtn.title = supportsAnimation ? "" : "This style has no animated mode";
+  }
+  if (!supportsAnimation && state.mode === "animated") switchMode("static");
 }
 
 function switchPalette(id) {
@@ -573,11 +589,16 @@ function buildOpts() {
 }
 
 function startAnimation() {
+  const style = getStyle(state.styleId);
+  if (typeof style.animate !== "function") {
+    // Стиль без animate() — не виснем на первом кадре, остаёмся в static.
+    switchMode("static");
+    return;
+  }
   if (state.running) cancelAnimationFrame(state.raf);
   state.running = true;
   state.startedAt = performance.now();
   ensureState();
-  const style = getStyle(state.styleId);
 
   const tick = () => {
     if (!state.running) return;
@@ -852,6 +873,7 @@ function boot() {
   initMobileDrawer();
   initKeyboardShortcuts();
   updateHud();
+  updateModeAvailability();
   // Если URL просит анимацию — включим её после инициализации
   if (state.mode === "animated") {
     $$("#modeTabs button").forEach((b) =>
