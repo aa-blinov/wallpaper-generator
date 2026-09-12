@@ -9,7 +9,7 @@ export const cantor = {
   blurb: "Cantor dust: quadrant subdivision with a keep probability.",
   defaults: {
     depth: 6,
-    prob: 0.15,
+    prob: 0.22,
     bgTint: 0,
   },
   params: [
@@ -29,8 +29,15 @@ export const cantor = {
     ctx.fillRect(0, 0, w, h);
 
     const depth = Math.round(opts.depth);
+    // Low prob means most cells recurse instead of filling, so the 9-way
+    // branching factor compounds almost unchecked — at depth 6 that's up to
+    // 9^6 ≈ 531k node visits per tile, most ending in a real fillRect call.
+    // That took 19s on a real render before this cap existed. Hard
+    // per-tile budget bounds it regardless of prob/depth/size, and resets
+    // per tile so a budget drained early doesn't leave later tiles blank.
+    let budget = 0;
     function rec(x, y, s, d) {
-      if (d >= depth || s < 1) return;
+      if (d >= depth || s < 1 || budget-- <= 0) return;
       const step = s / 3;
       for (let j = 0; j < 3; j++) {
         for (let i = 0; i < 3; i++) {
@@ -56,6 +63,7 @@ export const cantor = {
     const tileSize = Math.min(w, h) / 2;
     for (let ty = 0; ty < h; ty += tileSize) {
       for (let tx = 0; tx < w; tx += tileSize) {
+        budget = 45000;
         rec(tx, ty, tileSize, 0);
       }
     }

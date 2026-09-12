@@ -1,5 +1,10 @@
 // Реестр всех доступных стилей. Каждый стиль экспортируется модулем.
 
+import { apollonian } from "./styles/apollonian.js";
+import { cliffordattractor } from "./styles/cliffordattractor.js";
+import { stringart } from "./styles/stringart.js";
+import { superformula } from "./styles/superformula.js";
+import { boids } from "./styles/boids.js";
 import { gameoflife } from "./styles/gameoflife.js";
 import { elementaryca } from "./styles/elementaryca.js";
 import { dla } from "./styles/dla.js";
@@ -119,6 +124,7 @@ import { sandhills } from "./styles/sandhills.js";
 export const STYLES = [
   // Поток
   curlflow,
+  boids,
   // Шум
   domainwarp,
   topography,
@@ -160,6 +166,9 @@ export const STYLES = [
   chladni,
   girih,
   moire,
+  apollonian,
+  stringart,
+  superformula,
   // Алгоритмы
   reactiondiffusion,
   mandelbrot,
@@ -190,6 +199,7 @@ export const STYLES = [
   elementaryca,
   dla,
   langtonsant,
+  cliffordattractor,
   // Точки
   stippling,
   phyllotaxis,

@@ -44,8 +44,14 @@ export const lightning = {
       ctx.shadowBlur = 12 * opts.glow;
     }
 
+    // A branch can spawn on every single step, recursively, up to 3 levels
+    // deep — at max sliders (steps=80, branchProb=1) that's roughly
+    // steps × (steps·0.6) × (steps·0.6²) ≈ 100k+ drawBolt calls per bolt,
+    // ×20 bolts: multiple million ctx.stroke() calls (measured 69s+ freeze).
+    // Hard call budget bounds it regardless of the slider combination.
+    let callBudget = 700;
     function drawBolt(x1, y1, stepsLeft, dir, len, depth) {
-      if (stepsLeft <= 0) return;
+      if (stepsLeft <= 0 || callBudget-- <= 0) return;
       ctx.strokeStyle = fg;
       ctx.lineWidth = opts.strokeWidth * Math.max(0.3, 1 - depth * 0.3);
       ctx.beginPath();
@@ -68,6 +74,7 @@ export const lightning = {
 
     const N = Math.max(1, Math.round(opts.bolts));
     for (let i = 0; i < N; i++) {
+      callBudget = 700; // per-bolt share, so an early bolt can't starve the rest
       const x = (i + 0.5) / N * w;
       drawBolt(x + (rng() - 0.5) * w * 0.05, 0, steps, Math.PI / 2 + (rng() - 0.5) * 0.2, h / steps, 0);
     }

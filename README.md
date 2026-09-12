@@ -1,17 +1,17 @@
 # Wallpaper Generator
 
-A catalog of **115 abstract-wallpaper generators** running in the browser. Vanilla JS, no dependencies, no build step. Canvas 2D, real time, PNG + WebM export, sharing via URL parameters.
+A catalog of **120 abstract-wallpaper generators** running in the browser. Vanilla JS, no dependencies, no build step. Canvas 2D, real time, PNG + WebM export, sharing via URL parameters.
 
 ![Domain Warp](./docs/preview-domainwarp.png)
 
 ## What's inside
 
-**115 styles** across **7 categories**:
+**120 styles** across **7 categories**:
 
-- **Flow** (1) — particles in vector fields.
+- **Flow** (2) — particles in vector fields, emergent flocking.
 - **Noise** (8) — fBM, domain warp, nebulae, sand, low-poly terrain.
-- **Geometry** (30) — parametric curves, tessellations, symmetries, knots, Penrose tiling, moiré.
-- **Algorithms** (29) — fractals, L-systems, attractors, chains, graphs, cellular automata.
+- **Geometry** (33) — parametric curves, tessellations, symmetries, knots, Penrose tiling, moiré, Apollonian circles.
+- **Algorithms** (30) — fractals, L-systems, attractors, chains, graphs, cellular automata.
 - **Dots** (11) — Fibonacci, stippling, runes, pollen, blue noise.
 - **Textures** (17) — marble, wood, fabric, hatching, chainmail.
 - **Organic** (19) — fire, water, lava, lightning, smoke.
@@ -23,6 +23,7 @@ A catalog of **115 abstract-wallpaper generators** running in the browser. Vanil
 ### Flow
 
 - **Curl Flow** (`id=curlflow`) — Particles in a divergence-free field — real vortices, no clumping.
+- **Boids Flocking** (`id=boids`) — Separation, alignment, cohesion — flock trails that emerge, not a field they follow.
 
 ### Noise
 
@@ -69,6 +70,9 @@ A catalog of **115 abstract-wallpaper generators** running in the browser. Vanil
 - **Chladni Patterns** (`id=chladni`) — Nodal lines of a vibrating plate — sand settling where the surface stays still.
 - **Girih Star Grid** (`id=girih`) — Interlocking star polygons on a grid, Islamic geometric strapwork style.
 - **Moiré Interference** (`id=moire`) — Two overlaid grids beat against each other — pure line-density interference.
+- **Apollonian Gasket** (`id=apollonian`) — Circles packed into circles packed into circles, forever — Descartes' theorem made visible.
+- **String Art** (`id=stringart`) — Straight chords between numbered pins on a circle — envelope curves from pure geometry.
+- **Superformula Motif** (`id=superformula`) — Gielis' one-equation shape family — stars, flowers, gears — tiled as a print motif.
 
 ### Algorithms
 
@@ -101,6 +105,7 @@ A catalog of **115 abstract-wallpaper generators** running in the browser. Vanil
 - **Elementary CA** (`id=elementaryca`) — Wolfram's 1D cellular automaton (Rule 30 and friends), rows stacked into a field.
 - **Diffusion-Limited Aggregation** (`id=dla`) — DLA: random walkers freeze onto a growing cluster — coral, lichen, frost.
 - **Langton's Ant** (`id=langtonsant`) — A single ant flipping cells by a two-rule law — chaos, then a highway.
+- **Clifford Attractor** (`id=cliffordattractor`) — A million-point density cloud from a simple iterated map — smoky, not linear like Lorenz.
 
 ### Dots
 
@@ -187,7 +192,8 @@ Any static file server works (`npx serve .`, `npx http-server`, `php -S`).
        asemic|inkblot|waves|water|fire|kaleidoscope|lightning|cloudpuff|
        ripples|squiggles|vortex|tentacles|wave_field|echo|lava|bubbles|
        calligraphy|gameoflife|elementaryca|dla|langtonsant|penrose|chladni|
-       girih|moire|lowpoly|bluenoise
+       girih|moire|lowpoly|bluenoise|apollonian|cliffordattractor|stringart|
+       superformula|boids
 &palette=lava|aurora|sunset|ink|ocean|botanic|bubblegum|desert|cyber|pastel|sapphire|coral
 &seed=42
 &resolution=1920x1080|2560x1440|3840x2160|1080x1920|1280x720
@@ -350,6 +356,10 @@ For **Reaction-Diffusion** under `?lite=1` the Worker is disabled (sync warmup) 
 - Penrose tiling (kite/dart deflation): [Preshing's walkthrough](https://preshing.com/20110831/penrose-tiling-explained/).
 - Chladni figures: [Wikipedia](https://en.wikipedia.org/wiki/Chladni_figure), Chladni 1787.
 - Poisson-disk / blue-noise sampling: [Bridson 2007](https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-poissondisk.pdf).
+- Apollonian gasket / Descartes' Circle Theorem: [Wikipedia](https://en.wikipedia.org/wiki/Descartes%27_circle_theorem).
+- Clifford / de Jong attractors: [Paul Bourke's collection](http://paulbourke.net/fractals/clifford/).
+- Superformula: [Gielis 2003](https://en.wikipedia.org/wiki/Superformula).
+- Boids: [Craig Reynolds, 1987](https://www.red3d.com/cwr/boids/).
 
 ## License
 
