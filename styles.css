@@ -327,7 +327,7 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
 .style-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 3px;
   /* Без своего скролла: список стилей — часть общего скролла панели,
      а не вложенный скролл-бокс с крошечным ползунком поверх бокового. */
 }
@@ -336,7 +336,7 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 6px 4px 4px;
+  margin: 10px 4px 3px;
   font-weight: 700;
 }
 .style-item {
@@ -344,8 +344,8 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
   background: var(--panel-2);
   border: 1px solid var(--line);
   color: var(--text);
-  border-radius: 10px;
-  padding: 9px 11px;
+  border-radius: 8px;
+  padding: 6px 10px;
   text-align: left;
   cursor: pointer;
   transition: 120ms;
@@ -368,11 +368,14 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
   letter-spacing: 0.1px;
 }
 .style-item .blurb {
-  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
   font-size: 11px;
   color: var(--muted);
-  margin-top: 3px;
-  line-height: 1.35;
+  margin-top: 1px;
+  line-height: 1.3;
 }
 
 /* ---------- Buttons & segmented ---------- */
