@@ -328,13 +328,8 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 280px;
-  overflow-y: auto;
-  margin: 0 -4px;
-  padding: 0 4px;
-  scrollbar-color: #2a2f3a transparent;
-  /* Без `size`, потому что flex+max-height с size-contain коллапсирует. */
-  contain: layout style paint;
+  /* Без своего скролла: список стилей — часть общего скролла панели,
+     а не вложенный скролл-бокс с крошечным ползунком поверх бокового. */
 }
 .style-list h3 {
   font-size: 10px;
