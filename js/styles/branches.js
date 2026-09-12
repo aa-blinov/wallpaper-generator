@@ -6,22 +6,22 @@ import { makeColorRamp } from "../palettes.js";
 export const branches = {
   id: "branches",
   name: "Branches",
-  category: "Алгоритмы",
-  blurb: "Ветви с листьями: рекурсивные разветвления.",
+  category: "Algorithms",
+  blurb: "Branches with leaves: recursive forking.",
   defaults: {
     sources: 8,
     depth: 6,
     length: 80,
     leafSize: 7,
-    paletteMode: "Сезон",
+    paletteMode: "Season",
     bgTint: 0,
   },
   params: [
-    { key: "sources", label: "Корней", min: 1, max: 30, step: 1 },
-    { key: "depth", label: "Глубина", min: 2, max: 8, step: 1 },
-    { key: "length", label: "Длина", min: 30, max: 200, step: 5 },
-    { key: "leafSize", label: "Размер листа", min: 2, max: 30, step: 1 },
-    { key: "paletteMode", label: "Цвет", enum: ["Сезон", "Палитра"] },
+    { key: "sources", label: "Roots", min: 1, max: 30, step: 1 },
+    { key: "depth", label: "Depth", min: 2, max: 8, step: 1 },
+    { key: "length", label: "Length", min: 30, max: 200, step: 5 },
+    { key: "leafSize", label: "Leaf size", min: 2, max: 30, step: 1 },
+    { key: "paletteMode", label: "Color", enum: ["Season", "Palette"] },
   ],
 
   createState(opts, w, h) {
@@ -48,7 +48,7 @@ export const branches = {
         const tipY = y1 + Math.sin(dir) * 1;
         const cx = tipX + Math.cos(ang) * leafSize;
         const cy = tipY + Math.sin(ang) * leafSize;
-        ctx.fillStyle = opts.paletteMode === "Палитра"
+        ctx.fillStyle = opts.paletteMode === "Palette"
           ? ramp(1 - depth / Math.max(1, maxDepth))
           : ramp((1 - depth / maxDepth) * 0.7 + 0.15);
         ctx.beginPath();

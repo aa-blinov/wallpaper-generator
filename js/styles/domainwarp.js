@@ -1,7 +1,7 @@
 // Domain Warp — FBM, чьи координаты искажены другим FBM.
 // Классический приём Inigo Quilez / Tyler Hobbs.
-// Один уровень warp'а даёт "течение внутри облаков", два — кьютюрные
-// "инцепшен"-узоры с глубокой многослойной текстурой.
+// Один уровень warp'а даёт "flow inside clouds", два — кьютюрные
+// "inception"-узоры с глубокой многослойной текстурой.
 
 import { makeNoise2D, makeFbm } from "../noise.js";
 import { makeColorRamp } from "../palettes.js";
@@ -9,8 +9,8 @@ import { makeColorRamp } from "../palettes.js";
 export const domainwarp = {
   id: "domainwarp",
   name: "Domain Warp",
-  category: "Шум",
-  blurb: "Шум, искажённый другим шумом — течения и инцепшен-узоры.",
+  category: "Noise",
+  blurb: "Noise warped by other noise — currents and inception-like patterns.",
   defaults: {
     scale: 0.0018,
     octaves: 5,
@@ -24,16 +24,16 @@ export const domainwarp = {
     sampleStep: 3,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.0008, max: 0.02, step: 0.0001, format: (v) => v.toFixed(4) },
-    { key: "octaves", label: "Октавы", min: 1, max: 8, step: 1 },
-    { key: "persistence", label: "Затухание", min: 0.2, max: 0.9, step: 0.01 },
-    { key: "lacunarity", label: "Лакунарность", min: 1.2, max: 3.5, step: 0.05 },
-    { key: "warp1", label: "Сила warp 1", min: 0, max: 8, step: 0.1 },
-    { key: "warp2", label: "Сила warp 2", min: 0, max: 8, step: 0.1 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "brightness", label: "Яркость", min: -0.5, max: 0.5, step: 0.02 },
-    { key: "shift", label: "Сдвиг цвета", min: 0, max: 1, step: 0.005, format: (v) => v.toFixed(3) },
-    { key: "sampleStep", label: "Шаг сэмпла", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
+    { key: "scale", label: "Scale", min: 0.0008, max: 0.02, step: 0.0001, format: (v) => v.toFixed(4) },
+    { key: "octaves", label: "Octaves", min: 1, max: 8, step: 1 },
+    { key: "persistence", label: "Decay", min: 0.2, max: 0.9, step: 0.01 },
+    { key: "lacunarity", label: "Lacunarity", min: 1.2, max: 3.5, step: 0.05 },
+    { key: "warp1", label: "Warp strength 1", min: 0, max: 8, step: 0.1 },
+    { key: "warp2", label: "Warp strength 2", min: 0, max: 8, step: 0.1 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "brightness", label: "Brightness", min: -0.5, max: 0.5, step: 0.02 },
+    { key: "shift", label: "Color shift", min: 0, max: 1, step: 0.005, format: (v) => v.toFixed(3) },
+    { key: "sampleStep", label: "Sample step", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
   ],
 
   createState(opts, w, h) {
@@ -41,7 +41,7 @@ export const domainwarp = {
     const noise = makeNoise2D(seed);
     const fbm = makeFbm(noise, { octaves: opts.octaves, persistence: opts.persistence, lacunarity: opts.lacunarity });
     // Используем то же поле шума, но с разными смещениями — эквивалент
-    // "независимого" второго источника.
+    // "independent" второго источника.
     const fbm2 = makeFbm(noise, { octaves: opts.octaves, persistence: opts.persistence, lacunarity: opts.lacunarity });
     const ramp = makeColorRamp(opts.palette.colors);
     return { noise, fbm, fbm2, ramp, w, h };

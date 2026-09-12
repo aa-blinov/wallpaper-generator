@@ -3,8 +3,8 @@
 export const waves = {
   id: "waves",
   name: "Waves",
-  category: "Органические",
-  blurb: "Сетка пересекающихся синусоид разных частот.",
+  category: "Organic",
+  blurb: "A grid of intersecting sine waves at different frequencies.",
   defaults: {
     rows: 60,
     cols: 60,
@@ -15,12 +15,12 @@ export const waves = {
     bgTint: 0,
   },
   params: [
-    { key: "rows", label: "Строк", min: 8, max: 200, step: 1 },
-    { key: "cols", label: "Колонок", min: 8, max: 200, step: 1 },
-    { key: "freq1", label: "Частота 1", min: 0.1, max: 6.0, step: 0.05 },
-    { key: "freq2", label: "Частота 2", min: 0.1, max: 6.0, step: 0.05 },
-    { key: "phaseStep", label: "Сдвиг фазы", min: 0, max: 0.4, step: 0.005 },
-    { key: "amp", label: "Амплитуда", min: 0.05, max: 1.0, step: 0.02 },
+    { key: "rows", label: "Rows", min: 8, max: 200, step: 1 },
+    { key: "cols", label: "Columns", min: 8, max: 200, step: 1 },
+    { key: "freq1", label: "Frequency 1", min: 0.1, max: 6.0, step: 0.05 },
+    { key: "freq2", label: "Frequency 2", min: 0.1, max: 6.0, step: 0.05 },
+    { key: "phaseStep", label: "Phase shift", min: 0, max: 0.4, step: 0.005 },
+    { key: "amp", label: "Amplitude", min: 0.05, max: 1.0, step: 0.02 },
   ],
 
   createState(opts, w, h) {

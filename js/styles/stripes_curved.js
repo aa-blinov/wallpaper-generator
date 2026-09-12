@@ -6,19 +6,19 @@ import { makeColorRamp } from "../palettes.js";
 export const stripes_curved = {
   id: "stripes_curved",
   name: "Curved Stripes",
-  category: "Геометрия",
-  blurb: "Изогнутые полосы по шумовой топологии.",
+  category: "Geometry",
+  blurb: "Curved stripes following a noise topology.",
   defaults: {
     count: 24,
     curveScale: 0.006,
     thickness: 1.0,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Полос", min: 4, max: 80, step: 1 },
-    { key: "curveScale", label: "Шум кривизны", min: 0.001, max: 0.02, step: 0.001 },
-    { key: "thickness", label: "Толщина", min: 0.3, max: 3, step: 0.05 },
+    { key: "count", label: "Stripes", min: 4, max: 80, step: 1 },
+    { key: "curveScale", label: "Curvature noise", min: 0.001, max: 0.02, step: 0.001 },
+    { key: "thickness", label: "Thickness", min: 0.3, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

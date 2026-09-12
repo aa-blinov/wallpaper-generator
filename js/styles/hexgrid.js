@@ -8,25 +8,25 @@ import { makeColorRamp } from "../palettes.js";
 export const hexgrid = {
   id: "hexgrid",
   name: "Hex Grid",
-  category: "Геометрия",
-  blurb: "Шестиугольные соты с шумовым смещением центров и заливкой.",
+  category: "Geometry",
+  blurb: "Hexagonal honeycomb with noise-offset centers and fills.",
   defaults: {
     cellSize: 60,
     jitter: 0.55,
     noiseScale: 0.012,
     strokeWidth: 1.5,
-    fillMode: "Шум",
+    fillMode: "Noise",
     fillStrength: 0.55,
     bgTint: 0.0,
   },
   params: [
-    { key: "cellSize", label: "Размер соты", min: 18, max: 240, step: 2, format: (v) => `${v.toFixed(0)} px` },
-    { key: "jitter", label: "Смещение центра", min: 0, max: 1, step: 0.05 },
-    { key: "noiseScale", label: "Масштаб шума", min: 0.001, max: 0.04, step: 0.0005 },
-    { key: "fillMode", label: "Заливка", enum: ["Шум", "Сид-кольца", "Градиент"] },
-    { key: "fillStrength", label: "Сила заливки", min: 0, max: 1, step: 0.02 },
-    { key: "strokeWidth", label: "Толщина обводки", min: 0, max: 6, step: 0.1 },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Cell size", min: 18, max: 240, step: 2, format: (v) => `${v.toFixed(0)} px` },
+    { key: "jitter", label: "Center offset", min: 0, max: 1, step: 0.05 },
+    { key: "noiseScale", label: "Noise scale", min: 0.001, max: 0.04, step: 0.0005 },
+    { key: "fillMode", label: "Fill", enum: ["Noise", "Seed rings", "Gradient"] },
+    { key: "fillStrength", label: "Fill strength", min: 0, max: 1, step: 0.02 },
+    { key: "strokeWidth", label: "Stroke thickness", min: 0, max: 6, step: 0.1 },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -72,9 +72,9 @@ export const hexgrid = {
 
         // Цвет заливки/обводки.
         let t;
-        if (fillMode === "Шум") {
+        if (fillMode === "Noise") {
           t = clamp01(0.5 + 0.5 * noise(cx * opts.noiseScale * 0.5, cyy * opts.noiseScale * 0.5));
-        } else if (fillMode === "Сид-кольца") {
+        } else if (fillMode === "Seed rings") {
           t = ((col + row * 7) % 5) / 4;
         } else {
           // Градиент по диагонали.

@@ -9,20 +9,20 @@ const RUNES = [
 export const runic = {
   id: "runic",
   name: "Runic",
-  category: "Точки",
-  blurb: "Магические руны: символы Unicode на «пергаменте».",
+  category: "Dots",
+  blurb: "Arcane runes: Unicode glyphs on \"parchment\".",
   defaults: {
     rows: 8,
     cols: 8,
     size: 36,
-    paletteMode: "Пергамент",
+    paletteMode: "Parchment",
     bgTint: 0,
   },
   params: [
-    { key: "rows", label: "Строк", min: 4, max: 24, step: 1 },
-    { key: "cols", label: "Столбцов", min: 4, max: 24, step: 1 },
-    { key: "size", label: "Размер", min: 16, max: 80, step: 2 },
-    { key: "paletteMode", label: "Стиль", enum: ["Пергамент", "Палитра"] },
+    { key: "rows", label: "Rows", min: 4, max: 24, step: 1 },
+    { key: "cols", label: "Columns", min: 4, max: 24, step: 1 },
+    { key: "size", label: "Size", min: 16, max: 80, step: 2 },
+    { key: "paletteMode", label: "Style", enum: ["Parchment", "Palette"] },
   ],
 
   createState(opts, w, h) {
@@ -32,8 +32,8 @@ export const runic = {
   paint(ctx, opts, state) {
     const { w, h } = state;
     const palette = opts.palette;
-    const bg = opts.paletteMode === "Пергамент" ? "#f3e6c4" : palette.bg;
-    const fg = opts.paletteMode === "Пергамент" ? "#3a2a14" : palette.colors[palette.colors.length - 1];
+    const bg = opts.paletteMode === "Parchment" ? "#f3e6c4" : palette.bg;
+    const fg = opts.paletteMode === "Parchment" ? "#3a2a14" : palette.colors[palette.colors.length - 1];
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, w, h);
     const rows = Math.max(2, Math.round(opts.rows));

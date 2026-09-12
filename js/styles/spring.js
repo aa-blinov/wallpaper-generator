@@ -3,8 +3,8 @@
 export const spring = {
   id: "spring",
   name: "Spring",
-  category: "Геометрия",
-  blurb: "Пружина: синусоидальная лента между двумя точками.",
+  category: "Geometry",
+  blurb: "Spring: a sinusoidal ribbon between two points.",
   defaults: {
     coils: 14,
     sway: 0,
@@ -12,9 +12,9 @@ export const spring = {
     bgTint: 0,
   },
   params: [
-    { key: "coils", label: "Витков", min: 3, max: 60, step: 1 },
-    { key: "sway", label: "Изгиб", min: -1, max: 1, step: 0.02 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 5, step: 0.1 },
+    { key: "coils", label: "Turns", min: 3, max: 60, step: 1 },
+    { key: "sway", label: "Bend", min: -1, max: 1, step: 0.02 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 5, step: 0.1 },
   ],
 
   createState(opts, w, h) {

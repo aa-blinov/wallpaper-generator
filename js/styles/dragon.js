@@ -3,18 +3,18 @@
 export const dragon = {
   id: "dragon",
   name: "Dragon Curve",
-  category: "Алгоритмы",
-  blurb: "Фрактальная драконья кривая (Harter–Heighway).",
+  category: "Algorithms",
+  blurb: "The Harter–Heighway dragon curve.",
   defaults: {
     iterations: 12,
     strokeWidth: 1.2,
-    colorMode: "По глубине",
+    colorMode: "By depth",
     bgTint: 0,
   },
   params: [
-    { key: "iterations", label: "Итерации", min: 4, max: 16, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 4, step: 0.1 },
-    { key: "colorMode", label: "Цвет", enum: ["По глубине", "Один цвет"] },
+    { key: "iterations", label: "Iterations", min: 4, max: 16, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 4, step: 0.1 },
+    { key: "colorMode", label: "Color", enum: ["By depth", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -60,7 +60,7 @@ export const dragon = {
       y += dy[dir] * len;
       ctx.lineTo(x, y);
     }
-    if (opts.colorMode === "Один цвет") {
+    if (opts.colorMode === "Single color") {
       ctx.strokeStyle = colors[colors.length - 1];
       ctx.stroke();
     } else {

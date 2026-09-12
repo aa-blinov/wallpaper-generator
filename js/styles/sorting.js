@@ -6,16 +6,16 @@ import { makeColorRamp } from "../palettes.js";
 export const sorting = {
   id: "sorting",
   name: "Sorting Art",
-  category: "Алгоритмы",
-  blurb: "Сортировка: каждый кадр — состояние массива при сортировке.",
+  category: "Algorithms",
+  blurb: "Sorting: each frame is a snapshot of an array mid-sort.",
   defaults: {
     width: 60,
     sortMode: "Bubble",
     bgTint: 0,
   },
   params: [
-    { key: "width", label: "Ширина массива", min: 10, max: 200, step: 5 },
-    { key: "sortMode", label: "Алгоритм", enum: ["Bubble", "Selection", "Insertion"] },
+    { key: "width", label: "Array width", min: 10, max: 200, step: 5 },
+    { key: "sortMode", label: "Algorithm", enum: ["Bubble", "Selection", "Insertion"] },
   ],
 
   createState(opts, w, h) {

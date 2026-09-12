@@ -3,18 +3,18 @@
 export const sierpinski = {
   id: "sierpinski",
   name: "Sierpinski Triangle",
-  category: "Алгоритмы",
-  blurb: "Рекурсивный фрактал Серпинского (треугольник).",
+  category: "Algorithms",
+  blurb: "The recursive Sierpinski triangle fractal.",
   defaults: {
     iterations: 7,
-    paletteMode: "По глубине", // "По глубине" | "Один цвет"
+    paletteMode: "By depth", // "By depth" | "Single color"
     strokeWidth: 0,
     bgTint: 0,
   },
   params: [
-    { key: "iterations", label: "Итерации", min: 1, max: 8, step: 1 },
-    { key: "paletteMode", label: "Цвет", enum: ["По глубине", "Один цвет"] },
-    { key: "strokeWidth", label: "Контур", min: 0, max: 4, step: 0.2 },
+    { key: "iterations", label: "Iterations", min: 1, max: 8, step: 1 },
+    { key: "paletteMode", label: "Color", enum: ["By depth", "Single color"] },
+    { key: "strokeWidth", label: "Outline", min: 0, max: 4, step: 0.2 },
   ],
 
   createState(opts, w, h) {
@@ -44,7 +44,7 @@ export const sierpinski = {
     function tri(x1, y1, x2, y2, x3, y3, depth) {
       if (depth === 0) {
         // Заполненный треугольник
-        const col = opts.paletteMode === "По глубине"
+        const col = opts.paletteMode === "By depth"
           ? colors[(n - depth) % colors.length]
           : fg;
         ctx.fillStyle = col;

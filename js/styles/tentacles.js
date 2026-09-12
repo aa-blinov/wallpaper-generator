@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const tentacles = {
   id: "tentacles",
   name: "Tentacles",
-  category: "Органические",
-  blurb: "Щупальца: случайные кривые Безье с затуханием толщины.",
+  category: "Organic",
+  blurb: "Tentacles: random Bézier curves tapering in width.",
   defaults: {
     count: 14,
     segments: 60,
@@ -16,10 +16,10 @@ export const tentacles = {
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Щупалец", min: 2, max: 40, step: 1 },
-    { key: "segments", label: "Сегментов", min: 12, max: 120, step: 2 },
-    { key: "length", label: "Длина", min: 80, max: 800, step: 10 },
-    { key: "width", label: "Толщина", min: 4, max: 60, step: 1 },
+    { key: "count", label: "Tentacles", min: 2, max: 40, step: 1 },
+    { key: "segments", label: "Segments", min: 12, max: 120, step: 2 },
+    { key: "length", label: "Length", min: 80, max: 800, step: 10 },
+    { key: "width", label: "Thickness", min: 4, max: 60, step: 1 },
   ],
 
   createState(opts, w, h) {

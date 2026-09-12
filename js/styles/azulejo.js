@@ -6,16 +6,16 @@ import { makeColorRamp } from "../palettes.js";
 export const azulejo = {
   id: "azulejo",
   name: "Azulejo",
-  category: "Геометрия",
-  blurb: "Азулежу: квадратная плитка с крестообразным узором в центре.",
+  category: "Geometry",
+  blurb: "Azulejo: square tiles with a cross-shaped motif at the center.",
   defaults: {
     cell: 60,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "cell", label: "Размер плитки", min: 24, max: 160, step: 4 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Случайный"] },
+    { key: "cell", label: "Tile size", min: 24, max: 160, step: 4 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Random"] },
   ],
 
   createState(opts, w, h) {
@@ -37,7 +37,7 @@ export const azulejo = {
     for (let j = -1; j < rows; j++) {
       for (let i = -1; i < cols; i++) {
         const x = i * cell, y = j * cell;
-        const c = opts.paletteMode === "Случайный" ? paletteCols[(i * 7 + j * 11 + 0) % paletteCols.length] : ramp((i + j) / (cols + rows));
+        const c = opts.paletteMode === "Random" ? paletteCols[(i * 7 + j * 11 + 0) % paletteCols.length] : ramp((i + j) / (cols + rows));
         ctx.fillStyle = c;
         ctx.fillRect(x, y, cell, cell);
         // Внутренний крест

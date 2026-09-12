@@ -6,20 +6,20 @@ import { makeColorRamp } from "../palettes.js";
 export const calligraphy = {
   id: "calligraphy",
   name: "Calligraphy",
-  category: "Органические",
-  blurb: "Каллиграфические завитки с переменной толщиной.",
+  category: "Organic",
+  blurb: "Calligraphic flourishes with variable stroke width.",
   defaults: {
     count: 16,
     length: 220,
     maxWidth: 22,
-    paletteMode: "Чёрный на белом",
+    paletteMode: "Black on white",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Завитков", min: 4, max: 50, step: 1 },
-    { key: "length", label: "Длина", min: 60, max: 600, step: 10 },
-    { key: "maxWidth", label: "Макс. толщина", min: 4, max: 60, step: 1 },
-    { key: "paletteMode", label: "Цвет", enum: ["Чёрный на белом", "Палитра"] },
+    { key: "count", label: "Curls", min: 4, max: 50, step: 1 },
+    { key: "length", label: "Length", min: 60, max: 600, step: 10 },
+    { key: "maxWidth", label: "Max thickness", min: 4, max: 60, step: 1 },
+    { key: "paletteMode", label: "Color", enum: ["Black on white", "Palette"] },
   ],
 
   createState(opts, w, h) {
@@ -31,8 +31,8 @@ export const calligraphy = {
   paint(ctx, opts, state) {
     const { w, h, rng, ramp } = state;
     const palette = opts.palette;
-    const bgColor = opts.paletteMode === "Чёрный на белом" ? "#fafaf2" : palette.bg;
-    const fg = opts.paletteMode === "Чёрный на белом" ? "#1a1410" : palette.colors[palette.colors.length - 1];
+    const bgColor = opts.paletteMode === "Black on white" ? "#fafaf2" : palette.bg;
+    const fg = opts.paletteMode === "Black on white" ? "#1a1410" : palette.colors[palette.colors.length - 1];
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, w, h);
     const N = Math.round(opts.count);

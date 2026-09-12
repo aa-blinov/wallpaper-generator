@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,25 +15,25 @@
   </head>
   <body>
     <div id="app">
-      <aside id="panel" aria-label="Панель управления">
-        <div class="panel-handle" id="panelHandle" aria-label="Свернуть / развернуть панель" role="button" tabindex="0">
+      <aside id="panel" aria-label="Control panel">
+        <div class="panel-handle" id="panelHandle" aria-label="Collapse / expand panel" role="button" tabindex="0">
           <div class="panel-handle__bar"></div>
         </div>
         <header class="panel__head">
           <h1>Wallpaper Generator</h1>
-          <button class="panel-close" id="panelClose" aria-label="Закрыть"><i class="bi bi-x-lg"></i></button>
+          <button class="panel-close" id="panelClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
         </header>
         <div id="panelBody">
         <section class="panel__group" data-section="style">
-          <h2>Стиль <span class="muted" id="styleCount"></span></h2>
-          <input id="styleSearch" class="form-control form-control-sm search" type="search" placeholder="Поиск стиля…" />
+          <h2>Style <span class="muted" id="styleCount"></span></h2>
+          <input id="styleSearch" class="form-control form-control-sm search" type="search" placeholder="Search styles…" />
           <div id="styleList" class="style-list" role="tablist"></div>
         </section>
 
         <section class="panel__group" data-section="canvas">
-          <h2>Холст</h2>
+          <h2>Canvas</h2>
           <label class="field">
-            <span>Разрешение</span>
+            <span>Resolution</span>
             <select id="resolution" class="form-select form-select-sm">
               <option value="1920x1080">1920 × 1080 (FHD)</option>
               <option value="2560x1440">2560 × 1440 (QHD)</option>
@@ -43,48 +43,48 @@
             </select>
           </label>
           <label class="field">
-            <span>Режим</span>
+            <span>Mode</span>
             <div class="btn-group btn-group-sm seg" id="modeTabs" role="group">
-              <button data-mode="static" class="btn btn-outline-secondary active">Статика</button>
-              <button data-mode="animated" class="btn btn-outline-secondary">Анимация</button>
+              <button data-mode="static" class="btn btn-outline-secondary active">Static</button>
+              <button data-mode="animated" class="btn btn-outline-secondary">Animated</button>
             </div>
           </label>
           <label class="field" id="animSpeedField" hidden>
-            <span>Скорость анимации</span>
+            <span>Animation speed</span>
             <input id="animSpeed" class="form-range" type="range" min="0" max="200" step="1" value="60" />
           </label>
         </section>
 
         <section class="panel__group" data-section="seed">
-          <h2>Сид</h2>
+          <h2>Seed</h2>
           <div class="input-group input-group-sm mb-2">
             <input id="seedInput" class="form-control" type="text" inputmode="numeric" />
-            <button class="btn btn-outline-secondary" id="seedRandom" title="Случайный сид"><i class="bi bi-dice-5"></i></button>
+            <button class="btn btn-outline-secondary" id="seedRandom" title="Random seed"><i class="bi bi-dice-5"></i></button>
           </div>
-          <button class="btn btn-primary w-100" id="regenerate">Сгенерировать</button>
+          <button class="btn btn-primary w-100" id="regenerate">Generate</button>
         </section>
 
         <section class="panel__group" data-section="palette">
-          <h2>Палитра</h2>
+          <h2>Palette</h2>
           <div class="palette-list" id="paletteList"></div>
         </section>
 
         <section class="panel__group" data-section="params">
-          <h2>Параметры стиля</h2>
+          <h2>Style parameters</h2>
           <div id="paramsHost"></div>
         </section>
 
         <section class="panel__group" data-section="export">
-          <h2>Экспорт</h2>
-          <button class="btn btn-outline-secondary w-100 mb-2" id="exportPng">Сохранить PNG <kbd>S</kbd></button>
-          <button class="btn btn-outline-secondary w-100" id="exportWebm" hidden>Записать WebM (5с)</button>
+          <h2>Export</h2>
+          <button class="btn btn-outline-secondary w-100 mb-2" id="exportPng">Save PNG <kbd>S</kbd></button>
+          <button class="btn btn-outline-secondary w-100" id="exportWebm" hidden>Record WebM (5s)</button>
         </section>
 
         <div class="panel__foot">
           <div class="shortcuts">
-            <span><kbd>Space</kbd> новый сид</span>
-            <span><kbd>←</kbd><kbd>→</kbd> стиль</span>
-            <span><kbd>A</kbd> анимация</span>
+            <span><kbd>Space</kbd> new seed</span>
+            <span><kbd>←</kbd><kbd>→</kbd> style</span>
+            <span><kbd>A</kbd> animate</span>
           </div>
         </div>
 
@@ -99,19 +99,19 @@
           </div>
           <div id="overlay" class="overlay" hidden>
             <div class="overlay__spinner" aria-hidden="true"></div>
-            <div class="overlay__text" id="overlayText">Генерирую…</div>
-            <div class="overlay__sub" id="overlaySub">подготовка сцены</div>
+            <div class="overlay__text" id="overlayText">Generating…</div>
+            <div class="overlay__sub" id="overlaySub">setting up the scene</div>
           </div>
         </div>
         <div id="toast" class="toast" hidden></div>
       </main>
     </div>
 
-    <!-- Вне #app намеренно: у #app есть `contain: layout`, а он создаёт
-         свой containing block для position:fixed потомков — на мобильном
-         это уводило кнопку за пределы видимой области при скрытии адресной
-         строки браузера. -->
-    <button class="panel-burger" id="panelBurger" aria-label="Открыть панель стилей и настроек" aria-expanded="false">
+    <!-- Deliberately outside #app: #app has `contain: layout`, which creates
+         its own containing block for position:fixed descendants — on mobile
+         that pushed the button off-screen when the browser's address bar
+         collapsed/expanded. -->
+    <button class="panel-burger" id="panelBurger" aria-label="Open styles and settings panel" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 

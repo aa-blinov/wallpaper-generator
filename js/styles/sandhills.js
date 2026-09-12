@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const sandhills = {
   id: "sandhills",
   name: "Sand Dunes",
-  category: "Органические",
-  blurb: "Песчаные дюны: силуэт из шумовых слоёв.",
+  category: "Organic",
+  blurb: "Sand dunes: a silhouette built from noise layers.",
   defaults: {
     scale: 0.005,
     octaves: 5,
@@ -15,9 +15,9 @@ export const sandhills = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.001, max: 0.02, step: 0.0005 },
-    { key: "octaves", label: "Октавы", min: 1, max: 7, step: 1 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
+    { key: "scale", label: "Scale", min: 0.001, max: 0.02, step: 0.0005 },
+    { key: "octaves", label: "Octaves", min: 1, max: 7, step: 1 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

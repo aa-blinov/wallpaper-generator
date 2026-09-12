@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const circuit = {
   id: "circuit",
   name: "Circuit Board",
-  category: "Алгоритмы",
-  blurb: "Печатная плата: ортогональные проводники и чипы.",
+  category: "Algorithms",
+  blurb: "Circuit board: orthogonal traces and chips.",
   defaults: {
     chips: 12,
     traces: 60,
@@ -16,10 +16,10 @@ export const circuit = {
     bgTint: 0,
   },
   params: [
-    { key: "chips", label: "Чипов", min: 4, max: 40, step: 1 },
-    { key: "traces", label: "Проводников", min: 10, max: 200, step: 5 },
-    { key: "grid", label: "Шаг сетки (px)", min: 10, max: 60, step: 1 },
-    { key: "traceWidth", label: "Толщина", min: 0.5, max: 4, step: 0.1 },
+    { key: "chips", label: "Chips", min: 4, max: 40, step: 1 },
+    { key: "traces", label: "Traces", min: 10, max: 200, step: 5 },
+    { key: "grid", label: "Grid step (px)", min: 10, max: 60, step: 1 },
+    { key: "traceWidth", label: "Thickness", min: 0.5, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

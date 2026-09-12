@@ -5,18 +5,18 @@ import { makeRng } from "../rng.js";
 export const shards = {
   id: "shards",
   name: "Shards",
-  category: "Геометрия",
-  blurb: "Осколки: случайные многоугольники с острыми углами.",
+  category: "Geometry",
+  blurb: "Shards: random sharp-angled polygons.",
   defaults: {
     count: 20,
     strokeWidth: 1.2,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Осколков", min: 4, max: 60, step: 1 },
-    { key: "strokeWidth", label: "Контур", min: 0, max: 3, step: 0.1 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Случайный"] },
+    { key: "count", label: "Shards", min: 4, max: 60, step: 1 },
+    { key: "strokeWidth", label: "Outline", min: 0, max: 3, step: 0.1 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Random"] },
   ],
 
   createState(opts, w, h) {
@@ -49,7 +49,7 @@ export const shards = {
 
     for (let i = 0; i < polys.length; i++) {
       const poly = polys[i];
-      const color = opts.paletteMode === "Случайный" ? cols[i % cols.length] : cols[Math.floor((i / polys.length) * cols.length)];
+      const color = opts.paletteMode === "Random" ? cols[i % cols.length] : cols[Math.floor((i / polys.length) * cols.length)];
       ctx.fillStyle = color;
       ctx.strokeStyle = palette.colors[0];
       ctx.beginPath();

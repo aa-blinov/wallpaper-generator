@@ -6,19 +6,19 @@ import { makeColorRamp } from "../palettes.js";
 export const pollen = {
   id: "pollen",
   name: "Pollen",
-  category: "Точки",
-  blurb: "Пыльца: кольца из точек вокруг центров.",
+  category: "Dots",
+  blurb: "Pollen: rings of dots around centers.",
   defaults: {
     centers: 18,
     pointsPerRing: 12,
     rings: 6,
-    paletteMode: "Случайный",
+    paletteMode: "Random",
     bgTint: 0,
   },
   params: [
-    { key: "centers", label: "Центров", min: 2, max: 60, step: 1 },
-    { key: "rings", label: "Колец", min: 2, max: 24, step: 1 },
-    { key: "pointsPerRing", label: "Точек в кольце", min: 4, max: 60, step: 1 },
+    { key: "centers", label: "Centers", min: 2, max: 60, step: 1 },
+    { key: "rings", label: "Rings", min: 2, max: 24, step: 1 },
+    { key: "pointsPerRing", label: "Points per ring", min: 4, max: 60, step: 1 },
   ],
 
   createState(opts, w, h) {
@@ -48,7 +48,7 @@ export const pollen = {
           const offR = radius * (1 + (rng() - 0.5) * 0.2);
           const x = cx + offR * Math.cos(ang);
           const y = cy + offR * Math.sin(ang);
-          ctx.fillStyle = opts.paletteMode === "Случайный" ? cols[(p + c) % cols.length] : ramp(t);
+          ctx.fillStyle = opts.paletteMode === "Random" ? cols[(p + c) % cols.length] : ramp(t);
           ctx.beginPath();
           ctx.arc(x, y, 1.5 + t * 3, 0, Math.PI * 2);
           ctx.fill();

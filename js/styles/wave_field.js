@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const wave_field = {
   id: "wave_field",
   name: "Wave Field",
-  category: "Органические",
-  blurb: "Поле волн: top + bottom края из двух разных синусоид.",
+  category: "Organic",
+  blurb: "Wave field: top and bottom edges from two different sine waves.",
   defaults: {
     rows: 80,
     ampTop: 0.3,
@@ -17,11 +17,11 @@ export const wave_field = {
     bgTint: 0,
   },
   params: [
-    { key: "rows", label: "Линий", min: 20, max: 300, step: 5 },
-    { key: "ampTop", label: "Амплитуда верха", min: 0, max: 1, step: 0.02 },
-    { key: "ampBot", label: "Амплитуда низа", min: 0, max: 1, step: 0.02 },
-    { key: "freqTop", label: "Частота верха", min: 0.01, max: 0.2, step: 0.005 },
-    { key: "freqBot", label: "Частота низа", min: 0.01, max: 0.2, step: 0.005 },
+    { key: "rows", label: "Lines", min: 20, max: 300, step: 5 },
+    { key: "ampTop", label: "Top amplitude", min: 0, max: 1, step: 0.02 },
+    { key: "ampBot", label: "Bottom amplitude", min: 0, max: 1, step: 0.02 },
+    { key: "freqTop", label: "Top frequency", min: 0.01, max: 0.2, step: 0.005 },
+    { key: "freqBot", label: "Bottom frequency", min: 0.01, max: 0.2, step: 0.005 },
   ],
 
   createState(opts, w, h) {

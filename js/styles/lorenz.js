@@ -3,8 +3,8 @@
 export const lorenz = {
   id: "lorenz",
   name: "Lorenz Attractor",
-  category: "Алгоритмы",
-  blurb: "Странный аттрактор Лоренца в 3D-проекции.",
+  category: "Algorithms",
+  blurb: "The Lorenz strange attractor, projected in 3D.",
   defaults: {
     sigma: 10,
     rho: 28,
@@ -17,8 +17,8 @@ export const lorenz = {
     { key: "sigma", label: "σ (sigma)", min: 1, max: 20, step: 0.1 },
     { key: "rho", label: "ρ (rho)", min: 5, max: 60, step: 0.5 },
     { key: "beta", label: "β (beta)", min: 0.5, max: 5, step: 0.05 },
-    { key: "steps", label: "Шагов", min: 10000, max: 200000, step: 5000 },
-    { key: "strokeWidth", label: "Толщина следа", min: 0.2, max: 2, step: 0.05 },
+    { key: "steps", label: "Steps", min: 10000, max: 200000, step: 5000 },
+    { key: "strokeWidth", label: "Trail thickness", min: 0.2, max: 2, step: 0.05 },
   ],
 
   createState(opts, w, h) {

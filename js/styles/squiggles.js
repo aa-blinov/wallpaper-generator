@@ -6,20 +6,20 @@ import { makeColorRamp } from "../palettes.js";
 export const squiggles = {
   id: "squiggles",
   name: "Squiggles",
-  category: "Геометрия",
-  blurb: "Случайные закорючки из кривых Безье.",
+  category: "Geometry",
+  blurb: "Random squiggles made of Bézier curves.",
   defaults: {
     count: 60,
     strokeWidth: 1.2,
     length: 80,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Закорючек", min: 5, max: 200, step: 5 },
-    { key: "length", label: "Средняя длина", min: 20, max: 200, step: 5 },
-    { key: "strokeWidth", label: "Толщина", min: 0.3, max: 4, step: 0.1 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Один цвет"] },
+    { key: "count", label: "Squiggles", min: 5, max: 200, step: 5 },
+    { key: "length", label: "Average length", min: 20, max: 200, step: 5 },
+    { key: "strokeWidth", label: "Thickness", min: 0.3, max: 4, step: 0.1 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -48,7 +48,7 @@ export const squiggles = {
       const cy1 = y1 + Math.sin(ang + Math.PI / 2) * (rng() - 0.5) * L * 0.9;
       const cx2 = x2 + Math.cos(ang + Math.PI / 2) * (rng() - 0.5) * L * 0.9;
       const cy2 = y2 + Math.sin(ang + Math.PI / 2) * (rng() - 0.5) * L * 0.9;
-      ctx.strokeStyle = opts.paletteMode === "Один цвет"
+      ctx.strokeStyle = opts.paletteMode === "Single color"
         ? palette.colors[palette.colors.length - 1]
         : ramp(rng());
       ctx.beginPath();

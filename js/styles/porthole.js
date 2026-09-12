@@ -6,20 +6,20 @@ import { makeColorRamp } from "../palettes.js";
 export const porthole = {
   id: "porthole",
   name: "Portholes",
-  category: "Текстуры",
-  blurb: "Сетка иллюминаторов: концентрические круги с бликом.",
+  category: "Textures",
+  blurb: "A grid of portholes: concentric circles with a highlight.",
   defaults: {
-    tileMode: "Квадрат",
+    tileMode: "Square",
     size: 100,
     rings: 5,
     highlight: 0.7,
     bgTint: 0,
   },
   params: [
-    { key: "tileMode", label: "Тайлинг", enum: ["Квадрат", "Гексагональный"] },
-    { key: "size", label: "Размер ячейки", min: 40, max: 220, step: 5 },
-    { key: "rings", label: "Колец", min: 2, max: 12, step: 1 },
-    { key: "highlight", label: "Сила блика", min: 0, max: 1.5, step: 0.02 },
+    { key: "tileMode", label: "Tiling", enum: ["Square", "Hexagonal"] },
+    { key: "size", label: "Cell size", min: 40, max: 220, step: 5 },
+    { key: "rings", label: "Rings", min: 2, max: 12, step: 1 },
+    { key: "highlight", label: "Highlight strength", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -35,7 +35,7 @@ export const porthole = {
 
     const rings = Math.max(2, Math.round(opts.rings));
 
-    if (opts.tileMode === "Гексагональный") {
+    if (opts.tileMode === "Hexagonal") {
       drawHexGrid(ctx, opts, w, h, rings, ramp, palette);
     } else {
       drawSquareGrid(ctx, opts, w, h, rings, ramp, palette);

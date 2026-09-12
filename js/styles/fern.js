@@ -6,16 +6,16 @@ import { makeColorRamp, hexToRgb } from "../palettes.js";
 export const fern = {
   id: "fern",
   name: "Barnsley Fern",
-  category: "Алгоритмы",
-  blurb: "Папоротник Барнсли: IFS-точки с четырьмя аффинными преобразованиями.",
+  category: "Algorithms",
+  blurb: "Barnsley fern: IFS points from four affine transforms.",
   defaults: {
     points: 120000,
-    colorMode: "Зелёный",
+    colorMode: "Green",
     bgTint: 0,
   },
   params: [
-    { key: "points", label: "Кол-во точек", min: 20000, max: 400000, step: 10000 },
-    { key: "colorMode", label: "Цвет", enum: ["Зелёный", "Палитра", "По Y"] },
+    { key: "points", label: "Point count", min: 20000, max: 400000, step: 10000 },
+    { key: "colorMode", label: "Color", enum: ["Green", "Palette", "By Y"] },
   ],
 
   createState(opts, w, h) {
@@ -63,21 +63,21 @@ export const fern = {
     const data = img.data;
     // Найдём уникальные цвета
     let colBase;
-    if (opts.colorMode === "Зелёный") {
+    if (opts.colorMode === "Green") {
       colBase = [40, 130, 60];
     } else {
       colBase = hexToRgb(palette.colors[palette.colors.length - 1]);
     }
     const colsRgb = palette.colors.map(hexToRgb);
 
-    const useColor = opts.colorMode !== "Зелёный";
+    const useColor = opts.colorMode !== "Green";
     for (const [px, py] of points) {
       const cx = (px * sx) | 0;
       const cy = ((-py) * sy + offsetY) | 0;
       if (cx < 0 || cx >= w || cy < 0 || cy >= h) continue;
       const k = (cy * w + cx) * 4;
       let r, g, b;
-      if (useColor && opts.colorMode === "По Y") {
+      if (useColor && opts.colorMode === "By Y") {
         const t = (py - minY) / (maxY - minY);
         const idx = (t * (colsRgb.length - 1)) | 0;
         const c = colsRgb[idx];

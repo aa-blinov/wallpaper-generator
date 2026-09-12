@@ -12,8 +12,8 @@ import { makeColorRamp } from "../palettes.js";
 export const spirograph = {
   id: "spirograph",
   name: "Spirograph",
-  category: "Геометрия",
-  blurb: "Гипотрохоиды — математические узоры, классическая игрушка.",
+  category: "Geometry",
+  blurb: "Hypotrochoids — mathematical curves, the classic spirograph toy.",
   defaults: {
     pens: 7,
     rimRatio: 0.6,      // R / width
@@ -27,16 +27,16 @@ export const spirograph = {
     bgTint: 0.0,
   },
   params: [
-    { key: "pens", label: "Кол-во «перьев»", min: 1, max: 24, step: 1 },
-    { key: "rimRatio", label: "Радиус обода (R)", min: 0.1, max: 0.9, step: 0.01 },
-    { key: "innerRatio", label: "Радиус колеса (r)", min: 0.05, max: 0.45, step: 0.01 },
-    { key: "penRatio", label: "Смещение пера (d)", min: 0.01, max: 0.4, step: 0.005 },
-    { key: "stepCount", label: "Точек на кривую", min: 200, max: 6000, step: 50 },
-    { key: "loops", label: "Длина следа", min: 0.25, max: 4, step: 0.05 },
-    { key: "thickness", label: "Толщина", min: 0.2, max: 5, step: 0.1 },
-    { key: "rotationSpeed", label: "Скорость вращения", min: 0, max: 0.5, step: 0.005 },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
-    { key: "colorMode", label: "Цвет", enum: ["iter", "one", "paletteCycle"] },
+    { key: "pens", label: "Frond count", min: 1, max: 24, step: 1 },
+    { key: "rimRatio", label: "Rim radius (R)", min: 0.1, max: 0.9, step: 0.01 },
+    { key: "innerRatio", label: "Wheel radius (r)", min: 0.05, max: 0.45, step: 0.01 },
+    { key: "penRatio", label: "Pen offset (d)", min: 0.01, max: 0.4, step: 0.005 },
+    { key: "stepCount", label: "Points per curve", min: 200, max: 6000, step: 50 },
+    { key: "loops", label: "Trail length", min: 0.25, max: 4, step: 0.05 },
+    { key: "thickness", label: "Thickness", min: 0.2, max: 5, step: 0.1 },
+    { key: "rotationSpeed", label: "Rotation speed", min: 0, max: 0.5, step: 0.005 },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
+    { key: "colorMode", label: "Color", enum: ["iter", "one", "paletteCycle"] },
   ],
 
   createState(opts, w, h) {

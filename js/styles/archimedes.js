@@ -4,8 +4,8 @@
 export const archimedes = {
   id: "archimedes",
   name: "Archimedean Spiral",
-  category: "Геометрия",
-  blurb: "Спираль Архимеда r = a + b·θ с несколькими лопастями.",
+  category: "Geometry",
+  blurb: "Archimedean spiral r = a + b·θ with several arms.",
   defaults: {
     turns: 6,
     copies: 5,
@@ -14,10 +14,10 @@ export const archimedes = {
     bgTint: 0,
   },
   params: [
-    { key: "turns", label: "Оборотов", min: 1, max: 20, step: 0.5 },
-    { key: "copies", label: "Копий по кругу", min: 1, max: 16, step: 1 },
-    { key: "spacing", label: "Шаг (пикс.)", min: 4, max: 60, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.2, max: 4, step: 0.1 },
+    { key: "turns", label: "Revolutions", min: 1, max: 20, step: 0.5 },
+    { key: "copies", label: "Copies around circle", min: 1, max: 16, step: 1 },
+    { key: "spacing", label: "Step (px)", min: 4, max: 60, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.2, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

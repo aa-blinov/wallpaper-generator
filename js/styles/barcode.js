@@ -7,25 +7,25 @@ import { makeColorRamp } from "../palettes.js";
 export const barcode = {
   id: "barcode",
   name: "Barcode",
-  category: "Геометрия",
-  blurb: "Штрих-код: случайные полосы разной ширины.",
+  category: "Geometry",
+  blurb: "Barcode: random bars of varying width.",
   defaults: {
     minBar: 2,
     maxBar: 14,
     minGap: 2,
     maxGap: 10,
     jitter: 0.0,
-    paletteMode: "Бинарный",   // "Бинарный" | "Палитра"
+    paletteMode: "Binary",   // "Binary" | "Palette"
     bgTint: 0.0,
   },
   params: [
-    { key: "minBar", label: "Мин. ширина полосы", min: 1, max: 30, step: 1 },
-    { key: "maxBar", label: "Макс. ширина полосы", min: 2, max: 40, step: 1 },
-    { key: "minGap", label: "Мин. зазор", min: 1, max: 30, step: 1 },
-    { key: "maxGap", label: "Макс. зазор", min: 1, max: 30, step: 1 },
-    { key: "jitter", label: "Дрожание краёв", min: 0, max: 1, step: 0.02 },
-    { key: "paletteMode", label: "Цвет", enum: ["Бинарный", "Палитра"] },
-    { key: "bgTint", label: "Затемнить фон", min: 0, max: 1, step: 0.02 },
+    { key: "minBar", label: "Min stripe width", min: 1, max: 30, step: 1 },
+    { key: "maxBar", label: "Max stripe width", min: 2, max: 40, step: 1 },
+    { key: "minGap", label: "Min gap", min: 1, max: 30, step: 1 },
+    { key: "maxGap", label: "Max gap", min: 1, max: 30, step: 1 },
+    { key: "jitter", label: "Edge jitter", min: 0, max: 1, step: 0.02 },
+    { key: "paletteMode", label: "Color", enum: ["Binary", "Palette"] },
+    { key: "bgTint", label: "Darken background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

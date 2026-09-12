@@ -7,8 +7,8 @@ import { makeColorRamp } from "../palettes.js";
 export const ridged = {
   id: "ridged",
   name: "Ridged Multifractal",
-  category: "Шум",
-  blurb: "«Горные хребты»: 1 - |noise| на октавах.",
+  category: "Noise",
+  blurb: "\"Mountain ridges\": 1 - |noise| across octaves.",
   defaults: {
     scale: 0.005,
     octaves: 6,
@@ -20,13 +20,13 @@ export const ridged = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.001, max: 0.04, step: 0.0005 },
-    { key: "octaves", label: "Октавы", min: 1, max: 7, step: 1 },
-    { key: "persistence", label: "Затухание", min: 0.2, max: 0.95, step: 0.01 },
-    { key: "lacunarity", label: "Лакunarность", min: 1.5, max: 3.0, step: 0.05 },
-    { key: "gain", label: "Усиление", min: 1.0, max: 3.0, step: 0.05 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "bgTint", label: "Затемнить фон", min: 0, max: 1, step: 0.02 },
+    { key: "scale", label: "Scale", min: 0.001, max: 0.04, step: 0.0005 },
+    { key: "octaves", label: "Octaves", min: 1, max: 7, step: 1 },
+    { key: "persistence", label: "Decay", min: 0.2, max: 0.95, step: 0.01 },
+    { key: "lacunarity", label: "Lacunarity", min: 1.5, max: 3.0, step: 0.05 },
+    { key: "gain", label: "Gain", min: 1.0, max: 3.0, step: 0.05 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "bgTint", label: "Darken background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

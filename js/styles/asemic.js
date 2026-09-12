@@ -1,4 +1,4 @@
-// Asemic Writing — генеративная "каллиграфия": случайные плавные штрихи,
+// Asemic Writing — генеративная "calligraphy": случайные плавные штрихи,
 // напоминающие арабскую вязь или рунические письмена. Медитативные
 // (нечитаемые) символы.
 
@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const asemic = {
   id: "asemic",
   name: "Asemic Writing",
-  category: "Органические",
-  blurb: "Генеративная каллиграфия — плавные нечитаемые штрихи.",
+  category: "Organic",
+  blurb: "Generative calligraphy — flowing, unreadable strokes.",
   defaults: {
     columns: 12,
     strokesPerGlyph: 4,
@@ -22,15 +22,15 @@ export const asemic = {
     bgTint: 0.0,
   },
   params: [
-    { key: "columns", label: "Колонок", min: 3, max: 40, step: 1 },
-    { key: "strokesPerGlyph", label: "Штрихов на глиф", min: 1, max: 12, step: 1 },
-    { key: "columnSpacing", label: "Интервал колонок", min: 0.6, max: 2.5, step: 0.05 },
-    { key: "baselineJitter", label: "Дрожание базовой линии", min: 0, max: 0.6, step: 0.02 },
-    { key: "strokeWidth", label: "Толщина штриха", min: 0.5, max: 20, step: 0.5 },
-    { key: "strokeSoftness", label: "Мягкость", min: 0.3, max: 3, step: 0.1 },
-    { key: "randomness", label: "Степень случайности", min: 0, max: 1, step: 0.02 },
-    { key: "colorMode", label: "Цвет", enum: ["by-column", "single", "by-shape"] },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "columns", label: "Columns", min: 3, max: 40, step: 1 },
+    { key: "strokesPerGlyph", label: "Strokes per glyph", min: 1, max: 12, step: 1 },
+    { key: "columnSpacing", label: "Column spacing", min: 0.6, max: 2.5, step: 0.05 },
+    { key: "baselineJitter", label: "Baseline jitter", min: 0, max: 0.6, step: 0.02 },
+    { key: "strokeWidth", label: "Stroke thickness", min: 0.5, max: 20, step: 0.5 },
+    { key: "strokeSoftness", label: "Softness", min: 0.3, max: 3, step: 0.1 },
+    { key: "randomness", label: "Randomness amount", min: 0, max: 1, step: 0.02 },
+    { key: "colorMode", label: "Color", enum: ["by-column", "single", "by-shape"] },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

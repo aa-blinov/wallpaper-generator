@@ -6,18 +6,18 @@ import { makeColorRamp } from "../palettes.js";
 export const stars = {
   id: "stars",
   name: "Sparkling Stars",
-  category: "Точки",
-  blurb: "Звёзды с лучами: случайный размер, яркость и ориентация.",
+  category: "Dots",
+  blurb: "Stars with rays: random size, brightness and orientation.",
   defaults: {
     count: 80,
     rayChance: 0.5,
-    paletteMode: "Случайный",
+    paletteMode: "Random",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Звёзд", min: 10, max: 400, step: 5 },
-    { key: "rayChance", label: "Шанс лучей", min: 0, max: 1, step: 0.02 },
-    { key: "paletteMode", label: "Цвет", enum: ["Случайный", "Белый", "Палитра"] },
+    { key: "count", label: "Stars", min: 10, max: 400, step: 5 },
+    { key: "rayChance", label: "Ray chance", min: 0, max: 1, step: 0.02 },
+    { key: "paletteMode", label: "Color", enum: ["Random", "White", "Palette"] },
   ],
 
   createState(opts, w, h) {
@@ -32,7 +32,7 @@ export const stars = {
     ctx.fillStyle = palette.bg;
     ctx.fillRect(0, 0, w, h);
     const N = Math.round(opts.count);
-    const fg = opts.paletteMode === "Белый" ? "#ffffff" : (opts.paletteMode === "Палитра" ? palette.colors[palette.colors.length - 1] : null);
+    const fg = opts.paletteMode === "White" ? "#ffffff" : (opts.paletteMode === "Palette" ? palette.colors[palette.colors.length - 1] : null);
 
     for (let i = 0; i < N; i++) {
       const cx = rng() * w;

@@ -1,6 +1,6 @@
 // Concentric Rings — кольца с шумовым смещением, как зин-анимация в Tunnel.app
-// или классические "топографические горизонтали". Залипательно за счёт
-// "дышащей" деформации.
+// или классические "topographic contours". Залипательно за счёт
+// "breathing" деформации.
 
 import { makeNoise2D, makeFbm } from "../noise.js";
 import { makeColorRamp } from "../palettes.js";
@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const concentric = {
   id: "concentric",
   name: "Concentric Rings",
-  category: "Геометрия",
-  blurb: "Концентрические кольца с шумовой деформацией — Tunnel-стиль.",
+  category: "Geometry",
+  blurb: "Concentric rings warped by noise — a tunnel effect.",
   defaults: {
     rings: 28,
     thickness: 1.8,
@@ -18,19 +18,19 @@ export const concentric = {
     octaves: 4,
     centerX: 0.5,         // доля от w
     centerY: 0.5,
-    smoothMode: "Смешение колец",  // "Смешение колец" | "Линии уровня" | "Только контуры"
+    smoothMode: "Ring blending",  // "Ring blending" | "Contour lines" | "Outlines only"
     bgFade: 0.0,
   },
   params: [
-    { key: "rings", label: "Кол-во колец", min: 4, max: 200, step: 1 },
-    { key: "thickness", label: "Толщина", min: 0.2, max: 10, step: 0.1 },
-    { key: "noiseScale", label: "Шум (детализация)", min: 0.0005, max: 0.04, step: 0.0005 },
-    { key: "noiseStrength", label: "Амплитуда деформации", min: 0.0, max: 3.0, step: 0.05 },
-    { key: "octaves", label: "Октавы", min: 1, max: 6, step: 1 },
-    { key: "centerX", label: "Центр X", min: -0.5, max: 1.5, step: 0.02 },
-    { key: "centerY", label: "Центр Y", min: -0.5, max: 1.5, step: 0.02 },
-    { key: "smoothMode", label: "Режим", enum: ["Смешение колец", "Линии уровня", "Только контуры"] },
-    { key: "bgFade", label: "Затемнение фона", min: 0, max: 1, step: 0.02 },
+    { key: "rings", label: "Ring count", min: 4, max: 200, step: 1 },
+    { key: "thickness", label: "Thickness", min: 0.2, max: 10, step: 0.1 },
+    { key: "noiseScale", label: "Noise (detail)", min: 0.0005, max: 0.04, step: 0.0005 },
+    { key: "noiseStrength", label: "Warp amplitude", min: 0.0, max: 3.0, step: 0.05 },
+    { key: "octaves", label: "Octaves", min: 1, max: 6, step: 1 },
+    { key: "centerX", label: "Center X", min: -0.5, max: 1.5, step: 0.02 },
+    { key: "centerY", label: "Center Y", min: -0.5, max: 1.5, step: 0.02 },
+    { key: "smoothMode", label: "Mode", enum: ["Ring blending", "Contour lines", "Outlines only"] },
+    { key: "bgFade", label: "Darken background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -82,10 +82,10 @@ export const concentric = {
         // d ∈ [0, 0.5]; маленькое — на границе.
         const edge = clamp01(d * rings / Math.max(0.5, opts.thickness));
         let t;
-        if (mode === "Линии уровня") {
+        if (mode === "Contour lines") {
           // Чем дальше от края — насыщеннее цвет уровня.
           t = v;
-        } else if (mode === "Только контуры") {
+        } else if (mode === "Outlines only") {
           t = edge * 0.95;
         } else {
           // Смешение колец — смешать уровень v и edge.
@@ -110,7 +110,7 @@ export const concentric = {
   },
 
   animate(ctx, opts, state, t) {
-    // Медленная "деформация" смещения.
+    // Медленная "warp" смещения.
     opts.centerX = 0.5 + Math.sin(t * 0.0002) * 0.05;
     opts.centerY = 0.5 + Math.cos(t * 0.00015) * 0.05;
     this.paint(ctx, opts, state);

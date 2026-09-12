@@ -6,8 +6,8 @@ import { makeRng } from "../rng.js";
 export const tree = {
   id: "tree",
   name: "Fractal Tree",
-  category: "Алгоритмы",
-  blurb: "Рекурсивное фрактальное дерево с настраиваемым ветвлением.",
+  category: "Algorithms",
+  blurb: "Recursive fractal tree with adjustable branching.",
   defaults: {
     depth: 9,
     branchAngle: 25,
@@ -15,17 +15,17 @@ export const tree = {
     startLength: 0.22,
     spread: 0.42,
     wind: 0,
-    paletteMode: "По глубине",
+    paletteMode: "By depth",
     bgTint: 0,
   },
   params: [
-    { key: "depth", label: "Глубина", min: 3, max: 12, step: 1 },
-    { key: "branchAngle", label: "Угол", min: 5, max: 60, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "lengthScale", label: "Коэф. длины", min: 0.4, max: 0.9, step: 0.01 },
-    { key: "spread", label: "Разброс", min: 0, max: 1, step: 0.02 },
-    { key: "wind", label: "Ветер", min: -1, max: 1, step: 0.02 },
-    { key: "startLength", label: "Старт. длина", min: 0.05, max: 0.5, step: 0.01 },
-    { key: "paletteMode", label: "Цвет", enum: ["По глубине", "Сезон", "Один цвет"] },
+    { key: "depth", label: "Depth", min: 3, max: 12, step: 1 },
+    { key: "branchAngle", label: "Angle", min: 5, max: 60, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "lengthScale", label: "Length factor", min: 0.4, max: 0.9, step: 0.01 },
+    { key: "spread", label: "Spread", min: 0, max: 1, step: 0.02 },
+    { key: "wind", label: "Wind", min: -1, max: 1, step: 0.02 },
+    { key: "startLength", label: "Start length", min: 0.05, max: 0.5, step: 0.01 },
+    { key: "paletteMode", label: "Color", enum: ["By depth", "Season", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -49,8 +49,8 @@ export const tree = {
       const x2 = x1 + len * Math.cos(dir);
       const y2 = y1 + len * Math.sin(dir);
       let color;
-      if (opts.paletteMode === "Один цвет") color = palette.colors[palette.colors.length - 1];
-      else if (opts.paletteMode === "Сезон") {
+      if (opts.paletteMode === "Single color") color = palette.colors[palette.colors.length - 1];
+      else if (opts.paletteMode === "Season") {
         const t = (depth - 1) / Math.max(1, maxDepth - 1);
         color = ramp(0.2 + t * 0.7);
       } else {

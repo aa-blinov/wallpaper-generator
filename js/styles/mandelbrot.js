@@ -1,5 +1,5 @@
 // Mandelbrot — классический escape-time фрактал. Для каждого пикселя
-// итерируем z = z² + c, считаем число итераций до "выброса" (|z|>2).
+// итерируем z = z² + c, считаем число итераций до "burst" (|z|>2).
 // Раскраска по числу итераций через палитру. Также поддерживает Julia.
 
 import { makeColorRamp } from "../palettes.js";
@@ -7,8 +7,8 @@ import { makeColorRamp } from "../palettes.js";
 export const mandelbrot = {
   id: "mandelbrot",
   name: "Mandelbrot / Julia",
-  category: "Алгоритмы",
-  blurb: "Escape-time фрактал: классический Mandelbrot или Julia-вариация.",
+  category: "Algorithms",
+  blurb: "Escape-time fractal: classic Mandelbrot or a Julia variant.",
   defaults: {
     mode: "Mandelbrot",    // "Mandelbrot" | "Julia"
     juliaRe: -0.7269,
@@ -21,15 +21,15 @@ export const mandelbrot = {
     cyclePalette: 1.0,
   },
   params: [
-    { key: "mode", label: "Режим", enum: ["Mandelbrot", "Julia"] },
+    { key: "mode", label: "Mode", enum: ["Mandelbrot", "Julia"] },
     { key: "juliaRe", label: "Julia: Re(c)", min: -1.0, max: 1.0, step: 0.001 },
     { key: "juliaIm", label: "Julia: Im(c)", min: -1.0, max: 1.0, step: 0.001 },
-    { key: "cx", label: "Центр X", min: -2.0, max: 2.0, step: 0.005 },
-    { key: "cy", label: "Центр Y", min: -2.0, max: 2.0, step: 0.005 },
-    { key: "zoom", label: "Зум", min: 0.2, max: 12.0, step: 0.05 },
-    { key: "maxIter", label: "Глубина итераций", min: 20, max: 500, step: 5 },
-    { key: "sampleStep", label: "Шаг сэмпла", min: 1, max: 8, step: 1 },
-    { key: "cyclePalette", label: "Цикл палитры", min: 0.0, max: 2.0, step: 0.05 },
+    { key: "cx", label: "Center X", min: -2.0, max: 2.0, step: 0.005 },
+    { key: "cy", label: "Center Y", min: -2.0, max: 2.0, step: 0.005 },
+    { key: "zoom", label: "Zoom", min: 0.2, max: 12.0, step: 0.05 },
+    { key: "maxIter", label: "Iteration depth", min: 20, max: 500, step: 5 },
+    { key: "sampleStep", label: "Sample step", min: 1, max: 8, step: 1 },
+    { key: "cyclePalette", label: "Palette cycle", min: 0.0, max: 2.0, step: 0.05 },
   ],
 
   createState(opts, w, h) {

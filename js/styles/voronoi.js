@@ -10,27 +10,27 @@ import { makeColorRamp } from "../palettes.js";
 export const voronoi = {
   id: "voronoi",
   name: "Voronoi Cells",
-  category: "Геометрия",
-  blurb: "Клеточные диаграммы Worley — трещины, кораллы, стёкла.",
+  category: "Geometry",
+  blurb: "Worley cell diagrams — cracks, coral, cracked glass.",
   defaults: {
     cellSize: 70,
     edgeWidth: 1.6,
     softness: 1.4,
     edgeInvert: 0,
-    fillMode: "ID точки",
+    fillMode: "Point ID",
     cellThickness: 0.5,
     jitter: 0.85,
     warp: 0.0,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 16, max: 220, step: 2, format: (v) => `${v.toFixed(0)} px` },
-    { key: "edgeWidth", label: "Ширина границ", min: 0, max: 8, step: 0.1 },
-    { key: "softness", label: "Мягкость", min: 0.2, max: 5, step: 0.1 },
-    { key: "edgeInvert", label: "Инверсия (на тёмном)", enum: [0, 1] },
-    { key: "fillMode", label: "Цвет по", enum: ["F1 (расстояние)", "ID точки", "Угол к точке"] },
-    { key: "cellThickness", label: "Заливка ячеек", min: 0, max: 1, step: 0.02 },
-    { key: "jitter", label: "Степень дрожания", min: 0, max: 1, step: 0.05 },
-    { key: "warp", label: "Шумовое искажение", min: 0, max: 0.04, step: 0.001, format: (v) => v.toFixed(3) },
+    { key: "cellSize", label: "Cell size", min: 16, max: 220, step: 2, format: (v) => `${v.toFixed(0)} px` },
+    { key: "edgeWidth", label: "Border width", min: 0, max: 8, step: 0.1 },
+    { key: "softness", label: "Softness", min: 0.2, max: 5, step: 0.1 },
+    { key: "edgeInvert", label: "Invert (on dark)", enum: [0, 1] },
+    { key: "fillMode", label: "Color by", enum: ["F1 (distance)", "Point ID", "Angle to point"] },
+    { key: "cellThickness", label: "Cell fill", min: 0, max: 1, step: 0.02 },
+    { key: "jitter", label: "Jitter amount", min: 0, max: 1, step: 0.05 },
+    { key: "warp", label: "Noise warp", min: 0, max: 0.04, step: 0.001, format: (v) => v.toFixed(3) },
   ],
 
   createState(opts, w, h) {
@@ -137,8 +137,8 @@ export const voronoi = {
         const edgeMask = Math.exp(-inside * inside);  // 1 в центре, 0 на границе.
 
         let t;
-        if (fillMode === "ID точки" && f1p) t = f1p.col;
-        else if (fillMode === "Угол к точке" && f1p) t = (f1p.ang / (Math.PI * 2) + 1) % 1;
+        if (fillMode === "Point ID" && f1p) t = f1p.col;
+        else if (fillMode === "Angle to point" && f1p) t = (f1p.ang / (Math.PI * 2) + 1) % 1;
         else t = Math.min(1, f1s / (cellSize * 1.2));
 
         const fg = ramp(t);

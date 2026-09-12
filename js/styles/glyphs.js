@@ -18,8 +18,8 @@ const GLYPHS = [
 export const glyphs = {
   id: "glyphs",
   name: "Glyphs",
-  category: "Точки",
-  blurb: "Сетка разнообразных глифов и символов.",
+  category: "Dots",
+  blurb: "A grid of assorted glyphs and symbols.",
   defaults: {
     rows: 14,
     cols: 14,
@@ -27,10 +27,10 @@ export const glyphs = {
     bgTint: 0,
   },
   params: [
-    { key: "rows", label: "Строк", min: 4, max: 50, step: 1 },
-    { key: "cols", label: "Колонок", min: 4, max: 50, step: 1 },
-    { key: "size", label: "Размер (px)", min: 8, max: 80, step: 1 },
-    { key: "bgTint", label: "Затемнить", min: 0, max: 1, step: 0.02 },
+    { key: "rows", label: "Rows", min: 4, max: 50, step: 1 },
+    { key: "cols", label: "Columns", min: 4, max: 50, step: 1 },
+    { key: "size", label: "Size (px)", min: 8, max: 80, step: 1 },
+    { key: "bgTint", label: "Darken", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

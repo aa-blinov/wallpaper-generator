@@ -7,8 +7,8 @@ import { makeColorRamp } from "../palettes.js";
 export const brick = {
   id: "brick",
   name: "Brick Wall",
-  category: "Геометрия",
-  blurb: "Кирпичная кладка с шумовыми вариациями каждого кирпича.",
+  category: "Geometry",
+  blurb: "Brick wall with noise-driven variation per brick.",
   defaults: {
     brickW: 70,
     brickH: 24,
@@ -16,16 +16,16 @@ export const brick = {
     mortarTint: 0.4,
     colorVariation: 0.35,
     noiseScale: 0.02,
-    paletteMode: "По палитре", // "По палитре" | "Случайный"
+    paletteMode: "By palette", // "By palette" | "Random"
     bgTint: 0,
   },
   params: [
-    { key: "brickW", label: "Ширина кирпича", min: 30, max: 200, step: 2 },
-    { key: "brickH", label: "Высота", min: 12, max: 60, step: 1 },
-    { key: "gap", label: "Раствор", min: 0, max: 10, step: 0.5 },
-    { key: "mortarTint", label: "Цвет раствора", min: 0, max: 1, step: 0.02 },
-    { key: "colorVariation", label: "Вариация цвета", min: 0, max: 1, step: 0.02 },
-    { key: "noiseScale", label: "Масштаб шума", min: 0, max: 0.05, step: 0.001 },
+    { key: "brickW", label: "Brick width", min: 30, max: 200, step: 2 },
+    { key: "brickH", label: "Height", min: 12, max: 60, step: 1 },
+    { key: "gap", label: "Mortar", min: 0, max: 10, step: 0.5 },
+    { key: "mortarTint", label: "Mortar color", min: 0, max: 1, step: 0.02 },
+    { key: "colorVariation", label: "Color variation", min: 0, max: 1, step: 0.02 },
+    { key: "noiseScale", label: "Noise scale", min: 0, max: 0.05, step: 0.001 },
   ],
 
   createState(opts, w, h) {

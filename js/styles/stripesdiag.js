@@ -6,20 +6,20 @@ import { makeColorRamp } from "../palettes.js";
 export const stripesdiag = {
   id: "stripesdiag",
   name: "Diagonal Stripes",
-  category: "Геометрия",
-  blurb: "Диагональные полосы с шумовым смещением.",
+  category: "Geometry",
+  blurb: "Diagonal stripes with noise-based offset.",
   defaults: {
     spacing: 12,
     angle: 45,
     noiseScale: 0.005,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "spacing", label: "Шаг", min: 4, max: 50, step: 1 },
-    { key: "angle", label: "Угол", min: 0, max: 180, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "noiseScale", label: "Шум", min: 0, max: 0.02, step: 0.001 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Монохром"] },
+    { key: "spacing", label: "Step", min: 4, max: 50, step: 1 },
+    { key: "angle", label: "Angle", min: 0, max: 180, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "noiseScale", label: "Noise", min: 0, max: 0.02, step: 0.001 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Monochrome"] },
   ],
 
   createState(opts, w, h) {
@@ -47,7 +47,7 @@ export const stripesdiag = {
       const my = oy + sin * h * 0.6;
       const off = noise(mx * opts.noiseScale, my * opts.noiseScale) * spacing * 3;
       const Nx = -sin, Ny = cos;
-      ctx.strokeStyle = opts.paletteMode === "Палитра" ? ramp((i % 7 + 7) % 7 / 7) : palette.colors[palette.colors.length - 1];
+      ctx.strokeStyle = opts.paletteMode === "Palette" ? ramp((i % 7 + 7) % 7 / 7) : palette.colors[palette.colors.length - 1];
       ctx.lineWidth = spacing;
       ctx.beginPath();
       ctx.moveTo(ox - Nx * D + Nx * off, oy - Ny * D + Ny * off);

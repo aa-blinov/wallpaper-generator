@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const orbital = {
   id: "orbital",
   name: "Orbital Trails",
-  category: "Точки",
-  blurb: "Орбитальные трассы: следы из частиц, летящих по гладким петлям.",
+  category: "Dots",
+  blurb: "Orbital trails: particle trails flying along smooth loops.",
   defaults: {
     trails: 14,
     length: 200,
@@ -16,10 +16,10 @@ export const orbital = {
     bgTint: 0,
   },
   params: [
-    { key: "trails", label: "Трасс", min: 2, max: 60, step: 1 },
-    { key: "length", label: "Длина следа (точек)", min: 50, max: 1200, step: 50 },
-    { key: "samples", label: "Точек кривой", min: 200, max: 4000, step: 100 },
-    { key: "strokeWidth", label: "Толщина", min: 0.3, max: 4, step: 0.1 },
+    { key: "trails", label: "Trails", min: 2, max: 60, step: 1 },
+    { key: "length", label: "Trail length (dots)", min: 50, max: 1200, step: 50 },
+    { key: "samples", label: "Curve points", min: 200, max: 4000, step: 100 },
+    { key: "strokeWidth", label: "Thickness", min: 0.3, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

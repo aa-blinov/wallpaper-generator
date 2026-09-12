@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const vortex = {
   id: "vortex",
   name: "Vortex",
-  category: "Органические",
-  blurb: "Вихрь: спираль с втягивающимися в центр траекториями.",
+  category: "Organic",
+  blurb: "Vortex: a spiral pulling trajectories toward the center.",
   defaults: {
     turns: 6,
     arms: 5,
@@ -15,9 +15,9 @@ export const vortex = {
     bgTint: 0,
   },
   params: [
-    { key: "turns", label: "Витков", min: 1, max: 20, step: 0.5 },
-    { key: "arms", label: "Рукавов", min: 1, max: 16, step: 1 },
-    { key: "lineWidth", label: "Толщина", min: 0.3, max: 3, step: 0.05 },
+    { key: "turns", label: "Turns", min: 1, max: 20, step: 0.5 },
+    { key: "arms", label: "Arms", min: 1, max: 16, step: 1 },
+    { key: "lineWidth", label: "Thickness", min: 0.3, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

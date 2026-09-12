@@ -5,16 +5,16 @@ import { makeRng } from "../rng.js";
 export const cantor = {
   id: "cantor",
   name: "Cantor Dust",
-  category: "Алгоритмы",
-  blurb: "Канторовская пыль: квадрантное деление с вероятностью.",
+  category: "Algorithms",
+  blurb: "Cantor dust: quadrant subdivision with a keep probability.",
   defaults: {
     depth: 5,
     prob: 0.85,
     bgTint: 0,
   },
   params: [
-    { key: "depth", label: "Глубина", min: 1, max: 6, step: 1 },
-    { key: "prob", label: "Вероятность", min: 0.1, max: 1, step: 0.02 },
+    { key: "depth", label: "Depth", min: 1, max: 6, step: 1 },
+    { key: "prob", label: "Probability", min: 0.1, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

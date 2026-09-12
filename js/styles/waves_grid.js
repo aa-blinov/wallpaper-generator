@@ -3,8 +3,8 @@
 export const waves_grid = {
   id: "waves_grid",
   name: "Waves Grid",
-  category: "Органические",
-  blurb: "Синусоидальные волны по двум осям.",
+  category: "Organic",
+  blurb: "Sine waves along two axes.",
   defaults: {
     rows: 50,
     cols: 50,
@@ -14,10 +14,10 @@ export const waves_grid = {
     bgTint: 0,
   },
   params: [
-    { key: "rows", label: "Строк", min: 8, max: 200, step: 1 },
-    { key: "cols", label: "Колонок", min: 8, max: 200, step: 1 },
-    { key: "freqX", label: "Частота X", min: 0.01, max: 1, step: 0.01 },
-    { key: "freqY", label: "Частота Y", min: 0.01, max: 1, step: 0.01 },
+    { key: "rows", label: "Rows", min: 8, max: 200, step: 1 },
+    { key: "cols", label: "Columns", min: 8, max: 200, step: 1 },
+    { key: "freqX", label: "Frequency X", min: 0.01, max: 1, step: 0.01 },
+    { key: "freqY", label: "Frequency Y", min: 0.01, max: 1, step: 0.01 },
   ],
 
   createState(opts, w, h) {

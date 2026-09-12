@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const gears = {
   id: "gears",
   name: "Gears",
-  category: "Геометрия",
-  blurb: "Сцепленные шестерни с зубцами.",
+  category: "Geometry",
+  blurb: "Interlocking toothed gears.",
   defaults: {
     cols: 3,
     rows: 3,
@@ -16,10 +16,10 @@ export const gears = {
     bgTint: 0,
   },
   params: [
-    { key: "cols", label: "Колонок", min: 1, max: 8, step: 1 },
-    { key: "rows", label: "Строк", min: 1, max: 8, step: 1 },
-    { key: "teeth", label: "Зубцов", min: 6, max: 32, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.5, max: 4, step: 0.1 },
+    { key: "cols", label: "Columns", min: 1, max: 8, step: 1 },
+    { key: "rows", label: "Rows", min: 1, max: 8, step: 1 },
+    { key: "teeth", label: "Teeth", min: 6, max: 32, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.5, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

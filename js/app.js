@@ -316,7 +316,7 @@ const toastEl = document.getElementById("toast");
 let toastTimer = 0;
 
 function showOverlay(label, sub) {
-  if (overlayText) overlayText.textContent = label || "Генерирую…";
+  if (overlayText) overlayText.textContent = label || "Generating…";
   if (overlaySub) overlaySub.textContent = sub || "";
   if (overlayEl) {
     overlayEl.classList.remove("error");
@@ -324,7 +324,7 @@ function showOverlay(label, sub) {
   }
 }
 function showOverlayError(label, sub) {
-  if (overlayText) overlayText.textContent = label || "Ошибка";
+  if (overlayText) overlayText.textContent = label || "Error";
   if (overlaySub) overlaySub.textContent = sub || "";
   if (overlayEl) {
     overlayEl.classList.add("error");
@@ -350,9 +350,9 @@ function showToast(msg, kind) {
   }, 1800);
 }
 function formatMs(dt) {
-  if (!Number.isFinite(dt)) return "? мс";
-  if (dt < 1000) return `${dt.toFixed(0)} мс`;
-  return `${(dt / 1000).toFixed(2)} с`;
+  if (!Number.isFinite(dt)) return "? ms";
+  if (dt < 1000) return `${dt.toFixed(0)} ms`;
+  return `${(dt / 1000).toFixed(2)} s`;
 }
 
 // Обёртка: показывает overlay, даёт браузеру отрисовать его (2 rAF),
@@ -369,8 +369,8 @@ function runWithLoader(label, sub, work) {
     } catch (e) {
       console.error("[wallpaper] render error:", e);
       const msg = e && e.stack ? e.stack : (e.message || String(e));
-      showOverlayError("Ошибка", String(msg).slice(0, 600));
-      showToast(`Ошибка: <strong>${escapeHTML(e.message || String(e))}</strong>`, "error");
+      showOverlayError("Error", String(msg).slice(0, 600));
+      showToast(`Error: <strong>${escapeHTML(e.message || String(e))}</strong>`, "error");
       return;
     }
     if (result === false) {
@@ -384,7 +384,7 @@ function runWithLoader(label, sub, work) {
     }
     const dt = performance.now() - t0;
     hideOverlay();
-    showToast(`Готово за <strong>${formatMs(dt)}</strong>`);
+    showToast(`Done in <strong>${formatMs(dt)}</strong>`);
   }));
 }
 
@@ -458,8 +458,8 @@ function performStaticRender() {
       console.error("[wallpaper] render error:", e);
       ok = false;
       const msg = e && e.stack ? e.stack : (e.message || String(e));
-      showOverlayError("Ошибка", String(msg).slice(0, 600));
-      showToast(`Ошибка: <strong>${escapeHTML(e.message || String(e))}</strong>`, "error");
+      showOverlayError("Error", String(msg).slice(0, 600));
+      showToast(`Error: <strong>${escapeHTML(e.message || String(e))}</strong>`, "error");
     }
     const dt = performance.now() - t0;
     renderBusy = false;
@@ -480,10 +480,10 @@ function performStaticRender() {
 
     if (heavy || dt > 250) {
       hideOverlay();
-      if (ok && heavy) showToast(`Готово за <strong>${formatMs(dt)}</strong>`);
+      if (ok && heavy) showToast(`Done in <strong>${formatMs(dt)}</strong>`);
       return;
     }
-    if (ok && dt > 80) showToast(`Готово за <strong>${formatMs(dt)}</strong>`);
+    if (ok && dt > 80) showToast(`Done in <strong>${formatMs(dt)}</strong>`);
   };
 
 // Подбираем размер чанка так, чтобы один чанк занимал ~16мс — это один кадр.
@@ -496,8 +496,8 @@ function computeChunkSize(h, id) {
 
   if (heavy) {
     showOverlay(
-      `Генерирую «${style.name}»…`,
-      `${state.resolution} · палитра ${palette.name} · seed ${state.seed}`
+      `Generating "${style.name}"…`,
+      `${state.resolution} · palette ${palette.name} · seed ${state.seed}`
     );
     // двойной rAF — дать браузеру нарисовать overlay
     requestAnimationFrame(() => requestAnimationFrame(actuallyPaint));
@@ -557,7 +557,7 @@ function ensureState() {
       const total = timings && timings.total != null ? timings.total : null;
       const warm = timings && timings.warmup != null ? timings.warmup : null;
       if (total != null) {
-        showOverlay(`RD готов`, `warmup в воркере ${warm ?? total} мс`);
+        showOverlay(`RD ready`, `warmup in worker: ${warm ?? total} ms`);
       }
       scheduleRender({ heavy: true });
     };
@@ -604,7 +604,7 @@ async function exportPng() {
   const name = `wallpaper_${state.styleId}_${state.seed}_${CANVAS_W}x${CANVAS_H}.png`;
   const t0 = performance.now();
   runWithLoader(
-    "Сохраняю PNG…",
+    "Saving PNG…",
     `${CANVAS_W}×${CANVAS_H}`,
     async () => {
       await downloadCanvas(canvas, name, "image/png");
@@ -615,21 +615,21 @@ async function exportPng() {
   setTimeout(() => {
     hideOverlay();
     const dt = performance.now() - t0;
-    showToast(`PNG сохранён · <strong>${formatMs(dt)}</strong>`);
+    showToast(`PNG saved · <strong>${formatMs(dt)}</strong>`);
     btn.disabled = false;
   }, 60);
 }
 
 async function exportWebm() {
   if (!canvas.captureStream) {
-    showToast("Браузер не поддерживает canvas.captureStream", "warn");
+    showToast("Browser doesn't support canvas.captureStream", "warn");
     return;
   }
   const btn = $("#exportWebm");
   btn.disabled = true;
   const original = btn.textContent;
-  btn.textContent = "Запись… (5с)";
-  showOverlay("Записываю WebM…", "осталось 5 секунд");
+  btn.textContent = "Recording… (5s)";
+  showOverlay("Recording WebM…", "5 seconds left");
   state.recChunks = [];
 
   const stream = canvas.captureStream(60);
@@ -642,8 +642,8 @@ async function exportWebm() {
   let countdown = 5;
   const t = setInterval(() => {
     countdown--;
-    if (overlayText) overlayText.textContent = "Записываю WebM…";
-    if (overlaySub) overlaySub.textContent = `осталось ${countdown} сек`;
+    if (overlayText) overlayText.textContent = "Recording WebM…";
+    if (overlaySub) overlaySub.textContent = `${countdown}s left`;
   }, 1000);
 
   rec.ondataavailable = (e) => { if (e.data && e.data.size) state.recChunks.push(e.data); };
@@ -661,7 +661,7 @@ async function exportWebm() {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
-    showToast(`WebM сохранён · <strong>5 с</strong>`);
+    showToast(`WebM saved · <strong>5 s</strong>`);
   };
 
   rec.start();

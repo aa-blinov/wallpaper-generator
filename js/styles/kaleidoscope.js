@@ -7,8 +7,8 @@ import { makeColorRamp } from "../palettes.js";
 export const kaleidoscope = {
   id: "kaleidoscope",
   name: "Kaleidoscope",
-  category: "Органические",
-  blurb: "Калейдоскоп: N-секторов симметрии с шумовым заполнением.",
+  category: "Organic",
+  blurb: "Kaleidoscope: N symmetric sectors filled with noise.",
   defaults: {
     sectors: 8,
     scale: 0.006,
@@ -17,10 +17,10 @@ export const kaleidoscope = {
     bgTint: 0,
   },
   params: [
-    { key: "sectors", label: "Секторов", min: 2, max: 18, step: 1 },
-    { key: "scale", label: "Масштаб", min: 0.002, max: 0.02, step: 0.001 },
-    { key: "octaves", label: "Октавы", min: 1, max: 6, step: 1 },
-    { key: "contrast", label: "Контраст", min: 0.5, max: 3, step: 0.05 },
+    { key: "sectors", label: "Sectors", min: 2, max: 18, step: 1 },
+    { key: "scale", label: "Scale", min: 0.002, max: 0.02, step: 0.001 },
+    { key: "octaves", label: "Octaves", min: 1, max: 6, step: 1 },
+    { key: "contrast", label: "Contrast", min: 0.5, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

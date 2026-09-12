@@ -7,20 +7,20 @@ import { makeColorRamp } from "../palettes.js";
 export const scatter = {
   id: "scatter",
   name: "Scatter",
-  category: "Точки",
-  blurb: "Точки, разбросанные по шумовой плотности.",
+  category: "Dots",
+  blurb: "Dots scattered according to noise density.",
   defaults: {
     count: 600,
     densityScale: 0.004,
     radius: 3.5,
-    paletteMode: "По плотности",
+    paletteMode: "By density",
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Точек", min: 100, max: 3000, step: 50 },
-    { key: "densityScale", label: "Масштаб плотности", min: 0.001, max: 0.02, step: 0.0005 },
-    { key: "radius", label: "Радиус", min: 1, max: 12, step: 0.5 },
-    { key: "paletteMode", label: "Цвет", enum: ["По плотности", "Один цвет"] },
+    { key: "count", label: "Points", min: 100, max: 3000, step: 50 },
+    { key: "densityScale", label: "Density scale", min: 0.001, max: 0.02, step: 0.0005 },
+    { key: "radius", label: "Radius", min: 1, max: 12, step: 0.5 },
+    { key: "paletteMode", label: "Color", enum: ["By density", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -50,7 +50,7 @@ export const scatter = {
     }
     for (const [x, y, d] of placements) {
       const r = opts.radius * (0.6 + d * 0.6);
-      ctx.fillStyle = opts.paletteMode === "Один цвет"
+      ctx.fillStyle = opts.paletteMode === "Single color"
         ? palette.colors[palette.colors.length - 1]
         : ramp(d);
       ctx.beginPath();

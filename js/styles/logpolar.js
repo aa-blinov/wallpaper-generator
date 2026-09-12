@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const logpolar = {
   id: "logpolar",
   name: "Log-Polar Spiral",
-  category: "Шум",
-  blurb: "Шум, развернутый в лог-полярные координаты — галактики и воронки.",
+  category: "Noise",
+  blurb: "Noise unrolled into log-polar coordinates — galaxies and whirlpools.",
   defaults: {
     scale: 4.0,           // базовый масштаб (больше — больше «веток»)
     octaves: 5,
@@ -23,16 +23,16 @@ export const logpolar = {
     sampleStep: 2,
   },
   params: [
-    { key: "scale", label: "Частота спирали", min: 1.5, max: 12, step: 0.1 },
-    { key: "twist", label: "Кручение", min: 0, max: 2, step: 0.05, format: (v) => v.toFixed(2) },
-    { key: "armlines", label: "Кол-во «веток»", min: 1, max: 8, step: 1 },
-    { key: "octaves", label: "Октавы", min: 1, max: 8, step: 1 },
-    { key: "persistence", label: "Затухание", min: 0.2, max: 0.9, step: 0.01 },
-    { key: "lacunarity", label: "Лакунарность", min: 1.2, max: 3.5, step: 0.05 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "brightness", label: "Яркость", min: -0.5, max: 0.5, step: 0.02 },
-    { key: "shift", label: "Сдвиг цвета", min: 0, max: 1, step: 0.005 },
-    { key: "sampleStep", label: "Шаг сэмпла", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
+    { key: "scale", label: "Spiral frequency", min: 1.5, max: 12, step: 0.1 },
+    { key: "twist", label: "Twist", min: 0, max: 2, step: 0.05, format: (v) => v.toFixed(2) },
+    { key: "armlines", label: "Branch count", min: 1, max: 8, step: 1 },
+    { key: "octaves", label: "Octaves", min: 1, max: 8, step: 1 },
+    { key: "persistence", label: "Decay", min: 0.2, max: 0.9, step: 0.01 },
+    { key: "lacunarity", label: "Lacunarity", min: 1.2, max: 3.5, step: 0.05 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "brightness", label: "Brightness", min: -0.5, max: 0.5, step: 0.02 },
+    { key: "shift", label: "Color shift", min: 0, max: 1, step: 0.005 },
+    { key: "sampleStep", label: "Sample step", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
   ],
 
   createState(opts, w, h) {

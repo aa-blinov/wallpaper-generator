@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const marble = {
   id: "marble",
   name: "Marble",
-  category: "Текстуры",
-  blurb: "Мрамор: sin-полосы, деформированные шумом.",
+  category: "Textures",
+  blurb: "Marble: sine-wave bands warped by noise.",
   defaults: {
     scale: 0.005,
     warp: 0.04,
@@ -16,10 +16,10 @@ export const marble = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Шум", min: 0.001, max: 0.02, step: 0.0005 },
-    { key: "warp", label: "Сила деформации", min: 0, max: 0.2, step: 0.005 },
-    { key: "bands", label: "Частота полос", min: 0.005, max: 0.08, step: 0.001 },
-    { key: "contrast", label: "Контраст", min: 0.5, max: 3, step: 0.05 },
+    { key: "scale", label: "Noise", min: 0.001, max: 0.02, step: 0.0005 },
+    { key: "warp", label: "Warp strength", min: 0, max: 0.2, step: 0.005 },
+    { key: "bands", label: "Stripe frequency", min: 0.005, max: 0.08, step: 0.001 },
+    { key: "contrast", label: "Contrast", min: 0.5, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

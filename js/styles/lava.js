@@ -6,8 +6,8 @@ import { makeRng } from "../rng.js";
 export const lava = {
   id: "lava",
   name: "Lava",
-  category: "Органические",
-  blurb: "Лава: трещины в темноте с раскалёнными краями.",
+  category: "Organic",
+  blurb: "Lava: cracks in the dark with glowing edges.",
   defaults: {
     cracks: 30,
     width: 6,
@@ -15,9 +15,9 @@ export const lava = {
     bgTint: 0,
   },
   params: [
-    { key: "cracks", label: "Трещин", min: 5, max: 100, step: 5 },
-    { key: "width", label: "Толщина", min: 1, max: 16, step: 0.5 },
-    { key: "glow", label: "Свечение", min: 0, max: 1.5, step: 0.02 },
+    { key: "cracks", label: "Cracks", min: 5, max: 100, step: 5 },
+    { key: "width", label: "Thickness", min: 1, max: 16, step: 0.5 },
+    { key: "glow", label: "Glow", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

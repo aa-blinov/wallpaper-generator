@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const caustics = {
   id: "caustics",
   name: "Caustics",
-  category: "Органические",
-  blurb: "Сумма бегущих волн — лучи света под водой.",
+  category: "Organic",
+  blurb: "A sum of traveling waves — underwater light rays.",
   defaults: {
     waves: 5,
     speed: 0.6,
@@ -20,13 +20,13 @@ export const caustics = {
     sampleStep: 4,
   },
   params: [
-    { key: "waves", label: "Кол-во волн", min: 2, max: 16, step: 1 },
-    { key: "speed", label: "Скорость", min: 0, max: 3, step: 0.05 },
-    { key: "detailScale", label: "Частота", min: 0.3, max: 6, step: 0.1 },
-    { key: "contrast", label: "Контраст", min: 1.5, max: 16, step: 0.5 },
-    { key: "gamma", label: "Гамма (тонкие линии)", min: 0.1, max: 1.4, step: 0.02 },
-    { key: "bgBrightness", label: "Фоновая яркость", min: 0, max: 1, step: 0.02 },
-    { key: "sampleStep", label: "Шаг сэмпла", min: 1, max: 6, step: 1, format: (v) => `${v.toFixed(0)} px` },
+    { key: "waves", label: "Wave count", min: 2, max: 16, step: 1 },
+    { key: "speed", label: "Speed", min: 0, max: 3, step: 0.05 },
+    { key: "detailScale", label: "Frequency", min: 0.3, max: 6, step: 0.1 },
+    { key: "contrast", label: "Contrast", min: 1.5, max: 16, step: 0.5 },
+    { key: "gamma", label: "Gamma (thin lines)", min: 0.1, max: 1.4, step: 0.02 },
+    { key: "bgBrightness", label: "Background brightness", min: 0, max: 1, step: 0.02 },
+    { key: "sampleStep", label: "Sample step", min: 1, max: 6, step: 1, format: (v) => `${v.toFixed(0)} px` },
   ],
 
   createState(opts, w, h) {

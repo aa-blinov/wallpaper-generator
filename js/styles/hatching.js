@@ -5,21 +5,21 @@ import { makeNoise2D } from "../noise.js";
 export const hatching = {
   id: "hatching",
   name: "Hatching",
-  category: "Текстуры",
-  blurb: "Штриховка: параллельные линии с шумовой плотностью.",
+  category: "Textures",
+  blurb: "Hatching: parallel lines with noise-driven density.",
   defaults: {
     spacing: 8,
     angle: 30,
     densityScale: 0.01,
     strokeWidth: 0.7,
-    paletteMode: "Монохром",
+    paletteMode: "Monochrome",
     bgTint: 0,
   },
   params: [
-    { key: "spacing", label: "Шаг (px)", min: 2, max: 30, step: 0.5 },
-    { key: "angle", label: "Угол (°)", min: 0, max: 180, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "densityScale", label: "Масштаб шума", min: 0.002, max: 0.04, step: 0.001 },
-    { key: "strokeWidth", label: "Толщина", min: 0.2, max: 3, step: 0.05 },
+    { key: "spacing", label: "Step (px)", min: 2, max: 30, step: 0.5 },
+    { key: "angle", label: "Angle (°)", min: 0, max: 180, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "densityScale", label: "Noise scale", min: 0.002, max: 0.04, step: 0.001 },
+    { key: "strokeWidth", label: "Thickness", min: 0.2, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {
@@ -37,7 +37,7 @@ export const hatching = {
     const dx = Math.cos(ang), dy = Math.sin(ang);
     const ndx = -dy, ndy = dx;
     const D = Math.max(w, h) * 1.5;
-    ctx.strokeStyle = opts.paletteMode === "Монохром"
+    ctx.strokeStyle = opts.paletteMode === "Monochrome"
       ? palette.colors[palette.colors.length - 1]
       : palette.colors[palette.colors.length - 1];
     ctx.lineWidth = opts.strokeWidth;

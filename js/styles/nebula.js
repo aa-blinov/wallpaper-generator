@@ -7,8 +7,8 @@ import { makeColorRamp, hexToRgb } from "../palettes.js";
 export const nebula = {
   id: "nebula",
   name: "Nebula",
-  category: "Шум",
-  blurb: "Туманность: fBM-облака + точечные звёзды разной яркости.",
+  category: "Noise",
+  blurb: "Nebula: fBM clouds plus point stars of varying brightness.",
   defaults: {
     scale: 0.003,
     octaves: 6,
@@ -19,12 +19,12 @@ export const nebula = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб облаков", min: 0.0005, max: 0.02, step: 0.0005 },
-    { key: "octaves", label: "Октавы", min: 1, max: 7, step: 1 },
-    { key: "persistence", label: "Затухание", min: 0.2, max: 0.95, step: 0.01 },
-    { key: "lacunarity", label: "Лакunarность", min: 1.4, max: 3.0, step: 0.05 },
-    { key: "starDensity", label: "Плотность звёзд", min: 0, max: 0.005, step: 0.0001 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
+    { key: "scale", label: "Cloud scale", min: 0.0005, max: 0.02, step: 0.0005 },
+    { key: "octaves", label: "Octaves", min: 1, max: 7, step: 1 },
+    { key: "persistence", label: "Decay", min: 0.2, max: 0.95, step: 0.01 },
+    { key: "lacunarity", label: "Lacunarity", min: 1.4, max: 3.0, step: 0.05 },
+    { key: "starDensity", label: "Star density", min: 0, max: 0.005, step: 0.0001 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

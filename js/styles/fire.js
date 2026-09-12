@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const fire = {
   id: "fire",
   name: "Fire",
-  category: "Органические",
-  blurb: "Огонь: восходящие шумовые колонны с цветовым градиентом.",
+  category: "Organic",
+  blurb: "Fire: rising noise columns with a color gradient.",
   defaults: {
     scale: 0.012,
     octaves: 4,
@@ -16,9 +16,9 @@ export const fire = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.002, max: 0.04, step: 0.001 },
-    { key: "octaves", label: "Октавы", min: 1, max: 6, step: 1 },
-    { key: "intensity", label: "Сила", min: 0.5, max: 3, step: 0.05 },
+    { key: "scale", label: "Scale", min: 0.002, max: 0.04, step: 0.001 },
+    { key: "octaves", label: "Octaves", min: 1, max: 6, step: 1 },
+    { key: "intensity", label: "Strength", min: 0.5, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

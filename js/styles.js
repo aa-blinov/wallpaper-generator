@@ -222,13 +222,13 @@ export const STYLES = [
 ];
 
 export const CATEGORIES = [
-  "Поток",
-  "Шум",
-  "Геометрия",
-  "Алгоритмы",
-  "Точки",
-  "Текстуры",
-  "Органические",
+  "Flow",
+  "Noise",
+  "Geometry",
+  "Algorithms",
+  "Dots",
+  "Textures",
+  "Organic",
 ];
 
 export function getStyle(id) {
@@ -243,7 +243,7 @@ export function stylesByCategory() {
   const groups = {};
   for (const cat of CATEGORIES) groups[cat] = [];
   for (const s of STYLES) {
-    const cat = s.category || "Прочее";
+    const cat = s.category || "Other";
     (groups[cat] ||= []).push(s);
   }
   return groups;

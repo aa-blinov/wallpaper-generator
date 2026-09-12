@@ -76,8 +76,8 @@ function turtle(s, opts, ctx, palette, ramp) {
 export const lsystem = {
   id: "lsystem",
   name: "L-System Trees",
-  category: "Алгоритмы",
-  blurb: "Фрактальные деревья через L-system — turtle-графика.",
+  category: "Algorithms",
+  blurb: "Fractal trees via an L-system — turtle graphics.",
   defaults: {
     preset: "tree",
     iterations: 5,
@@ -87,20 +87,20 @@ export const lsystem = {
     lenMul: 0.78,
     startWidth: 8,
     widthMul: 0.78,
-    colorMode: "Глубина",
+    colorMode: "Depth",
     bgTint: 0,
   },
   params: [
-    { key: "preset", label: "Пресет", enum: ["tree", "fern", "bush", "spirals", "algae"] },
-    { key: "iterations", label: "Итерации", min: 1, max: 7, step: 1 },
-    { key: "angleDeg", label: "Угол поворота", min: 5, max: 60, step: 1 },
-    { key: "startLength", label: "Длина ветки", min: 4, max: 60, step: 1 },
-    { key: "lenMul", label: "Укорочение ветвей", min: 0.4, max: 0.95, step: 0.01 },
-    { key: "startWidth", label: "Толщина ствола", min: 1, max: 20, step: 0.5 },
-    { key: "widthMul", label: "Утоньшение", min: 0.4, max: 0.95, step: 0.01 },
-    { key: "startAngleDeg", label: "Начальный угол", min: -180, max: 180, step: 5, format: (v) => `${v.toFixed(0)}°` },
-    { key: "colorMode", label: "Цвет", enum: ["Глубина", "Длина", "Случайный"] },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "preset", label: "Preset", enum: ["tree", "fern", "bush", "spirals", "algae"] },
+    { key: "iterations", label: "Iterations", min: 1, max: 7, step: 1 },
+    { key: "angleDeg", label: "Rotation angle", min: 5, max: 60, step: 1 },
+    { key: "startLength", label: "Branch length", min: 4, max: 60, step: 1 },
+    { key: "lenMul", label: "Branch shortening", min: 0.4, max: 0.95, step: 0.01 },
+    { key: "startWidth", label: "Trunk thickness", min: 1, max: 20, step: 0.5 },
+    { key: "widthMul", label: "Taper", min: 0.4, max: 0.95, step: 0.01 },
+    { key: "startAngleDeg", label: "Start angle", min: -180, max: 180, step: 5, format: (v) => `${v.toFixed(0)}°` },
+    { key: "colorMode", label: "Color", enum: ["Depth", "Length", "Random"] },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -163,8 +163,8 @@ export const lsystem = {
         const ny = py + Math.sin(dir) * l;
         ctx.lineWidth = Math.max(0.4, lineW);
         let t;
-        if (colorMode === "Глубина") t = 1 - depth / Math.max(1, maxDepth);
-        else if (colorMode === "Длина") t = Math.max(0, Math.min(1, 1 - l / Math.max(1, opts.startLength)));
+        if (colorMode === "Depth") t = 1 - depth / Math.max(1, maxDepth);
+        else if (colorMode === "Length") t = Math.max(0, Math.min(1, 1 - l / Math.max(1, opts.startLength)));
         else t = rng();
         ctx.strokeStyle = ramp(t);
         ctx.beginPath();
@@ -202,7 +202,7 @@ export const lsystem = {
   },
 
   animate(ctx, opts, state, t) {
-    // Лёгкое "дыхание" — меняем стартовый угол.
+    // Лёгкое "breathing" — меняем стартовый угол.
     opts.startAngleDeg = -90 + Math.sin(t * 0.00015) * 6;
     this.paint(ctx, opts, state);
   },

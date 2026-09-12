@@ -10,8 +10,8 @@ import { makeColorRamp } from "../palettes.js";
 export const triangles = {
   id: "triangles",
   name: "Triangulation",
-  category: "Геометрия",
-  blurb: "Триангуляция случайных точек с раскраской треугольников.",
+  category: "Geometry",
+  blurb: "Triangulation of random points with colored triangles.",
   defaults: {
     points: 60,
     neighbors: 4,
@@ -19,9 +19,9 @@ export const triangles = {
     bgTint: 0,
   },
   params: [
-    { key: "points", label: "Точек", min: 10, max: 200, step: 5 },
-    { key: "neighbors", label: "Соседей", min: 3, max: 8, step: 1 },
-    { key: "strokeWidth", label: "Контур", min: 0, max: 2, step: 0.05 },
+    { key: "points", label: "Points", min: 10, max: 200, step: 5 },
+    { key: "neighbors", label: "Neighbors", min: 3, max: 8, step: 1 },
+    { key: "strokeWidth", label: "Outline", min: 0, max: 2, step: 0.05 },
   ],
 
   createState(opts, w, h) {

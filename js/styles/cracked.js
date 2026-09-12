@@ -8,25 +8,25 @@ import { makeColorRamp } from "../palettes.js";
 export const cracked = {
   id: "cracked",
   name: "Cracked Earth",
-  category: "Текстуры",
-  blurb: "Ломаная земля — Voronoï с заливкой в землистых тонах и трещинами.",
+  category: "Textures",
+  blurb: "Cracked earth — Voronoi cells filled in earthy tones, with cracks.",
   defaults: {
     cellSize: 90,
     edgeWidth: 2.2,
     softness: 1.2,
     noiseScale: 0.012,
-    fillMode: "Шум",
+    fillMode: "Noise",
     hueShift: 0.0,
     bgTint: 0.0,
   },
   params: [
-    { key: "cellSize", label: "Размер плиты", min: 24, max: 240, step: 2, format: (v) => `${v.toFixed(0)} px` },
-    { key: "edgeWidth", label: "Ширина трещин", min: 0, max: 8, step: 0.1 },
-    { key: "softness", label: "Мягкость края", min: 0.4, max: 4, step: 0.1 },
-    { key: "noiseScale", label: "Шумовое искажение", min: 0.0, max: 0.04, step: 0.001 },
-    { key: "fillMode", label: "Заливка по", enum: ["Шум", "ID точки", "Расстояние"] },
-    { key: "hueShift", label: "Смещение", min: -0.5, max: 0.5, step: 0.01 },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Slab size", min: 24, max: 240, step: 2, format: (v) => `${v.toFixed(0)} px` },
+    { key: "edgeWidth", label: "Crack width", min: 0, max: 8, step: 0.1 },
+    { key: "softness", label: "Edge softness", min: 0.4, max: 4, step: 0.1 },
+    { key: "noiseScale", label: "Noise warp", min: 0.0, max: 0.04, step: 0.001 },
+    { key: "fillMode", label: "Fill by", enum: ["Noise", "Point ID", "Distance"] },
+    { key: "hueShift", label: "Offset", min: -0.5, max: 0.5, step: 0.01 },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -111,9 +111,9 @@ export const cracked = {
         const edgeMask = Math.exp(-inside * inside);
 
         let t;
-        if (fillMode === "Шум" && f1p) {
+        if (fillMode === "Noise" && f1p) {
           t = 0.5 + 0.5 * noise(f1p.x * 0.02, f1p.y * 0.02);
-        } else if (fillMode === "ID точки" && f1p) {
+        } else if (fillMode === "Point ID" && f1p) {
           t = f1p.col;
         } else {
           t = clamp01(f1s / (cellSize * 1.3));

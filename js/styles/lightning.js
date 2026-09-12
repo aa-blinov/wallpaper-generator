@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const lightning = {
   id: "lightning",
   name: "Lightning",
-  category: "Органические",
-  blurb: "Молнии: ветвящиеся разряды от верхней кромки.",
+  category: "Organic",
+  blurb: "Lightning: branching discharges from the top edge.",
   defaults: {
     bolts: 7,
     branchProb: 0.5,
@@ -17,11 +17,11 @@ export const lightning = {
     bgTint: 0,
   },
   params: [
-    { key: "bolts", label: "Разрядов", min: 1, max: 20, step: 1 },
-    { key: "branchProb", label: "Шанс ветки", min: 0, max: 1, step: 0.02 },
-    { key: "steps", label: "Шагов", min: 8, max: 80, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 5, step: 0.1 },
-    { key: "glow", label: "Свечение", min: 0, max: 1, step: 0.02 },
+    { key: "bolts", label: "Digits", min: 1, max: 20, step: 1 },
+    { key: "branchProb", label: "Branch chance", min: 0, max: 1, step: 0.02 },
+    { key: "steps", label: "Steps", min: 8, max: 80, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 5, step: 0.1 },
+    { key: "glow", label: "Glow", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

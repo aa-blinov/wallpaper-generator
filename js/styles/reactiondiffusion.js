@@ -21,8 +21,8 @@ const WORKER_URL = new URL("./rd-worker.js", import.meta.url);
 export const reactiondiffusion = {
   id: "reactiondiffusion",
   name: "Reaction-Diffusion",
-  category: "Алгоритмы",
-  blurb: "Gray-Scott: A и B диффундируют и взаимодействуют. Кораллы, лабиринты, митозы.",
+  category: "Algorithms",
+  blurb: "Gray-Scott: reagents A and B diffuse and react. Coral, mazes, mitosis.",
   defaults: {
     preset: "coral",
     presetTune: 0,
@@ -33,13 +33,13 @@ export const reactiondiffusion = {
     brightness: 0.0,
   },
   params: [
-    { key: "preset", label: "Пресет", enum: Object.keys(PRESETS) },
-    { key: "presetTune", label: "Отстройка", min: -0.02, max: 0.02, step: 0.001 },
-    { key: "stepsPerFrame", label: "Шагов на кадр", min: 1, max: 80, step: 1 },
-    { key: "simResolution", label: "Разрешение симуляции", min: 96, max: 720, step: 16 },
-    { key: "colorMix", label: "Цветовая насыщенность", min: 0, max: 1, step: 0.02 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "brightness", label: "Яркость", min: -0.5, max: 0.5, step: 0.02 },
+    { key: "preset", label: "Preset", enum: Object.keys(PRESETS) },
+    { key: "presetTune", label: "Detune", min: -0.02, max: 0.02, step: 0.001 },
+    { key: "stepsPerFrame", label: "Steps per frame", min: 1, max: 80, step: 1 },
+    { key: "simResolution", label: "Simulation resolution", min: 96, max: 720, step: 16 },
+    { key: "colorMix", label: "Color saturation", min: 0, max: 1, step: 0.02 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "brightness", label: "Brightness", min: -0.5, max: 0.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

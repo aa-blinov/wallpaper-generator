@@ -6,20 +6,20 @@ import { makeColorRamp } from "../palettes.js";
 export const weave = {
   id: "weave",
   name: "Weave",
-  category: "Текстуры",
-  blurb: "Переплетение горизонтальных и вертикальных нитей.",
+  category: "Textures",
+  blurb: "Interwoven horizontal and vertical threads.",
   defaults: {
     threads: 18,
     thickness: 0.7,
     shadow: 0.45,
-    paletteMode: "Полосатый",
+    paletteMode: "Striped",
     bgTint: 0,
   },
   params: [
-    { key: "threads", label: "Число нитей", min: 4, max: 60, step: 1 },
-    { key: "thickness", label: "Толщина", min: 0.3, max: 1.4, step: 0.05 },
-    { key: "shadow", label: "Тень", min: 0, max: 1, step: 0.02 },
-    { key: "paletteMode", label: "Цвет нитей", enum: ["Полосатый", "Один"] },
+    { key: "threads", label: "Thread count", min: 4, max: 60, step: 1 },
+    { key: "thickness", label: "Thickness", min: 0.3, max: 1.4, step: 0.05 },
+    { key: "shadow", label: "Shadow", min: 0, max: 1, step: 0.02 },
+    { key: "paletteMode", label: "Thread color", enum: ["Striped", "One"] },
   ],
 
   createState(opts, w, h) {
@@ -45,8 +45,8 @@ export const weave = {
         const horizOnTop = ((i + j) & 1) === 0;
         const x = i * cellW, y = j * cellH;
         // Горизонтальная нить
-        const horizColor = opts.paletteMode === "Полосатый" ? ramp(j / Math.max(1, N - 1)) : palette.colors[palette.colors.length - 1];
-        const vertColor = opts.paletteMode === "Полосатый" ? ramp(i / Math.max(1, N - 1)) : palette.colors[1] || palette.colors[0];
+        const horizColor = opts.paletteMode === "Striped" ? ramp(j / Math.max(1, N - 1)) : palette.colors[palette.colors.length - 1];
+        const vertColor = opts.paletteMode === "Striped" ? ramp(i / Math.max(1, N - 1)) : palette.colors[1] || palette.colors[0];
         if (horizOnTop) {
           // Сначала вертикаль, потом горизонталь сверху
           ctx.fillStyle = shade(vertColor, -shadow * 0.4);

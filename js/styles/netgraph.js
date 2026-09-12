@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const netgraph = {
   id: "netgraph",
   name: "Net Graph",
-  category: "Алгоритмы",
-  blurb: "Сетевой граф: связи с рандомными узлами и подсветкой по числу рёбер.",
+  category: "Algorithms",
+  blurb: "Network graph: random nodes, edges highlighted by degree.",
   defaults: {
     nodes: 80,
     avgDegree: 6,
@@ -16,10 +16,10 @@ export const netgraph = {
     bgTint: 0,
   },
   params: [
-    { key: "nodes", label: "Узлов", min: 20, max: 400, step: 5 },
-    { key: "avgDegree", label: "Среднее кол-во рёбер", min: 2, max: 14, step: 0.5 },
-    { key: "nodeRadius", label: "Радиус узла", min: 1, max: 20, step: 0.5 },
-    { key: "edgeWidth", label: "Толщина ребра", min: 0.2, max: 2, step: 0.05 },
+    { key: "nodes", label: "Nodes", min: 20, max: 400, step: 5 },
+    { key: "avgDegree", label: "Average edge count", min: 2, max: 14, step: 0.5 },
+    { key: "nodeRadius", label: "Node radius", min: 1, max: 20, step: 0.5 },
+    { key: "edgeWidth", label: "Edge thickness", min: 0.2, max: 2, step: 0.05 },
   ],
 
   createState(opts, w, h) {

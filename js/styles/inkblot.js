@@ -6,17 +6,17 @@ import { makeRng } from "../rng.js";
 export const inkblot = {
   id: "inkblot",
   name: "Inkblot",
-  category: "Органические",
-  blurb: "Симметричные чернильные кляксы (тест Роршаха).",
+  category: "Organic",
+  blurb: "Symmetric inkblots (Rorschach test).",
   defaults: {
     blobs: 14,
-    paletteMode: "Чёрно-белый",
+    paletteMode: "Black and white",
     bgTint: 0,
   },
   params: [
-    { key: "blobs", label: "Кол-во пар", min: 2, max: 60, step: 1 },
-    { key: "paletteMode", label: "Цвет", enum: ["Чёрно-белый", "Палитра"] },
-    { key: "bgTint", label: "Затемнить", min: 0, max: 1, step: 0.02 },
+    { key: "blobs", label: "Pair count", min: 2, max: 60, step: 1 },
+    { key: "paletteMode", label: "Color", enum: ["Black and white", "Palette"] },
+    { key: "bgTint", label: "Darken", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -27,13 +27,13 @@ export const inkblot = {
   paint(ctx, opts, state) {
     const { w, h, rng } = state;
     const palette = opts.palette;
-    ctx.fillStyle = opts.paletteMode === "Чёрно-белый" ? "#ffffff" : palette.bg;
+    ctx.fillStyle = opts.paletteMode === "Black and white" ? "#ffffff" : palette.bg;
     ctx.fillRect(0, 0, w, h);
 
     const cx = w / 2, cy = h / 2;
     const N = Math.max(1, Math.round(opts.blobs));
-    const fg = opts.paletteMode === "Чёрно-белый" ? "rgba(40,40,80,1)" : palette.colors[palette.colors.length - 1];
-    const accent = opts.paletteMode === "Чёрно-белый" ? "rgba(150,60,60,0.9)" : palette.colors[Math.floor(palette.colors.length / 2)];
+    const fg = opts.paletteMode === "Black and white" ? "rgba(40,40,80,1)" : palette.colors[palette.colors.length - 1];
+    const accent = opts.paletteMode === "Black and white" ? "rgba(150,60,60,0.9)" : palette.colors[Math.floor(palette.colors.length / 2)];
 
     for (let i = 0; i < N; i++) {
       const offX = (rng() - 0.5) * w * 0.85;

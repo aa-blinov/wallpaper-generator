@@ -5,8 +5,8 @@ import { makeNoise2D } from "../noise.js";
 export const neon = {
   id: "neon",
   name: "Neon",
-  category: "Геометрия",
-  blurb: "Неон: кривые линии с сильным glow.",
+  category: "Geometry",
+  blurb: "Neon: curved lines with a strong glow.",
   defaults: {
     strips: 7,
     curveScale: 0.006,
@@ -15,10 +15,10 @@ export const neon = {
     bgTint: 0,
   },
   params: [
-    { key: "strips", label: "Полос", min: 2, max: 30, step: 1 },
-    { key: "curveScale", label: "Кривизна", min: 0.001, max: 0.02, step: 0.001 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 6, step: 0.1 },
-    { key: "glow", label: "Свечение", min: 0, max: 1.5, step: 0.02 },
+    { key: "strips", label: "Stripes", min: 2, max: 30, step: 1 },
+    { key: "curveScale", label: "Curvature", min: 0.001, max: 0.02, step: 0.001 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 6, step: 0.1 },
+    { key: "glow", label: "Glow", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

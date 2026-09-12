@@ -5,8 +5,8 @@ import { makeRng } from "../rng.js";
 export const strings = {
   id: "strings",
   name: "Strings",
-  category: "Геометрия",
-  blurb: "Струны: нити между опорами, провисающие под гравитацией.",
+  category: "Geometry",
+  blurb: "Strings: threads between posts, sagging under gravity.",
   defaults: {
     columns: 5,
     rows: 4,
@@ -15,10 +15,10 @@ export const strings = {
     bgTint: 0,
   },
   params: [
-    { key: "columns", label: "Колонок опор", min: 2, max: 12, step: 1 },
-    { key: "rows", label: "Рядов опор", min: 2, max: 8, step: 1 },
-    { key: "sag", label: "Провисание", min: 0, max: 1.5, step: 0.02 },
-    { key: "strokeWidth", label: "Толщина", min: 0.3, max: 3, step: 0.05 },
+    { key: "columns", label: "Post columns", min: 2, max: 12, step: 1 },
+    { key: "rows", label: "Post rows", min: 2, max: 8, step: 1 },
+    { key: "sag", label: "Sag", min: 0, max: 1.5, step: 0.02 },
+    { key: "strokeWidth", label: "Thickness", min: 0.3, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

@@ -3,20 +3,20 @@
 export const echo = {
   id: "echo",
   name: "Echo Rings",
-  category: "Органические",
-  blurb: "Эхо: исходная кривая и её затухающие копии, повёрнутые по кругу.",
+  category: "Organic",
+  blurb: "Echo: a source curve and its fading copies, rotated around a circle.",
   defaults: {
     copies: 8,
     decay: 0.7,
     strokeWidth: 1.2,
-    paletteMode: "По углу",
+    paletteMode: "By angle",
     bgTint: 0,
   },
   params: [
-    { key: "copies", label: "Копий", min: 1, max: 24, step: 1 },
-    { key: "decay", label: "Затухание", min: 0.2, max: 1, step: 0.02 },
-    { key: "strokeWidth", label: "Толщина", min: 0.3, max: 4, step: 0.1 },
-    { key: "paletteMode", label: "Цвет", enum: ["По углу", "По удалению", "Один цвет"] },
+    { key: "copies", label: "Copies", min: 1, max: 24, step: 1 },
+    { key: "decay", label: "Decay", min: 0.2, max: 1, step: 0.02 },
+    { key: "strokeWidth", label: "Thickness", min: 0.3, max: 4, step: 0.1 },
+    { key: "paletteMode", label: "Color", enum: ["By angle", "By distance", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -47,8 +47,8 @@ export const echo = {
     for (let i = 0; i < copies; i++) {
       const phi = (i / copies) * Math.PI * 2;
       const alpha = Math.pow(opts.decay, i);
-      if (opts.paletteMode === "По углу") ctx.strokeStyle = cols[Math.floor(i / copies * (cols.length - 1))];
-      else if (opts.paletteMode === "По удалению") ctx.strokeStyle = cols[Math.floor(alpha * (cols.length - 1))];
+      if (opts.paletteMode === "By angle") ctx.strokeStyle = cols[Math.floor(i / copies * (cols.length - 1))];
+      else if (opts.paletteMode === "By distance") ctx.strokeStyle = cols[Math.floor(alpha * (cols.length - 1))];
       else ctx.strokeStyle = fg;
       ctx.globalAlpha = alpha;
       ctx.beginPath();

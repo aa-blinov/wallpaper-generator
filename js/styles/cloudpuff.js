@@ -10,8 +10,8 @@ import { makeColorRamp } from "../palettes.js";
 export const cloudpuff = {
   id: "cloudpuff",
   name: "Cloud Puff",
-  category: "Органические",
-  blurb: "Объёмные облака: двухуровневое осветление через шум.",
+  category: "Organic",
+  blurb: "Volumetric clouds: two-tier brightening via noise.",
   defaults: {
     scale: 0.004,
     octaves: 6,
@@ -20,10 +20,10 @@ export const cloudpuff = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.001, max: 0.02, step: 0.0005 },
-    { key: "octaves", label: "Октавы", min: 3, max: 7, step: 1 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "softness", label: "Мягкость", min: 0, max: 0.2, step: 0.005 },
+    { key: "scale", label: "Scale", min: 0.001, max: 0.02, step: 0.0005 },
+    { key: "octaves", label: "Octaves", min: 3, max: 7, step: 1 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "softness", label: "Softness", min: 0, max: 0.2, step: 0.005 },
   ],
 
   createState(opts, w, h) {

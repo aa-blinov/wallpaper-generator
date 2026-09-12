@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const wood = {
   id: "wood",
   name: "Wood",
-  category: "Текстуры",
-  blurb: "Дерево: волокна из деформированного шума.",
+  category: "Textures",
+  blurb: "Wood: grain from warped noise.",
   defaults: {
     scale: 0.012,
     rings: 9,
@@ -15,9 +15,9 @@ export const wood = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Шум", min: 0.002, max: 0.05, step: 0.001 },
-    { key: "rings", label: "Колец", min: 2, max: 30, step: 0.5 },
-    { key: "contrast", label: "Контраст", min: 0.5, max: 3, step: 0.05 },
+    { key: "scale", label: "Noise", min: 0.002, max: 0.05, step: 0.001 },
+    { key: "rings", label: "Rings", min: 2, max: 30, step: 0.5 },
+    { key: "contrast", label: "Contrast", min: 0.5, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

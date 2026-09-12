@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const water = {
   id: "water",
   name: "Water",
-  category: "Органические",
-  blurb: "Водная поверхность: перлин + синусы с зеркальным бликом.",
+  category: "Organic",
+  blurb: "Water surface: Perlin noise + sine waves with a specular highlight.",
   defaults: {
     scale: 0.006,
     octaves: 4,
@@ -18,10 +18,10 @@ export const water = {
     bgTint: 0,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.001, max: 0.02, step: 0.001 },
-    { key: "octaves", label: "Октавы", min: 1, max: 6, step: 1 },
-    { key: "waveAmp", label: "Амплитуда", min: 5, max: 80, step: 1 },
-    { key: "highlight", label: "Блик", min: 0, max: 1.5, step: 0.02 },
+    { key: "scale", label: "Scale", min: 0.001, max: 0.02, step: 0.001 },
+    { key: "octaves", label: "Octaves", min: 1, max: 6, step: 1 },
+    { key: "waveAmp", label: "Amplitude", min: 5, max: 80, step: 1 },
+    { key: "highlight", label: "Highlight", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

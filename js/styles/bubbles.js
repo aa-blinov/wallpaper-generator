@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const bubbles = {
   id: "bubbles",
   name: "Bubbles",
-  category: "Органические",
-  blurb: "Пузыри с перекрытиями и реалистичными бликами.",
+  category: "Organic",
+  blurb: "Bubbles with overlaps and realistic highlights.",
   defaults: {
     count: 24,
     sizeMin: 30,
@@ -16,10 +16,10 @@ export const bubbles = {
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Пузырей", min: 4, max: 80, step: 1 },
-    { key: "sizeMin", label: "Мин. радиус", min: 8, max: 80, step: 1 },
-    { key: "sizeMax", label: "Макс. радиус", min: 30, max: 200, step: 2 },
-    { key: "highlight", label: "Блик", min: 0, max: 1.5, step: 0.02 },
+    { key: "count", label: "Bubbles", min: 4, max: 80, step: 1 },
+    { key: "sizeMin", label: "Min radius", min: 8, max: 80, step: 1 },
+    { key: "sizeMax", label: "Max radius", min: 30, max: 200, step: 2 },
+    { key: "highlight", label: "Highlight", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

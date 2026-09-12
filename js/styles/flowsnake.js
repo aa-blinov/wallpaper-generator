@@ -3,18 +3,18 @@
 export const flowsnake = {
   id: "flowsnake",
   name: "Flowsnake",
-  category: "Алгоритмы",
-  blurb: "L-system фрактал Gosper (flowsnake).",
+  category: "Algorithms",
+  blurb: "Gosper curve (flowsnake) — an L-system fractal.",
   defaults: {
     iterations: 4,
     strokeWidth: 1.4,
-    paletteMode: "По глубине",
+    paletteMode: "By depth",
     bgTint: 0,
   },
   params: [
-    { key: "iterations", label: "Итерации", min: 1, max: 6, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 5, step: 0.1 },
-    { key: "paletteMode", label: "Цвет", enum: ["По глубине", "Один цвет"] },
+    { key: "iterations", label: "Iterations", min: 1, max: 6, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 5, step: 0.1 },
+    { key: "paletteMode", label: "Color", enum: ["By depth", "Single color"] },
   ],
 
   createState(opts, w, h) {
@@ -64,7 +64,7 @@ export const flowsnake = {
       else if (c === "-") cdir -= ang;
     }
 
-    if (opts.paletteMode === "Один цвет") {
+    if (opts.paletteMode === "Single color") {
       ctx.beginPath();
       for (const [ax, ay, bx, by] of segments) {
         ctx.moveTo(ax, ay); ctx.lineTo(bx, by);

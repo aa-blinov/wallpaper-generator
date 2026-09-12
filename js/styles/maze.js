@@ -7,21 +7,21 @@ import { makeColorRamp } from "../palettes.js";
 export const maze = {
   id: "maze",
   name: "Maze",
-  category: "Алгоритмы",
-  blurb: "Рекурсивный backtracker: каждый кадр — новый лабиринт.",
+  category: "Algorithms",
+  blurb: "Recursive backtracker: a fresh maze every frame.",
   defaults: {
     cellSize: 28,
     lineWidth: 2,
-    paletteMode: "Монохром",   // "Монохром" | "По глубине" | "Случайный"
+    paletteMode: "Monochrome",   // "Monochrome" | "By depth" | "Random"
     branchColor: 1,
     bgTint: 0.0,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 8, max: 80, step: 2 },
-    { key: "lineWidth", label: "Толщина стен", min: 0.5, max: 6, step: 0.1 },
-    { key: "paletteMode", label: "Раскраска", enum: ["Монохром", "По глубине", "Случайный"] },
-    { key: "branchColor", label: "Цвет стен (по палитре)", min: 0, max: 1, step: 0.02 },
-    { key: "bgTint", label: "Затемнить фон", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Cell size", min: 8, max: 80, step: 2 },
+    { key: "lineWidth", label: "Wall thickness", min: 0.5, max: 6, step: 0.1 },
+    { key: "paletteMode", label: "Coloring", enum: ["Monochrome", "By depth", "Random"] },
+    { key: "branchColor", label: "Wall color (from palette)", min: 0, max: 1, step: 0.02 },
+    { key: "bgTint", label: "Darken background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

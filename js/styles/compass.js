@@ -3,18 +3,18 @@
 export const compass = {
   id: "compass",
   name: "Compass Rose",
-  category: "Геометрия",
-  blurb: "Роза ветров: N стрелок, кольца и метки.",
+  category: "Geometry",
+  blurb: "Compass rose: N arrows, rings and tick marks.",
   defaults: {
     points: 8,
     rings: 3,
-    labelMode: "Простой",
+    labelMode: "Simple",
     bgTint: 0,
   },
   params: [
-    { key: "points", label: "Стрелок", min: 3, max: 32, step: 1 },
-    { key: "rings", label: "Колец", min: 1, max: 6, step: 1 },
-    { key: "labelMode", label: "Метки", enum: ["Простой", "Градусы", "Нет"] },
+    { key: "points", label: "Arrows", min: 3, max: 32, step: 1 },
+    { key: "rings", label: "Rings", min: 1, max: 6, step: 1 },
+    { key: "labelMode", label: "Tick marks", enum: ["Simple", "Degrees", "None"] },
   ],
 
   createState(opts, w, h) {
@@ -64,14 +64,14 @@ export const compass = {
       ctx.closePath();
       ctx.fill();
       // Градусы/метки
-      if (opts.labelMode !== "Нет") {
+      if (opts.labelMode !== "None") {
         ctx.fillStyle = fg;
         ctx.font = `${Math.max(10, R / 12)}px serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         const lx = cx + (R + 20) * Math.cos(ang);
         const ly = cy + (R + 20) * Math.sin(ang);
-        const txt = opts.labelMode === "Градусы" ? `${(i * 360 / N).toFixed(0)}°` : "✦";
+        const txt = opts.labelMode === "Degrees" ? `${(i * 360 / N).toFixed(0)}°` : "✦";
         ctx.fillText(txt, lx, ly);
       }
     }

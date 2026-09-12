@@ -6,18 +6,18 @@ import { makeColorRamp } from "../palettes.js";
 export const spectrum = {
   id: "spectrum",
   name: "Spectrum",
-  category: "Текстуры",
-  blurb: "Спектр: столбцы разной высоты по шуму.",
+  category: "Textures",
+  blurb: "Spectrum: bars of varying height driven by noise.",
   defaults: {
     bars: 80,
     noiseScale: 0.05,
-    mode: "Симметрично",
+    mode: "Symmetric",
     bgTint: 0,
   },
   params: [
-    { key: "bars", label: "Столбцов", min: 10, max: 240, step: 5 },
-    { key: "noiseScale", label: "Частота", min: 0.005, max: 0.3, step: 0.005 },
-    { key: "mode", label: "Режим", enum: ["Симметрично", "От низа", "От верха"] },
+    { key: "bars", label: "Columns", min: 10, max: 240, step: 5 },
+    { key: "noiseScale", label: "Frequency", min: 0.005, max: 0.3, step: 0.005 },
+    { key: "mode", label: "Mode", enum: ["Symmetric", "From bottom", "From top"] },
   ],
 
   createState(opts, w, h) {
@@ -46,9 +46,9 @@ export const spectrum = {
     for (let i = 0; i < N; i++) {
       const amp = amps[i];
       ctx.fillStyle = ramp(i / N);
-      if (opts.mode === "От верха") {
+      if (opts.mode === "From top") {
         ctx.fillRect(i * dx, 0, dx - 1, amp * h);
-      } else if (opts.mode === "От низа") {
+      } else if (opts.mode === "From bottom") {
         ctx.fillRect(i * dx, h - amp * h, dx - 1, amp * h);
       } else {
         ctx.fillRect(i * dx, (h - amp * h) / 2, dx - 1, amp * h);

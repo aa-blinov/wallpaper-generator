@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const topography = {
   id: "topography",
   name: "Topographic",
-  category: "Шум",
-  blurb: "Изолинии по шумовому полю — географическая карта рельефа.",
+  category: "Noise",
+  blurb: "Contour lines over a noise field — a topographic relief map.",
   defaults: {
     scale: 0.0035,
     octaves: 5,
@@ -18,21 +18,21 @@ export const topography = {
     lineDensity: 14,     // кол-во уровней (линий)
     lineThickness: 1.2,
     lineColor: 0.0,      // 0..1 — где в палитре брать цвет линии
-    bgShade: 0.0,        // 0..1 — примесь темнее в "низинах"
+    bgShade: 0.0,        // 0..1 — примесь темнее в "lowlands"
     showFill: 0.4,       // 0..1 — заливка между линиями
     fillLevels: 6,
     sampleStep: 2,
   },
   params: [
-    { key: "scale", label: "Масштаб", min: 0.0008, max: 0.02, step: 0.0001, format: (v) => v.toFixed(4) },
-    { key: "octaves", label: "Октавы", min: 1, max: 8, step: 1 },
-    { key: "lineDensity", label: "Кол-во линий", min: 2, max: 60, step: 1 },
-    { key: "lineThickness", label: "Толщина", min: 0.2, max: 4, step: 0.1 },
-    { key: "lineColor", label: "Цвет линий", min: 0, max: 1, step: 0.02 },
-    { key: "bgShade", label: "Затемнение низин", min: 0, max: 1, step: 0.02 },
-    { key: "showFill", label: "Заливка между линиями", min: 0, max: 1, step: 0.02 },
-    { key: "fillLevels", label: "Уровней заливки", min: 2, max: 20, step: 1 },
-    { key: "sampleStep", label: "Шаг сэмпла", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
+    { key: "scale", label: "Scale", min: 0.0008, max: 0.02, step: 0.0001, format: (v) => v.toFixed(4) },
+    { key: "octaves", label: "Octaves", min: 1, max: 8, step: 1 },
+    { key: "lineDensity", label: "Line count", min: 2, max: 60, step: 1 },
+    { key: "lineThickness", label: "Thickness", min: 0.2, max: 4, step: 0.1 },
+    { key: "lineColor", label: "Line color", min: 0, max: 1, step: 0.02 },
+    { key: "bgShade", label: "Darken lowlands", min: 0, max: 1, step: 0.02 },
+    { key: "showFill", label: "Fill between lines", min: 0, max: 1, step: 0.02 },
+    { key: "fillLevels", label: "Fill levels", min: 2, max: 20, step: 1 },
+    { key: "sampleStep", label: "Sample step", min: 1, max: 8, step: 1, format: (v) => `${v.toFixed(0)} px` },
   ],
 
   createState(opts, w, h) {

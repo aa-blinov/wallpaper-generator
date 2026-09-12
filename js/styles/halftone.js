@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const halftone = {
   id: "halftone",
   name: "Halftone",
-  category: "Текстуры",
-  blurb: "Растровая полутоновая сетка в стиле газетной печати.",
+  category: "Textures",
+  blurb: "A halftone dot grid, newspaper-print style.",
   defaults: {
     cellSize: 12,        // px между центрами точек
     scale: 0.006,
@@ -22,13 +22,13 @@ export const halftone = {
     angleDeg: 45,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 4, max: 40, step: 1, format: (v) => `${v.toFixed(0)} px` },
-    { key: "scale", label: "Масштаб шума", min: 0.001, max: 0.04, step: 0.0005 },
-    { key: "octaves", label: "Октавы", min: 1, max: 7, step: 1 },
-    { key: "dotSoftness", label: "Антиалиас", min: 0.5, max: 3, step: 0.1 },
-    { key: "pattern", label: "Форма точки", enum: ["circle", "diamond", "square", "cross"] },
-    { key: "angleDeg", label: "Угол сетки", min: 0, max: 90, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Cell size", min: 4, max: 40, step: 1, format: (v) => `${v.toFixed(0)} px` },
+    { key: "scale", label: "Noise scale", min: 0.001, max: 0.04, step: 0.0005 },
+    { key: "octaves", label: "Octaves", min: 1, max: 7, step: 1 },
+    { key: "dotSoftness", label: "Antialiasing", min: 0.5, max: 3, step: 0.1 },
+    { key: "pattern", label: "Point shape", enum: ["circle", "diamond", "square", "cross"] },
+    { key: "angleDeg", label: "Grid angle", min: 0, max: 90, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -82,7 +82,7 @@ export const halftone = {
         // Значение поля в этой точке.
         let val = fbm(X * scale, Y * scale);
         val = (val + 1) * 0.5;  // 0..1
-        // Радиус "капли"
+        // Радиус "droplets"
         const cellR = cellSize * 0.5 * Math.sqrt(Math.max(0.0001, val)) * opts.dotSoftness;
         // Цвет
         ctx.fillStyle = ramp(val);

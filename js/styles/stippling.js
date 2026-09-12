@@ -9,8 +9,8 @@ import { makeColorRamp } from "../palettes.js";
 export const stippling = {
   id: "stippling",
   name: "Stippling",
-  category: "Точки",
-  blurb: "Тысячи точек, плотность которых следует за noise-полем.",
+  category: "Dots",
+  blurb: "Thousands of dots whose density follows a noise field.",
   defaults: {
     density: 0.0042,
     dotRadius: 1.4,
@@ -22,13 +22,13 @@ export const stippling = {
     blur: 0,
   },
   params: [
-    { key: "density", label: "Плотность точек", min: 0.0006, max: 0.012, step: 0.0002, format: (v) => `${(v*1e6).toFixed(0)} ppm` },
-    { key: "noiseScale", label: "Масштаб шума", min: 0.001, max: 0.04, step: 0.0005 },
-    { key: "octaves", label: "Октавы (детали)", min: 1, max: 6, step: 1 },
-    { key: "contrast", label: "Контраст", min: 0.4, max: 3, step: 0.05 },
-    { key: "shade", label: "Сила градации", min: 0.4, max: 2.5, step: 0.05 },
-    { key: "dotRadius", label: "Радиус точки", min: 0.4, max: 5, step: 0.1 },
-    { key: "bgInvert", label: "Инверсия", enum: ["Светлый фон", "Тёмный фон"] },
+    { key: "density", label: "Point density", min: 0.0006, max: 0.012, step: 0.0002, format: (v) => `${(v*1e6).toFixed(0)} ppm` },
+    { key: "noiseScale", label: "Noise scale", min: 0.001, max: 0.04, step: 0.0005 },
+    { key: "octaves", label: "Octaves (detail)", min: 1, max: 6, step: 1 },
+    { key: "contrast", label: "Contrast", min: 0.4, max: 3, step: 0.05 },
+    { key: "shade", label: "Gradation strength", min: 0.4, max: 2.5, step: 0.05 },
+    { key: "dotRadius", label: "Point radius", min: 0.4, max: 5, step: 0.1 },
+    { key: "bgInvert", label: "Invert", enum: ["Light background", "Dark background"] },
   ],
 
   createState(opts, w, h) {
@@ -48,7 +48,7 @@ export const stippling = {
     const shade = opts.shade;
     const dotRadius = opts.dotRadius;
     const density = opts.density;
-    const bgInvert = opts.bgInvert === "Тёмный фон" ? 1 : 0;
+    const bgInvert = opts.bgInvert === "Dark background" ? 1 : 0;
     const noise = state.noise;
 
     // Заливка фона градиентом (крайний цвет палитры).
@@ -75,7 +75,7 @@ export const stippling = {
       const x = Math.random() * w;
       const y = Math.random() * h;
       let v = fbm(x * noiseScale, y * noiseScale);
-      // Сдвигаем середину в "пороговое" поведение: чем больше v, тем крупнее точка.
+      // Сдвигаем середину в "threshold" поведение: чем больше v, тем крупнее точка.
       v = (v + 1) * 0.5;
       v = (v - 0.5) * contrast + 0.5;
       v = Math.pow(Math.max(0, Math.min(1, v)), shade);

@@ -5,8 +5,8 @@ import { makeRng } from "../rng.js";
 export const celtic = {
   id: "celtic",
   name: "Celtic Knot",
-  category: "Геометрия",
-  blurb: "Кельтский узор: переплетающиеся ленты вокруг кругов.",
+  category: "Geometry",
+  blurb: "Celtic knot: interwoven bands around circles.",
   defaults: {
     strands: 4,
     rings: 4,
@@ -14,9 +14,9 @@ export const celtic = {
     bgTint: 0,
   },
   params: [
-    { key: "rings", label: "Кругов по сетке", min: 1, max: 6, step: 1 },
-    { key: "strands", label: "Нитей", min: 2, max: 8, step: 1 },
-    { key: "strWidth", label: "Толщина", min: 1, max: 12, step: 0.5 },
+    { key: "rings", label: "Circles per grid", min: 1, max: 6, step: 1 },
+    { key: "strands", label: "Threads", min: 2, max: 8, step: 1 },
+    { key: "strWidth", label: "Thickness", min: 1, max: 12, step: 0.5 },
   ],
 
   createState(opts, w, h) {

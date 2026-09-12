@@ -3,16 +3,16 @@
 export const honeycomb3d = {
   id: "honeycomb3d",
   name: "Honeycomb 3D",
-  category: "Текстуры",
-  blurb: "Псевдо-3D соты: каждый шестиугольник с градиентом и тенью.",
+  category: "Textures",
+  blurb: "Pseudo-3D honeycomb: each hexagon shaded with a gradient and shadow.",
   defaults: {
     cellSize: 50,
     light: 0.7,
     bgTint: 0,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 20, max: 120, step: 2 },
-    { key: "light", label: "Освещение", min: 0, max: 1.5, step: 0.02 },
+    { key: "cellSize", label: "Cell size", min: 20, max: 120, step: 2 },
+    { key: "light", label: "Lighting", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

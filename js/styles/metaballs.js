@@ -5,8 +5,8 @@ import { hexToRgb } from "../palettes.js";
 export const metaballs = {
   id: "metaballs",
   name: "Metaballs",
-  category: "Алгоритмы",
-  blurb: "Метаболы: marching squares по изоповерхности суммы полей.",
+  category: "Algorithms",
+  blurb: "Metaballs: marching squares over the isosurface of summed fields.",
   defaults: {
     count: 9,
     threshold: 0.12,
@@ -16,10 +16,10 @@ export const metaballs = {
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Кол-во шаров", min: 2, max: 30, step: 1 },
-    { key: "threshold", label: "Порог", min: 0.005, max: 0.2, step: 0.005 },
-    { key: "smoothness", label: "Сглаживание", min: 0, max: 0.02, step: 0.001 },
-    { key: "contour", label: "Контур", min: 0, max: 1, step: 0.05 },
+    { key: "count", label: "Ball count", min: 2, max: 30, step: 1 },
+    { key: "threshold", label: "Threshold", min: 0.005, max: 0.2, step: 0.005 },
+    { key: "smoothness", label: "Smoothing", min: 0, max: 0.02, step: 0.001 },
+    { key: "contour", label: "Outline", min: 0, max: 1, step: 0.05 },
   ],
 
   createState(opts, w, h) {

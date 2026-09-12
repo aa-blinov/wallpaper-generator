@@ -21,8 +21,8 @@ function invert(p, R) {
 export const tessellation = {
   id: "tessellation",
   name: "Hyperbolic Tessellation",
-  category: "Геометрия",
-  blurb: "Гиперболическая тесселяция в круге Пуанкаре.",
+  category: "Geometry",
+  blurb: "Hyperbolic tessellation in the Poincaré disk.",
   defaults: {
     p: 6,
     q: 4,
@@ -30,9 +30,9 @@ export const tessellation = {
     bgTint: 0,
   },
   params: [
-    { key: "p", label: "Сторон (p)", min: 3, max: 10, step: 1 },
-    { key: "q", label: "В вершине (q)", min: 3, max: 8, step: 1 },
-    { key: "radiusRatio", label: "Заполнение", min: 0.7, max: 0.99, step: 0.01 },
+    { key: "p", label: "Sides (p)", min: 3, max: 10, step: 1 },
+    { key: "q", label: "At vertex (q)", min: 3, max: 8, step: 1 },
+    { key: "radiusRatio", label: "Fill", min: 0.7, max: 0.99, step: 0.01 },
   ],
 
   createState(opts, w, h) {

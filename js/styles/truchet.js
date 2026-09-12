@@ -8,8 +8,8 @@ import { makeColorRamp } from "../palettes.js";
 export const truchet = {
   id: "truchet",
   name: "Truchet Tiles",
-  category: "Геометрия",
-  blurb: "Случайные изогнутые дуги на сетке — мозаика Escher-стиля.",
+  category: "Geometry",
+  blurb: "Random curved arcs on a grid — an Escher-style tiling.",
   defaults: {
     cellSize: 80,
     thickness: 6,
@@ -19,12 +19,12 @@ export const truchet = {
     bgTint: 0,
   },
   params: [
-    { key: "cellSize", label: "Размер плитки", min: 16, max: 220, step: 2, format: (v) => `${v.toFixed(0)} px` },
-    { key: "thickness", label: "Толщина", min: 1, max: 20, step: 0.5, format: (v) => `${v.toFixed(1)} px` },
-    { key: "arcRatio", label: "Радиус дуги", min: 0.3, max: 1.4, step: 0.02 },
-    { key: "tileVariation", label: "Вариация плиток", enum: ["Только дуги", "Дуги + диагонали", "Полная (3 типа)"] },
-    { key: "animateSpeed", label: "Скорость анимации", min: 0, max: 1, step: 0.02 },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Tile size", min: 16, max: 220, step: 2, format: (v) => `${v.toFixed(0)} px` },
+    { key: "thickness", label: "Thickness", min: 1, max: 20, step: 0.5, format: (v) => `${v.toFixed(1)} px` },
+    { key: "arcRatio", label: "Arc radius", min: 0.3, max: 1.4, step: 0.02 },
+    { key: "tileVariation", label: "Tile variation", enum: ["Arcs only", "Arcs + diagonals", "Full (3 kinds)"] },
+    { key: "animateSpeed", label: "Animation speed", min: 0, max: 1, step: 0.02 },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -86,7 +86,7 @@ export const truchet = {
   },
 
   animate(ctx, opts, state, t) {
-    // Подёргиваем плитки при анимации, чтобы получился "бегущий" паттерн.
+    // Подёргиваем плитки при анимации, чтобы получился "traveling" паттерн.
     this.paint(ctx, opts, state, t * opts.animateSpeed * 1000);
   },
 };
@@ -108,7 +108,7 @@ function computeTiles(w, h, cellSize, rng) {
 }
 
 function variationIndex(v) {
-  if (v === "Дуги + диагонали") return 1;
-  if (v === "Полная (3 типа)") return 2;
+  if (v === "Arcs + diagonals") return 1;
+  if (v === "Full (3 kinds)") return 2;
   return 0;
 }

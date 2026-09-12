@@ -5,16 +5,16 @@ import { makeColorRamp } from "../palettes.js";
 export const flowsnake2 = {
   id: "flowsnake2",
   name: "Flowsnake 2",
-  category: "Алгоритмы",
-  blurb: "Peano-Gosper кривая с раскраской по глубине.",
+  category: "Algorithms",
+  blurb: "Peano-Gosper curve, colored by recursion depth.",
   defaults: {
     iterations: 4,
     strokeWidth: 1.2,
     bgTint: 0,
   },
   params: [
-    { key: "iterations", label: "Итерации", min: 1, max: 6, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 4, step: 0.05 },
+    { key: "iterations", label: "Iterations", min: 1, max: 6, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 4, step: 0.05 },
   ],
 
   createState(opts, w, h) {

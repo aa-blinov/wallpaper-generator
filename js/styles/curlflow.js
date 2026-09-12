@@ -1,6 +1,6 @@
 // Curl Flow — частицы в divergence-free поле (curl noise).
 // Поле получено как curl от потенциала ψ(x,y): v = (∂ψ/∂y, -∂ψ/∂x).
-// Частицы, адвектируемые таким полем, не "слипаются" —
+// Частицы, адвектируемые таким полем, не "clump" —
 // они закручиваются вокруг вихрей, давая живые, текучие узоры.
 
 import { makeNoise2D } from "../noise.js";
@@ -10,8 +10,8 @@ import { withAlpha } from "../utils.js";
 export const curlflow = {
   id: "curlflow",
   name: "Curl Flow",
-  category: "Поток",
-  blurb: "Частицы в divergence-free поле — настоящие вихри, без слипания.",
+  category: "Flow",
+  blurb: "Particles in a divergence-free field — real vortices, no clumping.",
   defaults: {
     density: 0.00028,
     noiseScale: 0.0028,
@@ -23,13 +23,13 @@ export const curlflow = {
     bgFade: 0.07,
   },
   params: [
-    { key: "density", label: "Плотность", min: 0.00002, max: 0.0006, step: 0.00002 },
-    { key: "noiseScale", label: "Масштаб поля", min: 0.0005, max: 0.01, step: 0.0001, format: (v) => v.toFixed(4) },
-    { key: "stepLength", label: "Длина шага", min: 1, max: 12, step: 0.1 },
-    { key: "curlStrength", label: "Сила вращения", min: 0.2, max: 4, step: 0.05 },
-    { key: "lineOpacity", label: "Прозрачность следа", min: 0.01, max: 0.4, step: 0.005 },
-    { key: "lineWidth", label: "Толщина линии", min: 0.3, max: 4, step: 0.1 },
-    { key: "maxSteps", label: "Длина следа (статика)", min: 30, max: 1500, step: 10 },
+    { key: "density", label: "Density", min: 0.00002, max: 0.0006, step: 0.00002 },
+    { key: "noiseScale", label: "Field scale", min: 0.0005, max: 0.01, step: 0.0001, format: (v) => v.toFixed(4) },
+    { key: "stepLength", label: "Step length", min: 1, max: 12, step: 0.1 },
+    { key: "curlStrength", label: "Curl strength", min: 0.2, max: 4, step: 0.05 },
+    { key: "lineOpacity", label: "Trail opacity", min: 0.01, max: 0.4, step: 0.005 },
+    { key: "lineWidth", label: "Line thickness", min: 0.3, max: 4, step: 0.1 },
+    { key: "maxSteps", label: "Trail length (static)", min: 30, max: 1500, step: 10 },
   ],
 
   createState(opts, w, h) {

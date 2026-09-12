@@ -3,16 +3,16 @@
 export const bubblewrap = {
   id: "bubblewrap",
   name: "Bubblewrap",
-  category: "Текстуры",
-  blurb: "Пузырчатая плёнка: гекс-сетка пузырей с градиентами.",
+  category: "Textures",
+  blurb: "Bubble wrap: a hex grid of bubbles with gradients.",
   defaults: {
     cell: 40,
     highlight: 0.7,
     bgTint: 0,
   },
   params: [
-    { key: "cell", label: "Размер ячейки", min: 12, max: 90, step: 2 },
-    { key: "highlight", label: "Блик", min: 0, max: 1.5, step: 0.02 },
+    { key: "cell", label: "Cell size", min: 12, max: 90, step: 2 },
+    { key: "highlight", label: "Highlight", min: 0, max: 1.5, step: 0.02 },
   ],
 
   createState(opts, w, h) {

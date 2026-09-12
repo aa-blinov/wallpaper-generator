@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const pulse = {
   id: "pulse",
   name: "Pulse",
-  category: "Точки",
-  blurb: "Случайные центры с расширяющимися кольцами-волнами.",
+  category: "Dots",
+  blurb: "Random centers with expanding ring waves.",
   defaults: {
     sources: 12,
     rings: 12,
@@ -16,10 +16,10 @@ export const pulse = {
     bgTint: 0,
   },
   params: [
-    { key: "sources", label: "Центров", min: 2, max: 60, step: 1 },
-    { key: "rings", label: "Колец", min: 2, max: 30, step: 1 },
-    { key: "maxRadius", label: "Макс. радиус", min: 30, max: 600, step: 10 },
-    { key: "ringWidth", label: "Толщина", min: 0.2, max: 4, step: 0.1 },
+    { key: "sources", label: "Centers", min: 2, max: 60, step: 1 },
+    { key: "rings", label: "Rings", min: 2, max: 30, step: 1 },
+    { key: "maxRadius", label: "Max radius", min: 30, max: 600, step: 10 },
+    { key: "ringWidth", label: "Thickness", min: 0.2, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

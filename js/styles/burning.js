@@ -5,8 +5,8 @@ import { hexToRgb } from "../palettes.js";
 export const burning = {
   id: "burning",
   name: "Burning Ship",
-  category: "Алгоритмы",
-  blurb: "Burning Ship: |Re|+|Im|, искажённый родственник Мандельброта.",
+  category: "Algorithms",
+  blurb: "Burning Ship: |Re|+|Im|, a distorted relative of the Mandelbrot set.",
   defaults: {
     maxIter: 120,
     zoom: 1.0,
@@ -15,10 +15,10 @@ export const burning = {
     bgTint: 0,
   },
   params: [
-    { key: "maxIter", label: "Итерации", min: 50, max: 400, step: 10 },
-    { key: "zoom", label: "Зум", min: 0.4, max: 4.0, step: 0.05 },
-    { key: "centerX", label: "Центр X", min: -1.5, max: 1.5, step: 0.01, format: (v) => v.toFixed(2) },
-    { key: "centerY", label: "Центр Y", min: -1.0, max: 0.2, step: 0.01, format: (v) => v.toFixed(2) },
+    { key: "maxIter", label: "Iterations", min: 50, max: 400, step: 10 },
+    { key: "zoom", label: "Zoom", min: 0.4, max: 4.0, step: 0.05 },
+    { key: "centerX", label: "Center X", min: -1.5, max: 1.5, step: 0.01, format: (v) => v.toFixed(2) },
+    { key: "centerY", label: "Center Y", min: -1.0, max: 0.2, step: 0.01, format: (v) => v.toFixed(2) },
   ],
 
   createState(opts, w, h) {

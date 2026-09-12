@@ -11,8 +11,8 @@ const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));  // ≈ 2.39996 рад ≈ 13
 export const phyllotaxis = {
   id: "phyllotaxis",
   name: "Phyllotaxis",
-  category: "Точки",
-  blurb: "Спираль Фибоначчи по золотому углу — подсолнух / шишка.",
+  category: "Dots",
+  blurb: "A Fibonacci spiral by the golden angle — sunflower / pine cone.",
   defaults: {
     count: 4500,
     scale: 0.7,
@@ -24,14 +24,14 @@ export const phyllotaxis = {
     bgTint: 0.0,
   },
   params: [
-    { key: "count", label: "Кол-во точек", min: 200, max: 12000, step: 50 },
-    { key: "scale", label: "Общий масштаб", min: 0.1, max: 1.2, step: 0.02 },
-    { key: "radiusFactor", label: "Радиальный рост", min: 0.0, max: 1.2, step: 0.02 },
-    { key: "paletteCycle", label: "Цикл палитры", min: 0.0, max: 1.0, step: 0.02 },
-    { key: "spiralTwist", label: "Доп. кручение", min: -0.5, max: 0.5, step: 0.01 },
-    { key: "dotMin", label: "Мин. радиус", min: 0.2, max: 5, step: 0.1 },
-    { key: "dotMax", label: "Макс. радиус", min: 0.2, max: 8, step: 0.1 },
-    { key: "bgTint", label: "Подмешивать фон", min: 0, max: 1, step: 0.02 },
+    { key: "count", label: "Point count", min: 200, max: 12000, step: 50 },
+    { key: "scale", label: "Overall scale", min: 0.1, max: 1.2, step: 0.02 },
+    { key: "radiusFactor", label: "Radial growth", min: 0.0, max: 1.2, step: 0.02 },
+    { key: "paletteCycle", label: "Palette cycle", min: 0.0, max: 1.0, step: 0.02 },
+    { key: "spiralTwist", label: "Extra twist", min: -0.5, max: 0.5, step: 0.01 },
+    { key: "dotMin", label: "Min radius", min: 0.2, max: 5, step: 0.1 },
+    { key: "dotMax", label: "Max radius", min: 0.2, max: 8, step: 0.1 },
+    { key: "bgTint", label: "Blend with background", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

@@ -6,18 +6,18 @@ import { makeColorRamp } from "../palettes.js";
 export const mosaic = {
   id: "mosaic",
   name: "Mosaic",
-  category: "Текстуры",
-  blurb: "Мозаика: Вороной с шумовыми краями и палитрой по тайлам.",
+  category: "Textures",
+  blurb: "Mosaic: Voronoi cells with noisy edges, palette per tile.",
   defaults: {
     sites: 80,
     grout: 2.0,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     bgTint: 0,
   },
   params: [
-    { key: "sites", label: "Кол-во сайтов", min: 20, max: 400, step: 5 },
-    { key: "grout", label: "Шов (px)", min: 0, max: 8, step: 0.2 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Случайный"] },
+    { key: "sites", label: "Site count", min: 20, max: 400, step: 5 },
+    { key: "grout", label: "Seam (px)", min: 0, max: 8, step: 0.2 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Random"] },
   ],
 
   createState(opts, w, h) {
@@ -61,7 +61,7 @@ export const mosaic = {
           ctx.fillRect(bx, by, STEP, STEP);
           continue;
         }
-        const c = opts.paletteMode === "Случайный"
+        const c = opts.paletteMode === "Random"
           ? cols[idx1 % cols.length]
           : ramp((idx1 % (cols.length * 7)) / 7);
         ctx.fillStyle = c;

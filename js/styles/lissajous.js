@@ -4,8 +4,8 @@
 export const lissajous = {
   id: "lissajous",
   name: "Lissajous",
-  category: "Геометрия",
-  blurb: "Кривые Лиссажу — параметрические фигуры из двух синусов.",
+  category: "Geometry",
+  blurb: "Lissajous curves — parametric figures from two sine waves.",
   defaults: {
     a: 3,
     b: 4,
@@ -17,13 +17,13 @@ export const lissajous = {
     bgTint: 0,
   },
   params: [
-    { key: "a", label: "Частота X", min: 1, max: 12, step: 1 },
-    { key: "b", label: "Частота Y", min: 1, max: 12, step: 1 },
-    { key: "delta", label: "Фаза (°)", min: 0, max: 360, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "samples", label: "Кол-во точек", min: 500, max: 30000, step: 100 },
-    { key: "strokeWidth", label: "Толщина", min: 0.2, max: 5, step: 0.1 },
-    { key: "ampX", label: "Амплитуда X", min: 0.3, max: 1.0, step: 0.02 },
-    { key: "ampY", label: "Амплитуда Y", min: 0.3, max: 1.0, step: 0.02 },
+    { key: "a", label: "Frequency X", min: 1, max: 12, step: 1 },
+    { key: "b", label: "Frequency Y", min: 1, max: 12, step: 1 },
+    { key: "delta", label: "Phase (°)", min: 0, max: 360, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "samples", label: "Point count", min: 500, max: 30000, step: 100 },
+    { key: "strokeWidth", label: "Thickness", min: 0.2, max: 5, step: 0.1 },
+    { key: "ampX", label: "Amplitude X", min: 0.3, max: 1.0, step: 0.02 },
+    { key: "ampY", label: "Amplitude Y", min: 0.3, max: 1.0, step: 0.02 },
   ],
 
   createState(opts, w, h) {

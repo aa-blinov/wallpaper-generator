@@ -5,20 +5,20 @@ import { makeColorRamp } from "../palettes.js";
 export const diamonds = {
   id: "diamonds",
   name: "Diamond Grid",
-  category: "Геометрия",
-  blurb: "Сетка из ромбов с шумовыми вариациями.",
+  category: "Geometry",
+  blurb: "A diamond grid with noise-driven variation.",
   defaults: {
     cellSize: 60,
     strokeWidth: 1.2,
-    paletteMode: "Палитра",
+    paletteMode: "Palette",
     noiseScale: 0.01,
     bgTint: 0,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 20, max: 200, step: 5 },
-    { key: "strokeWidth", label: "Контур", min: 0, max: 4, step: 0.1 },
-    { key: "noiseScale", label: "Шум вариаций", min: 0, max: 0.05, step: 0.001 },
-    { key: "paletteMode", label: "Цвет", enum: ["Палитра", "Чёрно-белый"] },
+    { key: "cellSize", label: "Cell size", min: 20, max: 200, step: 5 },
+    { key: "strokeWidth", label: "Outline", min: 0, max: 4, step: 0.1 },
+    { key: "noiseScale", label: "Variation noise", min: 0, max: 0.05, step: 0.001 },
+    { key: "paletteMode", label: "Color", enum: ["Palette", "Black and white"] },
   ],
 
   createState(opts, w, h) {
@@ -54,7 +54,7 @@ export const diamonds = {
         const x = i * half;
         const y = j * half;
         const t = noise2(i, j);
-        ctx.fillStyle = opts.paletteMode === "Чёрно-белый"
+        ctx.fillStyle = opts.paletteMode === "Black and white"
           ? `rgb(${(t * 255) | 0},${(t * 255) | 0},${(t * 255) | 0})`
           : ramp(t);
         ctx.beginPath();

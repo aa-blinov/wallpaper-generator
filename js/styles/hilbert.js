@@ -3,19 +3,19 @@
 export const hilbert = {
   id: "hilbert",
   name: "Hilbert Curve",
-  category: "Алгоритмы",
-  blurb: "Рекурсивная space-filling кривая Гильберта.",
+  category: "Algorithms",
+  blurb: "Recursive Hilbert space-filling curve.",
   defaults: {
     order: 5,
     strokeWidth: 1.4,
-    colorMode: "По индексу", // "По индексу" | "Один цвет"
+    colorMode: "By index", // "By index" | "Single color"
     bgTint: 0,
   },
   params: [
-    { key: "order", label: "Порядок рекурсии", min: 1, max: 7, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 4, step: 0.1 },
-    { key: "colorMode", label: "Цвет", enum: ["По индексу", "Один цвет"] },
-    { key: "bgTint", label: "Затемнить", min: 0, max: 1, step: 0.02 },
+    { key: "order", label: "Recursion order", min: 1, max: 7, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 4, step: 0.1 },
+    { key: "colorMode", label: "Color", enum: ["By index", "Single color"] },
+    { key: "bgTint", label: "Darken", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -48,7 +48,7 @@ export const hilbert = {
         const py = oy + y * cell;
         const tx = ox + (x + ax + bx) * cell;
         const ty = oy + (y + ay + by) * cell;
-        if (opts.colorMode === "По индексу") {
+        if (opts.colorMode === "By index") {
           // Цвет по позиции
         const idx = (Math.round(x) * (1 << order) + Math.round(y)) % total;
         ctx.strokeStyle = colors[(idx / total * (colors.length - 1)) | 0];
@@ -64,7 +64,7 @@ export const hilbert = {
       hilbert(d - 1, x + ax + bx, y + ay + by, ax, ay,  bx, by);
       hilbert(d - 1, x + bx,      y + by,      ay, ax,  bx, by);
     }
-    if (opts.colorMode === "Один цвет") ctx.strokeStyle = fg;
+    if (opts.colorMode === "Single color") ctx.strokeStyle = fg;
     hilbert(order, 0, 0, 1, 0, 0, 1);
 
     if (opts.bgTint > 0) {

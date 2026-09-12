@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const gradient_mesh = {
   id: "gradient_mesh",
   name: "Gradient Mesh",
-  category: "Шум",
-  blurb: "Mesh gradient: радиальные градиенты в случайных точках с накоплением.",
+  category: "Noise",
+  blurb: "Mesh gradient: overlapping radial gradients at random points.",
   defaults: {
     points: 6,
     radius: 360,
@@ -15,9 +15,9 @@ export const gradient_mesh = {
     bgTint: 0,
   },
   params: [
-    { key: "points", label: "Точек", min: 2, max: 16, step: 1 },
-    { key: "radius", label: "Радиус", min: 60, max: 800, step: 10 },
-    { key: "contrast", label: "Контраст", min: 0.5, max: 3, step: 0.05 },
+    { key: "points", label: "Points", min: 2, max: 16, step: 1 },
+    { key: "radius", label: "Radius", min: 60, max: 800, step: 10 },
+    { key: "contrast", label: "Contrast", min: 0.5, max: 3, step: 0.05 },
   ],
 
   createState(opts, w, h) {

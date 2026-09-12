@@ -6,8 +6,8 @@ import { makeRng } from "../rng.js";
 export const frost = {
   id: "frost",
   name: "Frost",
-  category: "Алгоритмы",
-  blurb: "Иней: ветвящиеся кристаллы с 6-лучевой симметрией.",
+  category: "Algorithms",
+  blurb: "Frost: branching crystals with 6-fold symmetry.",
   defaults: {
     crystals: 90,
     size: 80,
@@ -16,10 +16,10 @@ export const frost = {
     bgTint: 0,
   },
   params: [
-    { key: "crystals", label: "Кол-во кристаллов", min: 5, max: 400, step: 5 },
-    { key: "size", label: "Макс. длина", min: 20, max: 200, step: 5 },
-    { key: "branches", label: "Уровней", min: 1, max: 5, step: 1 },
-    { key: "branchProb", label: "Шанс ветки", min: 0, max: 1, step: 0.02 },
+    { key: "crystals", label: "Crystal count", min: 5, max: 400, step: 5 },
+    { key: "size", label: "Max length", min: 20, max: 200, step: 5 },
+    { key: "branches", label: "Levels", min: 1, max: 5, step: 1 },
+    { key: "branchProb", label: "Branch chance", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

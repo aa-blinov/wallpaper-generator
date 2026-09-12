@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const dotgrid = {
   id: "dotgrid",
   name: "Dot Grid",
-  category: "Точки",
-  blurb: "Точечная сетка с яркостью по шуму.",
+  category: "Dots",
+  blurb: "A dot grid with brightness driven by noise.",
   defaults: {
     spacing: 12,
     size: 2.5,
@@ -15,9 +15,9 @@ export const dotgrid = {
     bgTint: 0,
   },
   params: [
-    { key: "spacing", label: "Шаг", min: 4, max: 60, step: 1 },
-    { key: "size", label: "Размер", min: 0.5, max: 8, step: 0.2 },
-    { key: "noiseScale", label: "Частота шума", min: 0.005, max: 0.1, step: 0.002 },
+    { key: "spacing", label: "Step", min: 4, max: 60, step: 1 },
+    { key: "size", label: "Size", min: 0.5, max: 8, step: 0.2 },
+    { key: "noiseScale", label: "Noise frequency", min: 0.005, max: 0.1, step: 0.002 },
   ],
 
   createState(opts, w, h) {

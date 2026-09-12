@@ -5,8 +5,8 @@ import { makeRng } from "../rng.js";
 export const chains = {
   id: "chains",
   name: "Chains",
-  category: "Алгоритмы",
-  blurb: "Цепи: соединённые эллиптические звенья.",
+  category: "Algorithms",
+  blurb: "Chains: linked elliptical rings.",
   defaults: {
     chains: 6,
     links: 14,
@@ -14,9 +14,9 @@ export const chains = {
     bgTint: 0,
   },
   params: [
-    { key: "chains", label: "Цепей", min: 1, max: 16, step: 1 },
-    { key: "links", label: "Звеньев", min: 4, max: 60, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 0.5, max: 12, step: 0.2 },
+    { key: "chains", label: "Chains", min: 1, max: 16, step: 1 },
+    { key: "links", label: "Links", min: 4, max: 60, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 0.5, max: 12, step: 0.2 },
   ],
 
   createState(opts, w, h) {

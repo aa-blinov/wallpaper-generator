@@ -4,8 +4,8 @@
 export const polarrose = {
   id: "polarrose",
   name: "Polar Rose",
-  category: "Геометрия",
-  blurb: "Полярная роза: r = cos(k·θ), параметрические лепестки.",
+  category: "Geometry",
+  blurb: "Polar rose: r = cos(k·θ), parametric petals.",
   defaults: {
     k: 5,
     samples: 8000,
@@ -16,12 +16,12 @@ export const polarrose = {
     bgTint: 0,
   },
   params: [
-    { key: "k", label: "Лепестки (k)", min: 1, max: 16, step: 0.25, format: (v) => v.toFixed(2) },
-    { key: "samples", label: "Точек на лепесток", min: 500, max: 30000, step: 100 },
-    { key: "spin", label: "Поворот (°)", min: 0, max: 360, step: 1, format: (v) => `${v.toFixed(0)}°` },
-    { key: "strokeWidth", label: "Толщина", min: 0.2, max: 5, step: 0.1 },
-    { key: "ampX", label: "Амплитуда X", min: 0.3, max: 1.0, step: 0.02 },
-    { key: "ampY", label: "Амплитуда Y", min: 0.3, max: 1.0, step: 0.02 },
+    { key: "k", label: "Petals (k)", min: 1, max: 16, step: 0.25, format: (v) => v.toFixed(2) },
+    { key: "samples", label: "Points per petal", min: 500, max: 30000, step: 100 },
+    { key: "spin", label: "Rotation (°)", min: 0, max: 360, step: 1, format: (v) => `${v.toFixed(0)}°` },
+    { key: "strokeWidth", label: "Thickness", min: 0.2, max: 5, step: 0.1 },
+    { key: "ampX", label: "Amplitude X", min: 0.3, max: 1.0, step: 0.02 },
+    { key: "ampY", label: "Amplitude Y", min: 0.3, max: 1.0, step: 0.02 },
   ],
 
   createState(opts, w, h) {

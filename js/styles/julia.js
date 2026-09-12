@@ -5,21 +5,21 @@ import { hexToRgb } from "../palettes.js";
 export const julia = {
   id: "julia",
   name: "Julia Set",
-  category: "Алгоритмы",
-  blurb: "Множество Жюлиа для комплексной квадратичной формы.",
+  category: "Algorithms",
+  blurb: "Julia set for a complex quadratic map.",
   defaults: {
     cx: -0.7,
     cy: 0.27015,
     maxIter: 180,
     zoom: 1.0,
-    colorMode: "Сглажено",
+    colorMode: "Smoothed",
     bgTint: 0,
   },
   params: [
     { key: "cx", label: "Re(c)", min: -1.5, max: 1.5, step: 0.01, format: (v) => v.toFixed(2) },
     { key: "cy", label: "Im(c)", min: -1.5, max: 1.5, step: 0.01, format: (v) => v.toFixed(2) },
-    { key: "maxIter", label: "Итерации", min: 50, max: 500, step: 10 },
-    { key: "zoom", label: "Зум", min: 0.3, max: 5.0, step: 0.05 },
+    { key: "maxIter", label: "Iterations", min: 50, max: 500, step: 10 },
+    { key: "zoom", label: "Zoom", min: 0.3, max: 5.0, step: 0.05 },
   ],
 
   createState(opts, w, h) {

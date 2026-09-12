@@ -6,19 +6,19 @@ import { makeColorRamp } from "../palettes.js";
 export const clover = {
   id: "clover",
   name: "Clover Grid",
-  category: "Геометрия",
-  blurb: "Сетка из 4 сцепленных окружностей (квадратный клевер).",
+  category: "Geometry",
+  blurb: "A grid of 4 interlocked circles (square clover).",
   defaults: {
     cellSize: 90,
     strokeWidth: 2.0,
-    paletteMode: "По палитре",
+    paletteMode: "By palette",
     bgTint: 0,
   },
   params: [
-    { key: "cellSize", label: "Размер ячейки", min: 30, max: 240, step: 5 },
-    { key: "strokeWidth", label: "Толщина", min: 0.5, max: 8, step: 0.2 },
-    { key: "paletteMode", label: "Цвет", enum: ["По палитре", "Один цвет", "Прозрачный"] },
-    { key: "bgTint", label: "Затемнить", min: 0, max: 1, step: 0.02 },
+    { key: "cellSize", label: "Cell size", min: 30, max: 240, step: 5 },
+    { key: "strokeWidth", label: "Thickness", min: 0.5, max: 8, step: 0.2 },
+    { key: "paletteMode", label: "Color", enum: ["By palette", "Single color", "Transparent"] },
+    { key: "bgTint", label: "Darken", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {
@@ -52,8 +52,8 @@ export const clover = {
         ];
         for (let k = 0; k < centers.length; k++) {
           let color;
-          if (opts.paletteMode === "Один цвет") color = palette.colors[palette.colors.length - 1];
-          else if (opts.paletteMode === "Прозрачный") {
+          if (opts.paletteMode === "Single color") color = palette.colors[palette.colors.length - 1];
+          else if (opts.paletteMode === "Transparent") {
             color = `rgba(${parseColor(palette.colors[2] || palette.colors[0])},0.6)`;
           } else {
             color = ramp((j * cols + i + k * 0.25) / (rows * cols));

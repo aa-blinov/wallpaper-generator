@@ -3,18 +3,18 @@
 export const chainmail = {
   id: "chainmail",
   name: "Chainmail",
-  category: "Текстуры",
-  blurb: "Кольчуга: кольца в шахматном порядке с градиентами.",
+  category: "Textures",
+  blurb: "Chainmail: rings in a checkerboard layout with gradients.",
   defaults: {
     ringR: 22,
     strokeWidth: 3,
-    paletteMode: "Металл",
+    paletteMode: "Metal",
     bgTint: 0,
   },
   params: [
-    { key: "ringR", label: "Радиус кольца", min: 8, max: 60, step: 1 },
-    { key: "strokeWidth", label: "Толщина", min: 1, max: 10, step: 0.5 },
-    { key: "paletteMode", label: "Цвет", enum: ["Металл", "Палитра"] },
+    { key: "ringR", label: "Ring radius", min: 8, max: 60, step: 1 },
+    { key: "strokeWidth", label: "Thickness", min: 1, max: 10, step: 0.5 },
+    { key: "paletteMode", label: "Color", enum: ["Metal", "Palette"] },
   ],
 
   createState(opts, w, h) {
@@ -37,7 +37,7 @@ export const chainmail = {
       for (let i = 0; i < cols; i++) {
         const cx = i * dx + (j & 1) * dx / 2;
         const cy = j * dy;
-        const baseColor = opts.paletteMode === "Металл"
+        const baseColor = opts.paletteMode === "Metal"
           ? cols_p[(i + j) % cols_p.length]
           : cols_p[(i * j + i + j) % cols_p.length];
         // Простой градиент с иллюзией блика

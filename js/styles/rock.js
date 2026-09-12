@@ -6,8 +6,8 @@ import { makeRng } from "../rng.js";
 export const rock = {
   id: "rock",
   name: "Rock",
-  category: "Текстуры",
-  blurb: "Камень: неровные куски с шумовыми трещинами.",
+  category: "Textures",
+  blurb: "Rock: uneven chunks with noise-driven cracks.",
   defaults: {
     pieces: 60,
     veinScale: 0.05,
@@ -15,9 +15,9 @@ export const rock = {
     bgTint: 0,
   },
   params: [
-    { key: "pieces", label: "Кусков", min: 10, max: 200, step: 5 },
-    { key: "veinScale", label: "Частота трещин", min: 0.01, max: 0.15, step: 0.005 },
-    { key: "veinDepth", label: "Глубина трещин", min: 0, max: 1, step: 0.02 },
+    { key: "pieces", label: "Chunks", min: 10, max: 200, step: 5 },
+    { key: "veinScale", label: "Crack frequency", min: 0.01, max: 0.15, step: 0.005 },
+    { key: "veinDepth", label: "Crack depth", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

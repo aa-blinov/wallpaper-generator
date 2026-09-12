@@ -7,8 +7,8 @@ import { makeColorRamp } from "../palettes.js";
 export const sand = {
   id: "sand",
   name: "Sand",
-  category: "Текстуры",
-  blurb: "Песок: мелкое зерно с шумовыми областями разной яркости.",
+  category: "Textures",
+  blurb: "Sand: fine grain with noise regions of varying brightness.",
   defaults: {
     density: 0.55,
     noiseScale: 0.01,
@@ -16,9 +16,9 @@ export const sand = {
     bgTint: 0,
   },
   params: [
-    { key: "density", label: "Плотность", min: 0.1, max: 1.0, step: 0.02 },
-    { key: "noiseScale", label: "Масштаб областей", min: 0.002, max: 0.04, step: 0.001 },
-    { key: "grainSize", label: "Размер зерна", min: 1, max: 4, step: 1 },
+    { key: "density", label: "Density", min: 0.1, max: 1.0, step: 0.02 },
+    { key: "noiseScale", label: "Region scale", min: 0.002, max: 0.04, step: 0.001 },
+    { key: "grainSize", label: "Grain size", min: 1, max: 4, step: 1 },
   ],
 
   createState(opts, w, h) {

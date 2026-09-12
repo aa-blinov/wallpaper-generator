@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const ripples = {
   id: "ripples",
   name: "Ripples",
-  category: "Органические",
-  blurb: "Круги на воде: пересекающиеся волновые фронты.",
+  category: "Organic",
+  blurb: "Ripples on water: overlapping wave fronts.",
   defaults: {
     centers: 8,
     waveLength: 30,
@@ -16,10 +16,10 @@ export const ripples = {
     bgTint: 0,
   },
   params: [
-    { key: "centers", label: "Центров", min: 1, max: 30, step: 1 },
-    { key: "waveLength", label: "Длина волны (px)", min: 8, max: 120, step: 2 },
-    { key: "decay", label: "Затухание", min: 0.6, max: 1.0, step: 0.005 },
-    { key: "strokeWidth", label: "Толщина", min: 0.4, max: 4, step: 0.1 },
+    { key: "centers", label: "Centers", min: 1, max: 30, step: 1 },
+    { key: "waveLength", label: "Wavelength (px)", min: 8, max: 120, step: 2 },
+    { key: "decay", label: "Decay", min: 0.6, max: 1.0, step: 0.005 },
+    { key: "strokeWidth", label: "Thickness", min: 0.4, max: 4, step: 0.1 },
   ],
 
   createState(opts, w, h) {

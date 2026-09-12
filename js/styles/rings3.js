@@ -6,8 +6,8 @@ import { makeColorRamp } from "../palettes.js";
 export const rings3 = {
   id: "rings3",
   name: "Rings Stack",
-  category: "Геометрия",
-  blurb: "Стопка толстых колец разного размера.",
+  category: "Geometry",
+  blurb: "A stack of thick rings of varying size.",
   defaults: {
     count: 14,
     noise: 0.0,
@@ -15,9 +15,9 @@ export const rings3 = {
     bgTint: 0,
   },
   params: [
-    { key: "count", label: "Колец", min: 4, max: 40, step: 1 },
-    { key: "noise", label: "Шум радиуса", min: 0, max: 1, step: 0.02 },
-    { key: "minR", label: "Мин. радиус", min: 10, max: 100, step: 1 },
+    { key: "count", label: "Rings", min: 4, max: 40, step: 1 },
+    { key: "noise", label: "Radius noise", min: 0, max: 1, step: 0.02 },
+    { key: "minR", label: "Min radius", min: 10, max: 100, step: 1 },
   ],
 
   createState(opts, w, h) {

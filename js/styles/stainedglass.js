@@ -6,16 +6,16 @@ import { makeColorRamp } from "../palettes.js";
 export const stainedglass = {
   id: "stainedglass",
   name: "Stained Glass",
-  category: "Текстуры",
-  blurb: "Витраж: Вороной с толстым тёмным контуром.",
+  category: "Textures",
+  blurb: "Stained glass: Voronoi cells with a thick dark outline.",
   defaults: {
     sites: 60,
     leadWidth: 4,
     bgTint: 0,
   },
   params: [
-    { key: "sites", label: "Кол-во плиток", min: 8, max: 200, step: 4 },
-    { key: "leadWidth", label: "Толщина свинца", min: 1, max: 14, step: 0.5 },
+    { key: "sites", label: "Tile count", min: 8, max: 200, step: 4 },
+    { key: "leadWidth", label: "Lead thickness", min: 1, max: 14, step: 0.5 },
   ],
 
   createState(opts, w, h) {

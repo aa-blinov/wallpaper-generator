@@ -5,8 +5,8 @@ import { makeRng } from "../rng.js";
 export const plaid = {
   id: "plaid",
   name: "Plaid",
-  category: "Текстуры",
-  blurb: "Шотландская клетка: полосы разной ширины с пересечениями.",
+  category: "Textures",
+  blurb: "Tartan plaid: bands of varying width, crossing.",
   defaults: {
     hStrips: 7,
     vStrips: 7,
@@ -14,10 +14,10 @@ export const plaid = {
     bgTint: 0,
   },
   params: [
-    { key: "hStrips", label: "Горизонтальных полос", min: 2, max: 18, step: 1 },
-    { key: "vStrips", label: "Вертикальных полос", min: 2, max: 18, step: 1 },
-    { key: "alpha", label: "Прозрачность", min: 0.1, max: 1.0, step: 0.02 },
-    { key: "bgTint", label: "Затемнить", min: 0, max: 1, step: 0.02 },
+    { key: "hStrips", label: "Horizontal stripes", min: 2, max: 18, step: 1 },
+    { key: "vStrips", label: "Vertical stripes", min: 2, max: 18, step: 1 },
+    { key: "alpha", label: "Opacity", min: 0.1, max: 1.0, step: 0.02 },
+    { key: "bgTint", label: "Darken", min: 0, max: 1, step: 0.02 },
   ],
 
   createState(opts, w, h) {

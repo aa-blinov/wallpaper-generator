@@ -6,16 +6,16 @@ import { hexToRgb } from "../palettes.js";
 export const newton = {
   id: "newton",
   name: "Newton Fractal",
-  category: "Алгоритмы",
-  blurb: "Фрактал Ньютона для z³ - 1 = 0: три цвета притяжения.",
+  category: "Algorithms",
+  blurb: "The Newton fractal for z³ - 1 = 0: three basins of attraction.",
   defaults: {
     maxIter: 60,
     zoom: 1.0,
     bgTint: 0,
   },
   params: [
-    { key: "maxIter", label: "Итерации", min: 20, max: 200, step: 5 },
-    { key: "zoom", label: "Зум", min: 0.3, max: 5.0, step: 0.05 },
+    { key: "maxIter", label: "Iterations", min: 20, max: 200, step: 5 },
+    { key: "zoom", label: "Zoom", min: 0.3, max: 5.0, step: 0.05 },
   ],
 
   createState(opts, w, h) {
