@@ -1,5 +1,7 @@
 // Lorenz Attractor — странный аттрактор Лоренца: x = σ(y-x), y = x(ρ-z)-y, z = xy - βz.
 
+import { hexToRgb } from "../palettes.js";
+
 export const lorenz = {
   id: "lorenz",
   name: "Lorenz Attractor",
@@ -54,19 +56,23 @@ export const lorenz = {
 
     const img = ctx.createImageData(w, h);
     const data = img.data;
-    const cols = palette.colors.map(parseRgb);
+    // palette.colors это hex-строки, а не "rgb()" — старый parseRgb никогда
+    // не матчился и всегда падал в серый фолбэк, игнорируя палитру целиком.
+    const cols = palette.colors.map(hexToRgb);
 
-    const a = Math.max(1, Math.round(opts.strokeWidth * 30)); // strokeWidth 0.2..2 → a 6..60
-    const useColor = Math.min(cols.length - 1, Math.max(0, cols.length - 1));
+    // Было `c[0]*a/255` — при default strokeWidth=0.4 это ~9 из 255 на
+    // попадание, а большинство точек аттрактора на холст попадают по разу.
+    // Нужна доля канала, а не деление на 255 поверх неё.
+    const alpha = Math.min(1, opts.strokeWidth * 1.5);
+    const c = cols[cols.length - 1];
     for (const [px, pz] of pts) {
       const cx = ((px - minX) * sx) | 0;
       const cy = h - ((pz - minZ) * sy) | 0;
       if (cx < 0 || cx >= w || cy < 0 || cy >= h) continue;
       const k = (cy * w + cx) * 4;
-      const c = cols[useColor];
-      data[k] = Math.min(255, data[k] + c[0] * a / 255);
-      data[k + 1] = Math.min(255, data[k + 1] + c[1] * a / 255);
-      data[k + 2] = Math.min(255, data[k + 2] + c[2] * a / 255);
+      data[k] = Math.min(255, data[k] + c[0] * alpha);
+      data[k + 1] = Math.min(255, data[k + 1] + c[1] * alpha);
+      data[k + 2] = Math.min(255, data[k + 2] + c[2] * alpha);
       data[k + 3] = 255;
     }
     const off = scratchCanvas(w, h);
@@ -87,8 +93,4 @@ function scratchCanvas(w, h) {
   if (!c) { c = document.createElement("canvas"); SCRATCHES.set(key, c); }
   if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
   return c;
-}
-function parseRgb(rgb) {
-  const m = /rgb\((\d+),(\d+),(\d+)\)/.exec(rgb);
-  return m ? [+m[1], +m[2], +m[3]] : [200, 200, 200];
 }

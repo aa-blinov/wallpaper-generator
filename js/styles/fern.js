@@ -53,11 +53,20 @@ export const fern = {
       x = nx; y = ny;
     }
 
-    // Отображаем на канвас
-    let minY = Infinity, maxY = -Infinity;
-    for (const [, py] of points) { if (py < minY) minY = py; if (py > maxY) maxY = py; }
-    const sx = w / 2.65, sy = -h / (maxY - minY + 0.01);
-    const offsetY = h - minY * sy - 20;
+    // Отображаем на канвас.
+    // Было: `cx = px*sx` без вычета minX — у папоротника x лежит в
+    // [-2.18, 2.66], то есть почти половина точек (весь левый край, где как
+    // раз основная масса кроны) уходила в отрицательные cx и обрезалась
+    // проверкой `cx < 0`. Нужен честный bbox-autofit по обеим осям.
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const [px, py] of points) {
+      if (px < minX) minX = px; if (px > maxX) maxX = px;
+      if (py < minY) minY = py; if (py > maxY) maxY = py;
+    }
+    const bboxW = maxX - minX + 0.01, bboxH = maxY - minY + 0.01;
+    const scale = Math.min((w * 0.9) / bboxW, (h * 0.9) / bboxH);
+    const offsetX = (w - bboxW * scale) / 2 - minX * scale;
+    const offsetY = h - minY * scale - (h - bboxH * scale) / 2;
 
     const img = ctx.createImageData(w, h);
     const data = img.data;
@@ -72,8 +81,8 @@ export const fern = {
 
     const useColor = opts.colorMode !== "Green";
     for (const [px, py] of points) {
-      const cx = (px * sx) | 0;
-      const cy = ((-py) * sy + offsetY) | 0;
+      const cx = (px * scale + offsetX) | 0;
+      const cy = (offsetY - py * scale) | 0;
       if (cx < 0 || cx >= w || cy < 0 || cy >= h) continue;
       const k = (cy * w + cx) * 4;
       let r, g, b;
@@ -87,10 +96,13 @@ export const fern = {
       } else {
         r = colBase[0]; g = colBase[1]; b = colBase[2];
       }
-      const a = 30;
-      data[k] = Math.min(255, data[k] + r * a / 255);
-      data[k + 1] = Math.min(255, data[k + 1] + g * a / 255);
-      data[k + 2] = Math.min(255, data[k + 2] + b * a / 255);
+      // Было `r*30/255` — с ~120k точек на весь холст большинство "попавших"
+      // пикселей задеваются один раз, и такой инкремент (≤~15 из 255) не
+      // отличим от фона. Нужна доля канала, а не деление на 255 поверх него.
+      const alpha = 0.55;
+      data[k] = Math.min(255, data[k] + r * alpha);
+      data[k + 1] = Math.min(255, data[k + 1] + g * alpha);
+      data[k + 2] = Math.min(255, data[k + 2] + b * alpha);
       data[k + 3] = 255;
     }
     const off = scratchCanvas(w, h);
