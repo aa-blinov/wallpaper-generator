@@ -762,6 +762,7 @@ function initMobileDrawer() {
   const panel = document.getElementById("panel");
   const handle = document.getElementById("panelHandle");
   const closeBtn = document.getElementById("panelClose");
+  const burger = document.getElementById("panelBurger");
   if (!panel || !handle) return;
   const isMobile = window.matchMedia && window.matchMedia("(max-width: 820px)").matches;
   if (!isMobile) {
@@ -771,15 +772,17 @@ function initMobileDrawer() {
   }
 
   const isOpen = () => panel.classList.contains("is-open");
-  const open = () => panel.classList.add("is-open");
-  const close = () => panel.classList.remove("is-open");
-  const toggle = () => panel.classList.toggle("is-open");
+  const syncAria = () => { if (burger) burger.setAttribute("aria-expanded", String(isOpen())); };
+  const open = () => { panel.classList.add("is-open"); syncAria(); };
+  const close = () => { panel.classList.remove("is-open"); syncAria(); };
+  const toggle = () => { panel.classList.toggle("is-open"); syncAria(); };
 
   handle.addEventListener("click", toggle);
   handle.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") { toggle(); e.preventDefault(); }
   });
   if (closeBtn) closeBtn.addEventListener("click", close);
+  if (burger) burger.addEventListener("click", toggle);
 
   // Свайп вверх по handle открывает; свайп вниз по контенту — закрывает.
   let touchStartY = 0, touchStartTime = 0;

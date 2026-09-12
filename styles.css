@@ -629,6 +629,8 @@ kbd {
 /* ---------- Responsive (mobile / tablet) ---------- */
 /* На десктопе close-кнопка в шапке panel не нужна: panel всегда видна */
 .panel-close { display: none; }
+/* Бургер живёт только в портретной мобильной раскладке (см. медиа-запрос ниже) */
+.panel-burger { display: none; }
 
 @media (max-width: 820px) {
   body { overflow: hidden; }
@@ -709,16 +711,17 @@ kbd {
   /* Заголовок дублирует подпись на handle — в свёрнутом виде не нужен,
      да и просто не влезет в 64px вместе с handle. */
   #panel:not(.is-open) .panel__head { display: none; }
+  #panel:not(.is-open) #panelBody { display: none; }
 
-  /* Drag-handle — большая tap-зона вверху drawer'а, с явной подписью,
-     чтобы было понятно, что это интерактивный элемент, а не декор. */
+  /* Drag-handle — тап/свайп-зона вверху drawer'а. Основной вход в панель —
+     плавающая кнопка-бургер (.panel-burger) снизу справа, эта полоска —
+     запасной способ (свайп вверх) для тех, кто уже понял, что тут drawer. */
   .panel-handle {
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    justify-content: center;
     align-items: center;
-    padding: 10px 0 10px;
+    padding: 10px 0;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     touch-action: pan-y;
@@ -729,17 +732,36 @@ kbd {
     border-radius: 3px;
     background: var(--line);
   }
-  .panel-handle__label {
+
+  /* Плавающая кнопка-бургер: открывает панель, снизу справа, поверх канваса. */
+  .panel-burger {
     display: flex;
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 55;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    box-shadow: 0 8px 24px rgba(124, 140, 255, 0.45), var(--shadow);
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
-  .panel-handle__chevron { color: var(--accent); }
-  #panel.is-open .panel-handle__label { display: none; }
-  #panel.is-open .panel-handle { padding: 10px 0 4px; }
+  .panel-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: #0f1115;
+  }
+  .panel-burger:active { transform: scale(0.94); }
+  #panel.is-open ~ .panel-burger { display: none; }
 
   /* Внутренний scrollable-контейнер */
   #panelBody {
@@ -814,6 +836,12 @@ kbd {
   /* Хоткеи и HUD — для клавиатуры/мыши, на тач-экране лишние */
   .shortcuts, #exportPng kbd { display: none; }
   .hud { font-size: 10px; padding: 5px 8px; top: 8px; left: 8px; }
+}
+
+/* Бургер — только в вертикальной ориентации: в альбомной панель и так
+   ближе к пальцу, свайпа за глаза. */
+@media (max-width: 820px) and (orientation: landscape) {
+  .panel-burger { display: none; }
 }
 
 /* Узкие экраны (≤380px) */
