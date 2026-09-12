@@ -1,5 +1,15 @@
 // Реестр всех доступных стилей. Каждый стиль экспортируется модулем.
 
+import { gameoflife } from "./styles/gameoflife.js";
+import { elementaryca } from "./styles/elementaryca.js";
+import { dla } from "./styles/dla.js";
+import { langtonsant } from "./styles/langtonsant.js";
+import { penrose } from "./styles/penrose.js";
+import { chladni } from "./styles/chladni.js";
+import { girih } from "./styles/girih.js";
+import { moire } from "./styles/moire.js";
+import { lowpoly } from "./styles/lowpoly.js";
+import { bluenoise } from "./styles/bluenoise.js";
 import { curlflow } from "./styles/curlflow.js";
 import { domainwarp } from "./styles/domainwarp.js";
 import { voronoi } from "./styles/voronoi.js";
@@ -118,6 +128,7 @@ export const STYLES = [
   nebula,
   gradient_mesh,
   sandhills,
+  lowpoly,
   // Геометрия
   voronoi,
   truchet,
@@ -145,6 +156,10 @@ export const STYLES = [
   waves_grid,
   rings3,
   strings,
+  penrose,
+  chladni,
+  girih,
+  moire,
   // Алгоритмы
   reactiondiffusion,
   mandelbrot,
@@ -171,6 +186,10 @@ export const STYLES = [
   branches,
   netgraph,
   messyhair,
+  gameoflife,
+  elementaryca,
+  dla,
+  langtonsant,
   // Точки
   stippling,
   phyllotaxis,
@@ -182,6 +201,7 @@ export const STYLES = [
   dotgrid,
   pollen,
   runic,
+  bluenoise,
   // Текстуры
   halftone,
   cracked,

@@ -1,18 +1,18 @@
 # Wallpaper Generator
 
-A catalog of **105 abstract-wallpaper generators** running in the browser. Vanilla JS, no dependencies, no build step. Canvas 2D, real time, PNG + WebM export, sharing via URL parameters.
+A catalog of **115 abstract-wallpaper generators** running in the browser. Vanilla JS, no dependencies, no build step. Canvas 2D, real time, PNG + WebM export, sharing via URL parameters.
 
 ![Domain Warp](./docs/preview-domainwarp.png)
 
 ## What's inside
 
-**105 styles** across **7 categories**:
+**115 styles** across **7 categories**:
 
 - **Flow** (1) — particles in vector fields.
-- **Noise** (10) — fBM, domain warp, nebulae, sand.
-- **Geometry** (29) — parametric curves, tessellations, symmetries, knots.
-- **Algorithms** (25) — fractals, L-systems, attractors, chains, graphs.
-- **Dots** (10) — Fibonacci, stippling, runes, pollen.
+- **Noise** (8) — fBM, domain warp, nebulae, sand, low-poly terrain.
+- **Geometry** (30) — parametric curves, tessellations, symmetries, knots, Penrose tiling, moiré.
+- **Algorithms** (29) — fractals, L-systems, attractors, chains, graphs, cellular automata.
+- **Dots** (11) — Fibonacci, stippling, runes, pollen, blue noise.
 - **Textures** (17) — marble, wood, fabric, hatching, chainmail.
 - **Organic** (19) — fire, water, lava, lightning, smoke.
 
@@ -34,6 +34,7 @@ A catalog of **105 abstract-wallpaper generators** running in the browser. Vanil
 - **Nebula** (`id=nebula`) — Nebula: fBM clouds plus point stars of varying brightness.
 - **Gradient Mesh** (`id=gradient_mesh`) — Mesh gradient: overlapping radial gradients at random points.
 - **Sand Dunes** (`id=sandhills`) — Sand dunes: a silhouette built from noise layers.
+- **Low-Poly Terrain** (`id=lowpoly`) — A flat-shaded triangle mesh over noise terrain — faceted, hypsometric.
 
 ### Geometry
 
@@ -64,6 +65,10 @@ A catalog of **105 abstract-wallpaper generators** running in the browser. Vanil
 - **Rings Stack** (`id=rings3`) — A stack of thick rings of varying size.
 - **Strings** (`id=strings`) — Strings: threads between posts, sagging under gravity.
 - **Squiggles** (`id=squiggles`) — Random squiggles made of Bézier curves.
+- **Penrose Tiling** (`id=penrose`) — Aperiodic rhombus tiling by deflation — never repeats, no matter how far it tiles.
+- **Chladni Patterns** (`id=chladni`) — Nodal lines of a vibrating plate — sand settling where the surface stays still.
+- **Girih Star Grid** (`id=girih`) — Interlocking star polygons on a grid, Islamic geometric strapwork style.
+- **Moiré Interference** (`id=moire`) — Two overlaid grids beat against each other — pure line-density interference.
 
 ### Algorithms
 
@@ -92,6 +97,10 @@ A catalog of **105 abstract-wallpaper generators** running in the browser. Vanil
 - **Branches** (`id=branches`) — Branches with leaves: recursive forking.
 - **Net Graph** (`id=netgraph`) — Network graph: random nodes, edges highlighted by degree.
 - **Messy Hair** (`id=messyhair`) — Tangle: random Bézier curves between points.
+- **Game of Life** (`id=gameoflife`) — Conway's Game of Life: a random soup evolved forward, frozen mid-run.
+- **Elementary CA** (`id=elementaryca`) — Wolfram's 1D cellular automaton (Rule 30 and friends), rows stacked into a field.
+- **Diffusion-Limited Aggregation** (`id=dla`) — DLA: random walkers freeze onto a growing cluster — coral, lichen, frost.
+- **Langton's Ant** (`id=langtonsant`) — A single ant flipping cells by a two-rule law — chaos, then a highway.
 
 ### Dots
 
@@ -105,6 +114,7 @@ A catalog of **105 abstract-wallpaper generators** running in the browser. Vanil
 - **Dot Grid** (`id=dotgrid`) — A dot grid with brightness driven by noise.
 - **Pollen** (`id=pollen`) — Pollen: rings of dots around centers.
 - **Runic** (`id=runic`) — Arcane runes: Unicode glyphs on "parchment".
+- **Blue-Noise Stippling** (`id=bluenoise`) — Poisson-disk sampled dots — evenly spaced, no clumps, no gaps.
 
 ### Textures
 
@@ -176,7 +186,8 @@ Any static file server works (`npx serve .`, `npx http-server`, `php -S`).
        bubblewrap|hatching|sand|bars|spectrum|honeycomb3d|chainmail|caustics|
        asemic|inkblot|waves|water|fire|kaleidoscope|lightning|cloudpuff|
        ripples|squiggles|vortex|tentacles|wave_field|echo|lava|bubbles|
-       calligraphy
+       calligraphy|gameoflife|elementaryca|dla|langtonsant|penrose|chladni|
+       girih|moire|lowpoly|bluenoise
 &palette=lava|aurora|sunset|ink|ocean|botanic|bubblegum|desert|cyber|pastel|sapphire|coral
 &seed=42
 &resolution=1920x1080|2560x1440|3840x2160|1080x1920|1280x720
@@ -332,6 +343,13 @@ For **Reaction-Diffusion** under `?lite=1` the Worker is disabled (sync warmup) 
 - Caustics: the classic [ShaderToy caustic shader](https://www.shadertoy.com/view/MdlXz8).
 - L-System: [Wikipedia](https://en.wikipedia.org/wiki/L-system), Lindenmayer 1968.
 - Gosper / Flowsnake: [Wikipedia](https://en.wikipedia.org/wiki/Gosper_curve).
+- Conway's Game of Life: [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), Gardner 1970.
+- Elementary cellular automata: [Wolfram MathWorld](https://mathworld.wolfram.com/ElementaryCellularAutomaton.html).
+- Diffusion-limited aggregation: [Witten & Sander, 1981](https://en.wikipedia.org/wiki/Diffusion-limited_aggregation).
+- Langton's Ant: [Wikipedia](https://en.wikipedia.org/wiki/Langton%27s_ant), Langton 1986.
+- Penrose tiling (kite/dart deflation): [Preshing's walkthrough](https://preshing.com/20110831/penrose-tiling-explained/).
+- Chladni figures: [Wikipedia](https://en.wikipedia.org/wiki/Chladni_figure), Chladni 1787.
+- Poisson-disk / blue-noise sampling: [Bridson 2007](https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-poissondisk.pdf).
 
 ## License
 
