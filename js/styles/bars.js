@@ -40,7 +40,7 @@ export const bars = {
       const phase = noise(0, y * opts.scale) * 0.3 * baseThick;
       ctx.fillStyle = opts.paletteMode === "Palette"
         ? ramp((i % (palette.colors.length * 3)) / 3)
-        : ramp(i / 40);
+        : ramp((baseThick - opts.min) / (opts.max - opts.min || 1));
       ctx.fillRect(phase, y, w, baseThick);
       y += baseThick;
       i++;
