@@ -246,5 +246,8 @@ export function stylesByCategory() {
     const cat = s.category || "Other";
     (groups[cat] ||= []).push(s);
   }
+  for (const cat of Object.keys(groups)) {
+    groups[cat].sort((a, b) => a.name.localeCompare(b.name));
+  }
   return groups;
 }

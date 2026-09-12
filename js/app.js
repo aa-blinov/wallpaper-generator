@@ -66,9 +66,6 @@ function initStyleList() {
       idx++;
     }
   }
-  // Update count
-  const cnt = $("#styleCount");
-  if (cnt) cnt.textContent = `· ${STYLES.length}`;
   // Search filter с дебаунсом 120мс: на каждое нажатие фильтровать 105 стилей — лишняя работа.
   const search = $("#styleSearch");
   if (search) {

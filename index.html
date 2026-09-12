@@ -25,7 +25,7 @@
         </header>
         <div id="panelBody">
         <section class="panel__group" data-section="style">
-          <h2>Style <span class="muted" id="styleCount"></span></h2>
+          <h2>Style</h2>
           <input id="styleSearch" class="form-control form-control-sm search" type="search" placeholder="Search styles…" />
           <div id="styleList" class="style-list" role="tablist"></div>
         </section>
@@ -44,9 +44,9 @@
           </label>
           <label class="field">
             <span>Mode</span>
-            <div class="btn-group btn-group-sm seg" id="modeTabs" role="group">
-              <button data-mode="static" class="btn btn-outline-secondary active">Static</button>
-              <button data-mode="animated" class="btn btn-outline-secondary">Animated</button>
+            <div class="seg" id="modeTabs" role="group">
+              <button data-mode="static" type="button" class="active">Static</button>
+              <button data-mode="animated" type="button">Animated</button>
             </div>
           </label>
           <label class="field" id="animSpeedField" hidden>
