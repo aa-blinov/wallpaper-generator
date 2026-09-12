@@ -16,7 +16,7 @@ A catalog of **120 abstract-wallpaper generators** running in the browser. Vanil
 - **Textures** (17) — marble, wood, fabric, hatching, chainmail.
 - **Organic** (19) — fire, water, lava, lightning, smoke.
 
-12 curated palettes, a static/animated mode switch, WebM recording.
+12 curated palettes, a static/animated mode switch (19 of 120 styles support live animation — the rest are static patterns by design, and the toggle is disabled for them), WebM recording.
 
 ## Style catalog
 
@@ -225,14 +225,14 @@ http://localhost:8765/?style=julia&palette=cyber&seed=99&lite=1
 .
 ├── index.html                # panel + canvas + overlay + toast
 ├── styles.css                # UI + spinner
-├── docs/                     # preview screenshots (105 of them)
+├── docs/                     # preview screenshots
 └── js/
     ├── app.js                # orchestrator, UI, loader
     ├── noise.js              # Simplex + fBM/ridge
     ├── rng.js                # Mulberry32, helpers
     ├── palettes.js            # 12 palettes + color interpolation
     ├── utils.js               # resizeCanvas, canvas download
-    ├── styles.js              # the registry of 105 styles, grouped by category
+    ├── styles.js              # the registry of 120 styles, grouped by category
     └── styles/                # one file per style + rd-worker.js
 ```
 
@@ -289,19 +289,20 @@ In `js/app.js`:
 
 | Style | Paint, ms |
 |---|---|
-| Cloud Puff | **1378** (chunked: ~1400ms, but the UI stays responsive) |
-| Kaleidoscope | 858 |
-| Ridged | 770 |
-| Billow | 740 |
-| Wood | 716 |
-| Marble | 653 |
-| Concentric | 586 |
-| Water | 479 |
-| Domain Warp / Topography | 200–400 |
+| Cloud Puff | **~1400** (chunked, but the UI stays responsive) |
+| Kaleidoscope | ~990 |
+| Ridged | ~930 |
+| Billow | ~930 |
+| Concentric | ~910 |
+| Wood | ~815 |
+| Chladni | ~700 |
+| Marble | ~625 |
+| Water | ~565 |
+| Domain Warp / Topography | 200–500 |
 | Julia / Mandelbrot / Newton | 130–155 |
 | Simple geometries (Voronoi, Truchet, Spirograph, Phyllotaxis, …) | <50 |
 
-21 of 105 styles render in over 100ms. The rest are effectively instant.
+27 of 120 styles render in over 100ms. The rest are effectively instant.
 
 ### UI responsiveness
 
@@ -328,7 +329,7 @@ On screens narrower than 820px the UI becomes a **bottom-sheet drawer**:
 - **Swipe up on the handle**: opens it too.
 - **Tap the canvas** while the drawer is open: closes it.
 - **Tap × in the drawer's corner**: closes it.
-- **Horizontal chip scroll** for the 105 styles (instead of a long vertical list); the selected chip also shows its description.
+- **Horizontal chip scroll** for the 120 styles (instead of a long vertical list); the selected chip also shows its description.
 - **Tap targets ≥44px** for every button/field.
 - `?lite=1` is available for sharing a finished wallpaper (hides the panel entirely).
 
