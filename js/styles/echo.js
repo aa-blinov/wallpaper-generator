@@ -6,8 +6,8 @@ export const echo = {
   category: "Organic",
   blurb: "Echo: a source curve and its fading copies, rotated around a circle.",
   defaults: {
-    copies: 8,
-    decay: 0.7,
+    copies: 16,
+    decay: 0.85,
     strokeWidth: 1.2,
     paletteMode: "By angle",
     bgTint: 0,
@@ -30,7 +30,7 @@ export const echo = {
     ctx.fillRect(0, 0, w, h);
     const cx = w / 2, cy = h / 2;
     const copies = Math.round(opts.copies);
-    const R = Math.min(w, h) * 0.3;
+    const R = Math.min(w, h) * 0.47;
     const fg = palette.colors[palette.colors.length - 1];
     const cols = palette.colors;
     ctx.lineWidth = opts.strokeWidth;

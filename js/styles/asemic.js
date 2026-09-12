@@ -44,7 +44,9 @@ export const asemic = {
     const palette = opts.palette;
     const cols = Math.max(2, Math.round(opts.columns));
     const strokesPer = Math.max(1, Math.round(opts.strokesPerGlyph));
-    const colSpacing = Math.min(w, h) / cols * opts.columnSpacing;
+    // w, не min(w,h): иначе на широком холсте колонки занимали лишь
+    // долю ширины, равную высоте, а остальное оставалось пустым.
+    const colSpacing = w / cols * opts.columnSpacing;
     const baselineJitter = opts.baselineJitter;
     const randomness = opts.randomness;
     const strokeW = opts.strokeWidth;

@@ -10,14 +10,14 @@ export const wire = {
   blurb: "A connected nearest-neighbor graph: edges + nodes.",
   defaults: {
     nodes: 110,
-    radius: 90,
+    radius: 220,
     edgeWidth: 0.5,
     showNodes: 1,
     bgTint: 0,
   },
   params: [
     { key: "nodes", label: "Node count", min: 20, max: 400, step: 5 },
-    { key: "radius", label: "Connection radius", min: 20, max: 240, step: 5 },
+    { key: "radius", label: "Connection radius", min: 20, max: 320, step: 5 },
     { key: "edgeWidth", label: "Edge thickness", min: 0.2, max: 3, step: 0.1 },
     { key: "showNodes", label: "Show nodes", enum: ["yes", "no"] },
   ],

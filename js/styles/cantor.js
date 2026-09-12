@@ -8,8 +8,8 @@ export const cantor = {
   category: "Algorithms",
   blurb: "Cantor dust: quadrant subdivision with a keep probability.",
   defaults: {
-    depth: 5,
-    prob: 0.85,
+    depth: 6,
+    prob: 0.15,
     bgTint: 0,
   },
   params: [
@@ -51,7 +51,14 @@ export const cantor = {
         }
       }
     }
-    rec(0, 0, Math.min(w, h), 0);
+    // Одна фигура покрывала только квадрат min(w,h) в углу, оставляя
+    // остальной холст пустым на широких/высоких разрешениях — тайлим её.
+    const tileSize = Math.min(w, h) / 2;
+    for (let ty = 0; ty < h; ty += tileSize) {
+      for (let tx = 0; tx < w; tx += tileSize) {
+        rec(tx, ty, tileSize, 0);
+      }
+    }
 
     if (opts.bgTint > 0) {
       ctx.fillStyle = `rgba(0,0,0,${opts.bgTint})`;

@@ -27,27 +27,35 @@ export const spring = {
     ctx.fillStyle = palette.bg;
     ctx.fillRect(0, 0, w, h);
 
-    const fg = palette.colors[palette.colors.length - 1];
-    ctx.strokeStyle = fg;
+    const colors = palette.colors;
     ctx.lineWidth = opts.strokeWidth;
     ctx.lineCap = "round";
 
+    // Один провод посередине оставлял верх/низ кадра пустыми — теперь
+    // стопка пружин на всю высоту, с небольшим сдвигом фазы/цвета за ряд.
     const coils = Math.round(opts.coils);
-    const x1 = w * 0.1, y1 = h * 0.5;
-    const x2 = w * 0.9, y2 = h * 0.5;
-    const amp = h * 0.18;
+    const rows = Math.max(1, Math.round(h / (h * 0.14)));
+    const rowH = h / rows;
+    const x1 = w * 0.06, x2 = w * 0.94;
+    const amp = rowH * 0.36;
     const samples = Math.max(100, coils * 30);
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    for (let i = 1; i < samples; i++) {
-      const t = i / samples;
-      const x = x1 + (x2 - x1) * t;
-      const wave = Math.sin(t * coils * Math.PI * 2) * amp;
-      const swayY = opts.sway * Math.sin(t * Math.PI) * amp * 1.5;
-      ctx.lineTo(x, y1 + wave + swayY);
+
+    for (let r = 0; r < rows; r++) {
+      const y1 = rowH * (r + 0.5);
+      ctx.strokeStyle = colors[r % colors.length];
+      const phase = (r * 0.6) % (Math.PI * 2);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      for (let i = 1; i < samples; i++) {
+        const t = i / samples;
+        const x = x1 + (x2 - x1) * t;
+        const wave = Math.sin(t * coils * Math.PI * 2 + phase) * amp;
+        const swayY = opts.sway * Math.sin(t * Math.PI) * amp * 1.5;
+        ctx.lineTo(x, y1 + wave + swayY);
+      }
+      ctx.lineTo(x2, y1);
+      ctx.stroke();
     }
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
 
     if (opts.bgTint > 0) {
       ctx.fillStyle = `rgba(0,0,0,${opts.bgTint})`;

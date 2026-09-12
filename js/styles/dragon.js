@@ -6,7 +6,7 @@ export const dragon = {
   category: "Algorithms",
   blurb: "The Harter–Heighway dragon curve.",
   defaults: {
-    iterations: 12,
+    iterations: 16,
     strokeWidth: 1.2,
     colorMode: "By depth",
     bgTint: 0,
@@ -38,49 +38,54 @@ export const dragon = {
       for (let j = 0; j < turns.length; j++) next[turns.length + 1 + j] = -turns[turns.length - 1 - j];
       turns = next;
     }
-    const segments = 1 << n;
-    // Длина стороны: подгоняем под квадрат.
-    const totalLen = Math.min(w, h) * 0.95;
-    const len = totalLen / segments;
-    // Начинаем из левого нижнего угла
-    let x = w / 2 - totalLen / 2;
-    let y = h / 2 + totalLen / 2;
-    let dir = 0; // 0=right, 1=up, 2=left, 3=down
     const dx = [1, 0, -1, 0], dy = [0, -1, 0, 1];
+
+    // Проход в единичном масштабе (len=1), чтобы найти настоящий bounding
+    // box кривой. Дракон складывается сам на себя, так что его bbox НЕ
+    // растёт линейно с числом сегментов — фиксированный масштаб
+    // totalLen/segments (как было раньше) давал то микроскопическую, то
+    // огромную кривую в зависимости от n. Автофит — единственный надёжный
+    // способ вписать её в кадр при любом n.
+    let dir = 0, x = 0, y = 0;
+    let minX = 0, maxX = 0, minY = 0, maxY = 0;
+    const pts = new Float32Array((turns.length + 1) * 2);
+    for (let i = 0; i < turns.length; i++) {
+      dir = (dir + (turns[i] > 0 ? 1 : -1) + 4) % 4;
+      x += dx[dir]; y += dy[dir];
+      pts[(i + 1) * 2] = x; pts[(i + 1) * 2 + 1] = y;
+      if (x < minX) minX = x; else if (x > maxX) maxX = x;
+      if (y < minY) minY = y; else if (y > maxY) maxY = y;
+    }
+    const bboxW = Math.max(1, maxX - minX);
+    const bboxH = Math.max(1, maxY - minY);
+    // "contain"-fit по обеим осям отдельно — min(w,h)/max(bbox) был
+    // излишне консервативен, если bbox не квадратный (недоиспользовал
+    // широкий кадр).
+    const scale = Math.min(w * 0.9 / bboxW, h * 0.9 / bboxH);
+    const ox = w / 2 - (minX + maxX) / 2 * scale;
+    const oy = h / 2 - (minY + maxY) / 2 * scale;
 
     ctx.lineWidth = opts.strokeWidth;
     ctx.lineCap = "round";
     const colors = palette.colors;
 
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    for (let i = 0; i < turns.length; i++) {
-      dir = (dir + (turns[i] > 0 ? 1 : -1) + 4) % 4;
-      x += dx[dir] * len;
-      y += dy[dir] * len;
-      ctx.lineTo(x, y);
-    }
     if (opts.colorMode === "Single color") {
       ctx.strokeStyle = colors[colors.length - 1];
+      ctx.beginPath();
+      ctx.moveTo(ox + pts[0] * scale, oy + pts[1] * scale);
+      for (let i = 1; i <= turns.length; i++) {
+        ctx.lineTo(ox + pts[i * 2] * scale, oy + pts[i * 2 + 1] * scale);
+      }
       ctx.stroke();
     } else {
       // Цвет постепенно меняется вдоль кривой
-      for (let pass = 0; pass < 1; pass++) {
-        ctx.stroke();
+      for (let i = 1; i <= turns.length; i++) {
+        const t = (i - 1) / turns.length;
+        ctx.strokeStyle = colors[(t * (colors.length - 1)) | 0];
         ctx.beginPath();
-        ctx.moveTo(w / 2 - totalLen / 2, h / 2 + totalLen / 2);
-        let cx = w / 2 - totalLen / 2, cy = h / 2 + totalLen / 2, cdir = 0;
-        for (let i = 0; i < turns.length; i++) {
-          const t = i / turns.length;
-          ctx.strokeStyle = colors[(t * (colors.length - 1)) | 0];
-          cdir = (cdir + (turns[i] > 0 ? 1 : -1) + 4) % 4;
-          cx += dx[cdir] * len;
-          cy += dy[cdir] * len;
-          ctx.beginPath();
-          ctx.moveTo(cx - dx[cdir] * len, cy - dy[cdir] * len);
-          ctx.lineTo(cx, cy);
-          ctx.stroke();
-        }
+        ctx.moveTo(ox + pts[(i - 1) * 2] * scale, oy + pts[(i - 1) * 2 + 1] * scale);
+        ctx.lineTo(ox + pts[i * 2] * scale, oy + pts[i * 2 + 1] * scale);
+        ctx.stroke();
       }
     }
 

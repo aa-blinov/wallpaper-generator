@@ -119,78 +119,83 @@ export const lsystem = {
     ctx.fillRect(0, 0, w, h);
 
     const angle = (opts.angleDeg || preset.angle) * Math.PI / 180;
-    const startX = w / 2;
-    const startY = h * (opts.startAngleDeg < -45 ? 0.95 : 0.5);
-    let px = startX, py = startY;
-    let dir = (opts.startAngleDeg || -90) * Math.PI / 180;
-    // Автоскейлинг: подбираем длину ветки, чтобы дерево занимало ~75% высоты.
-    const targetH = h * 0.75;
-    const iters = opts.iterations || 5;
-    const lenMul0 = opts.lenMul || 0.78;
-    const depthSum = (1 - Math.pow(lenMul0, iters)) / (1 - lenMul0);
-    let l = targetH / (depthSum * 1.6);
-    let lineW = opts.startWidth;
     const lenMul = opts.lenMul;
     const widthMul = opts.widthMul;
     const colorMode = opts.colorMode;
 
-    const stack = [];
-    let depth = 0;
+    // Первый проход — посчитать глубины по стеку (общие для всех деревьев,
+    // форма/структура одна и та же — меняется только позиция/масштаб).
     let maxDepth = 1;
-    // Первый проход — посчитать глубины по стеку.
     {
       let d = 0;
-      let track = [];
       const tstack = [];
-      track.push(d);
-      let tl = l;
       for (let i = 0; i < expanded.length; i++) {
         const c = expanded[i];
-        if (c === "[") { d++; track.push(d); tstack.push(d); }
-        else if (c === "]") { d = tstack.pop() ?? d; track.push(d); }
-        else if (c === "F") { track.push(d); tl *= lenMul; if (d > maxDepth) maxDepth = d; }
+        if (c === "[") { d++; tstack.push(d); }
+        else if (c === "]") d = tstack.pop() ?? d;
+        else if (c === "F" && d > maxDepth) maxDepth = d;
       }
-      track.length = 0;
-      depth = 0;
     }
 
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    for (let i = 0; i < expanded.length; i++) {
-      const c = expanded[i];
-      if (c === "F") {
-        const nx = px + Math.cos(dir) * l;
-        const ny = py + Math.sin(dir) * l;
-        ctx.lineWidth = Math.max(0.4, lineW);
-        let t;
-        if (colorMode === "Depth") t = 1 - depth / Math.max(1, maxDepth);
-        else if (colorMode === "Length") t = Math.max(0, Math.min(1, 1 - l / Math.max(1, opts.startLength)));
-        else t = rng();
-        ctx.strokeStyle = ramp(t);
-        ctx.beginPath();
-        ctx.moveTo(px, py);
-        ctx.lineTo(nx, ny);
-        ctx.stroke();
-        px = nx;
-        py = ny;
-        l *= lenMul;
-        lineW *= widthMul;
-      } else if (c === "+") {
-        dir += angle + (rng() - 0.5) * 0.05;
-      } else if (c === "-") {
-        dir -= angle + (rng() - 0.5) * 0.05;
-      } else if (c === "[") {
-        depth++;
-        stack.push({ x: px, y: py, dir, l, lineW, depth });
-      } else if (c === "]") {
-        const st = stack.pop();
-        if (st) {
-          px = st.x;
-          py = st.y;
-          dir = st.dir;
-          l = st.l;
-          lineW = st.lineW;
-          depth = st.depth;
+
+    // Одно дерево занимало только узкую полосу по центру, оставляя весь
+    // остальной широкий кадр пустым — сажаем небольшую рощу поперёк ширины.
+    const treeCount = Math.max(1, Math.round((w / h) * 3.2));
+    for (let treeIdx = 0; treeIdx < treeCount; treeIdx++) {
+      const startX = w * ((treeIdx + 0.5) / treeCount);
+      const startY = h * (opts.startAngleDeg < -45 ? 0.95 : 0.5);
+      let px = startX, py = startY;
+      let dir = (opts.startAngleDeg || -90) * Math.PI / 180;
+      // Автоскейлинг: подбираем длину ветки, чтобы дерево занимало ~75%
+      // высоты, плюс небольшой разброс по росту дерева от дерева.
+      const heightJitter = 0.75 + rng() * 0.4;
+      const targetH = h * 0.6 * heightJitter;
+      const iters = opts.iterations || 5;
+      const lenMul0 = lenMul || 0.78;
+      const depthSum = (1 - Math.pow(lenMul0, iters)) / (1 - lenMul0);
+      let l = targetH / (depthSum * 1.6);
+      let lineW = opts.startWidth;
+
+      const stack = [];
+      let depth = 0;
+      for (let i = 0; i < expanded.length; i++) {
+        const c = expanded[i];
+        if (c === "F") {
+          const nx = px + Math.cos(dir) * l;
+          const ny = py + Math.sin(dir) * l;
+          ctx.lineWidth = Math.max(0.4, lineW);
+          let t;
+          if (colorMode === "Depth") t = 1 - depth / Math.max(1, maxDepth);
+          else if (colorMode === "Length") t = Math.max(0, Math.min(1, 1 - l / Math.max(1, opts.startLength)));
+          else t = rng();
+          ctx.strokeStyle = ramp(t);
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(nx, ny);
+          ctx.stroke();
+          px = nx;
+          py = ny;
+          l *= lenMul;
+          lineW *= widthMul;
+        } else if (c === "+") {
+          dir += angle + (rng() - 0.5) * 0.05;
+        } else if (c === "-") {
+          dir -= angle + (rng() - 0.5) * 0.05;
+        } else if (c === "[") {
+          depth++;
+          stack.push({ x: px, y: py, dir, l, lineW, depth });
+        } else if (c === "]") {
+          const st = stack.pop();
+          if (st) {
+            px = st.x;
+            py = st.y;
+            dir = st.dir;
+            l = st.l;
+            lineW = st.lineW;
+            depth = st.depth;
+          }
         }
       }
     }

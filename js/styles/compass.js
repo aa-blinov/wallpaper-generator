@@ -6,8 +6,8 @@ export const compass = {
   category: "Geometry",
   blurb: "Compass rose: N arrows, rings and tick marks.",
   defaults: {
-    points: 8,
-    rings: 3,
+    points: 16,
+    rings: 6,
     labelMode: "Simple",
     bgTint: 0,
   },

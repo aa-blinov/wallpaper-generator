@@ -44,18 +44,33 @@ export const flowsnake2 = {
       }
       s = next;
     }
-    let x = w / 2, y = h / 2;
+    // Единичный масштаб (len=1) + честный autofit по bounding box: формула
+    // min(w,h)/3^n*1.5 предполагала теоретический охват кривой, который
+    // на деле не совпадал с реальным — давало то микроскопическую, то
+    // гигантскую кривую в зависимости от n.
+    let x = 0, y = 0;
     let dir = 0;
-    const len = Math.min(w, h) / Math.pow(3, n) * 1.5;
     const segments = [];
+    let minX = 0, maxX = 0, minY = 0, maxY = 0;
     for (const c of s) {
       if (c === "F") {
-        const nx = x + Math.cos(dir) * len;
-        const ny = y + Math.sin(dir) * len;
+        const nx = x + Math.cos(dir);
+        const ny = y + Math.sin(dir);
         segments.push([x, y, nx, ny]);
         x = nx; y = ny;
+        if (x < minX) minX = x; else if (x > maxX) maxX = x;
+        if (y < minY) minY = y; else if (y > maxY) maxY = y;
       } else if (c === "+") dir += ang;
       else if (c === "-") dir -= ang;
+    }
+    const bboxW = Math.max(1e-6, maxX - minX);
+    const bboxH = Math.max(1e-6, maxY - minY);
+    const scale = Math.min(w * 0.9 / bboxW, h * 0.9 / bboxH);
+    const ox = w / 2 - (minX + maxX) / 2 * scale;
+    const oy = h / 2 - (minY + maxY) / 2 * scale;
+    for (const seg of segments) {
+      seg[0] = ox + seg[0] * scale; seg[1] = oy + seg[1] * scale;
+      seg[2] = ox + seg[2] * scale; seg[3] = oy + seg[3] * scale;
     }
     ctx.lineWidth = opts.strokeWidth;
     ctx.lineCap = "round";

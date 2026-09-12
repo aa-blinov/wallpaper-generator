@@ -9,9 +9,9 @@ export const branches = {
   category: "Algorithms",
   blurb: "Branches with leaves: recursive forking.",
   defaults: {
-    sources: 8,
+    sources: 24,
     depth: 6,
-    length: 80,
+    length: 110,
     leafSize: 7,
     paletteMode: "Season",
     bgTint: 0,
@@ -58,7 +58,9 @@ export const branches = {
       }
       const x2 = x1 + Math.cos(dir) * length;
       const y2 = y1 + Math.sin(dir) * length;
-      ctx.strokeStyle = palette.colors[0];
+      // colors[0] — самый тёмный цвет палитры (обычно фоновый по смыслу),
+      // на нём ветки были почти не видны. Берём середину палитры.
+      ctx.strokeStyle = palette.colors[Math.floor(palette.colors.length / 2)];
       ctx.lineWidth = Math.max(0.5, (maxDepth - depth) * 0.7);
       ctx.beginPath();
       ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);

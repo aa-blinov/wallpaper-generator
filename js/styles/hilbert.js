@@ -30,10 +30,8 @@ export const hilbert = {
 
     const order = Math.round(opts.order);
     const side = Math.min(w, h) * 0.9;
-    const cell = side / ((1 << order) - 1);
-    const ox = (w - side) / 2 + cell / 2;
-    const oy = (h - side) / 2 + cell / 2;
-    const total = (1 << (2 * order));
+    const ox = (w - side) / 2;
+    const oy = (h - side) / 2;
     const colors = palette.colors;
     const fg = colors[colors.length - 1];
 
@@ -41,31 +39,38 @@ export const hilbert = {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
-    function hilbert(d, x, y, ax, ay, bx, by) {
-      // Рекурсивный алгоритм из Wikipedia.
-      if (d === 0) {
-        const px = ox + x * cell;
-        const py = oy + y * cell;
-        const tx = ox + (x + ax + bx) * cell;
-        const ty = oy + (y + ay + by) * cell;
-        if (opts.colorMode === "By index") {
-          // Цвет по позиции
-        const idx = (Math.round(x) * (1 << order) + Math.round(y)) % total;
-        ctx.strokeStyle = colors[(idx / total * (colors.length - 1)) | 0];
-        }
-        ctx.beginPath();
-        ctx.moveTo(px, py);
-        ctx.lineTo(tx, ty);
-        ctx.stroke();
+    // Классическая рекурсия (Wikipedia): шаговые вектора (xi,xj)/(yi,yj)
+    // делятся пополам на каждом уровне. Старая версия держала их
+    // константными — кривая никогда не разворачивалась за пределы
+    // крошечной области у начала координат.
+    const pts = [];
+    function hilbert(x0, y0, xi, xj, yi, yj, n) {
+      if (n <= 0) {
+        pts.push([x0 + (xi + yi) / 2, y0 + (xj + yj) / 2]);
         return;
       }
-      hilbert(d - 1, x,           y,           ay, ax,  by, bx);
-      hilbert(d - 1, x + ax,      y + ay,      ax, ay,  bx, by);
-      hilbert(d - 1, x + ax + bx, y + ay + by, ax, ay,  bx, by);
-      hilbert(d - 1, x + bx,      y + by,      ay, ax,  bx, by);
+      hilbert(x0, y0, yi / 2, yj / 2, xi / 2, xj / 2, n - 1);
+      hilbert(x0 + xi / 2, y0 + xj / 2, xi / 2, xj / 2, yi / 2, yj / 2, n - 1);
+      hilbert(x0 + xi / 2 + yi / 2, y0 + xj / 2 + yj / 2, xi / 2, xj / 2, yi / 2, yj / 2, n - 1);
+      hilbert(x0 + xi / 2 + yi, y0 + xj / 2 + yj, -yi / 2, -yj / 2, -xi / 2, -xj / 2, n - 1);
     }
-    if (opts.colorMode === "Single color") ctx.strokeStyle = fg;
-    hilbert(order, 0, 0, 1, 0, 0, 1);
+    hilbert(0, 0, side, 0, 0, side, order);
+
+    if (opts.colorMode === "Single color") {
+      ctx.strokeStyle = fg;
+      ctx.beginPath();
+      ctx.moveTo(ox + pts[0][0], oy + pts[0][1]);
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(ox + pts[i][0], oy + pts[i][1]);
+      ctx.stroke();
+    } else {
+      for (let i = 1; i < pts.length; i++) {
+        ctx.strokeStyle = colors[Math.floor((i / pts.length) * (colors.length - 1))];
+        ctx.beginPath();
+        ctx.moveTo(ox + pts[i - 1][0], oy + pts[i - 1][1]);
+        ctx.lineTo(ox + pts[i][0], oy + pts[i][1]);
+        ctx.stroke();
+      }
+    }
 
     if (opts.bgTint > 0) {
       ctx.fillStyle = `rgba(0,0,0,${opts.bgTint})`;
