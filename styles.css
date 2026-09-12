@@ -328,9 +328,23 @@ img, canvas, svg { -webkit-font-smoothing: antialiased; }
   display: flex;
   flex-direction: column;
   gap: 3px;
-  /* Без своего скролла: список стилей — часть общего скролла панели,
-     а не вложенный скролл-бокс с крошечным ползунком поверх бокового. */
+  /* 120 стилей заполняли всю панель — слайдеры и кнопка генерации
+     оказывались за экраном. Свой компактный скролл-бокс с тонким
+     ползунком, чтобы остальная панель была видна сразу. */
+  max-height: 38vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  margin-right: -6px;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2f3a transparent;
 }
+.style-list::-webkit-scrollbar { width: 6px; }
+.style-list::-webkit-scrollbar-thumb {
+  background: #2a2f3a;
+  border-radius: 3px;
+}
+.style-list::-webkit-scrollbar-track { background: transparent; }
 .style-list h3 {
   font-size: 10px;
   letter-spacing: 0.14em;
