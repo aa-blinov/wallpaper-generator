@@ -1,367 +1,217 @@
-# Wallpaper Generator
+# Wallpaper generator
 
-A catalog of **120 abstract-wallpaper generators** running in the browser. Vanilla JS, no dependencies, no build step. Canvas 2D, real time, PNG + WebM export, sharing via URL parameters.
+Pick one of 120 abstract patterns, watch it draw on the canvas, and save the
+result as a PNG or a five-second WebM. Every generator is a plain ES module and
+Canvas 2D, served as static files: there is no build step and nothing to
+install.
 
-![Domain Warp](./docs/preview-domainwarp.png)
+![Domain Warp, one of the 120 generators](docs/preview-domainwarp.png)
 
-## What's inside
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Live](https://img.shields.io/badge/live-aa--blinov.github.io%2Fwallpaper--generator-7c8cff)](https://aa-blinov.github.io/wallpaper-generator/)
 
-**120 styles** across **7 categories**:
+---
 
-- **Flow** (2) — particles in vector fields, emergent flocking.
-- **Noise** (8) — fBM, domain warp, nebulae, sand, low-poly terrain.
-- **Geometry** (33) — parametric curves, tessellations, symmetries, knots, Penrose tiling, moiré, Apollonian circles.
-- **Algorithms** (30) — fractals, L-systems, attractors, chains, graphs, cellular automata.
-- **Dots** (11) — Fibonacci, stippling, runes, pollen, blue noise.
-- **Textures** (17) — marble, wood, fabric, hatching, chainmail.
-- **Organic** (19) — fire, water, lava, lightning, smoke.
-
-12 curated palettes, a static/animated mode switch (19 of 120 styles support live animation — the rest are static patterns by design, and the toggle is disabled for them), WebM recording.
-
-## Style catalog
-
-### Flow
-
-- **Curl Flow** (`id=curlflow`) — Particles in a divergence-free field — real vortices, no clumping.
-- **Boids Flocking** (`id=boids`) — Separation, alignment, cohesion — flock trails that emerge, not a field they follow.
-
-### Noise
-
-- **Domain Warp** (`id=domainwarp`) — Noise warped by other noise — currents and inception-like patterns.
-- **Topographic** (`id=topography`) — Contour lines over a noise field — a topographic relief map.
-- **Log-Polar Spiral** (`id=logpolar`) — Noise unrolled into log-polar coordinates — galaxies and whirlpools.
-- **Billow Noise** (`id=billow`) — "Puffy" fBM built from |noise| — clouds, cotton wool.
-- **Ridged Multifractal** (`id=ridged`) — "Mountain ridges": 1 - |noise| across octaves.
-- **Nebula** (`id=nebula`) — Nebula: fBM clouds plus point stars of varying brightness.
-- **Gradient Mesh** (`id=gradient_mesh`) — Mesh gradient: overlapping radial gradients at random points.
-- **Sand Dunes** (`id=sandhills`) — Sand dunes: a silhouette built from noise layers.
-- **Low-Poly Terrain** (`id=lowpoly`) — A flat-shaded triangle mesh over noise terrain — faceted, hypsometric.
-
-### Geometry
-
-- **Voronoi Cells** (`id=voronoi`) — Worley cell diagrams — cracks, coral, cracked glass.
-- **Truchet Tiles** (`id=truchet`) — Random curved arcs on a grid — an Escher-style tiling.
-- **Spirograph** (`id=spirograph`) — Hypotrochoids — mathematical curves, the classic spirograph toy.
-- **Concentric Rings** (`id=concentric`) — Concentric rings warped by noise — a tunnel effect.
-- **Hex Grid** (`id=hexgrid`) — Hexagonal honeycomb with noise-offset centers and fills.
-- **Barcode** (`id=barcode`) — Barcode: random bars of varying width.
-- **Brick Wall** (`id=brick`) — Brick wall with noise-driven variation per brick.
-- **Lissajous** (`id=lissajous`) — Lissajous curves — parametric figures from two sine waves.
-- **Polar Rose** (`id=polarrose`) — Polar rose: r = cos(k·θ), parametric petals.
-- **Archimedean Spiral** (`id=archimedes`) — Archimedean spiral r = a + b·θ with several arms.
-- **Clover Grid** (`id=clover`) — A grid of 4 interlocked circles (square clover).
-- **Hyperbolic Tessellation** (`id=tessellation`) — Hyperbolic tessellation in the Poincaré disk.
-- **Celtic Knot** (`id=celtic`) — Celtic knot: interwoven bands around circles.
-- **Triangulation** (`id=triangles`) — Triangulation of random points with colored triangles.
-- **Diamond Grid** (`id=diamonds`) — A diamond grid with noise-driven variation.
-- **Compass Rose** (`id=compass`) — Compass rose: N arrows, rings and tick marks.
-- **Spring** (`id=spring`) — Spring: a sinusoidal ribbon between two points.
-- **Gears** (`id=gears`) — Interlocking toothed gears.
-- **Shards** (`id=shards`) — Shards: random sharp-angled polygons.
-- **Azulejo** (`id=azulejo`) — Azulejo: square tiles with a cross-shaped motif at the center.
-- **Neon** (`id=neon`) — Neon: curved lines with a strong glow.
-- **Curved Stripes** (`id=stripes_curved`) — Curved stripes following a noise topology.
-- **Diagonal Stripes** (`id=stripesdiag`) — Diagonal stripes with noise-based offset.
-- **Waves Grid** (`id=waves_grid`) — Sine waves along two axes.
-- **Rings Stack** (`id=rings3`) — A stack of thick rings of varying size.
-- **Strings** (`id=strings`) — Strings: threads between posts, sagging under gravity.
-- **Squiggles** (`id=squiggles`) — Random squiggles made of Bézier curves.
-- **Penrose Tiling** (`id=penrose`) — Aperiodic rhombus tiling by deflation — never repeats, no matter how far it tiles.
-- **Chladni Patterns** (`id=chladni`) — Nodal lines of a vibrating plate — sand settling where the surface stays still.
-- **Girih Star Grid** (`id=girih`) — Interlocking star polygons on a grid, Islamic geometric strapwork style.
-- **Moiré Interference** (`id=moire`) — Two overlaid grids beat against each other — pure line-density interference.
-- **Apollonian Gasket** (`id=apollonian`) — Circles packed into circles packed into circles, forever — Descartes' theorem made visible.
-- **String Art** (`id=stringart`) — Straight chords between numbered pins on a circle — envelope curves from pure geometry.
-- **Superformula Motif** (`id=superformula`) — Gielis' one-equation shape family — stars, flowers, gears — tiled as a print motif.
-
-### Algorithms
-
-- **Reaction-Diffusion** (`id=reactiondiffusion`) — Gray-Scott: reagents A and B diffuse and react. Coral, mazes, mitosis.
-- **Mandelbrot / Julia** (`id=mandelbrot`) — Escape-time fractal: classic Mandelbrot or a Julia variant.
-- **L-System Trees** (`id=lsystem`) — Fractal trees via an L-system — turtle graphics.
-- **Maze** (`id=maze`) — Recursive backtracker: a fresh maze every frame.
-- **Hilbert Curve** (`id=hilbert`) — Recursive Hilbert space-filling curve.
-- **Dragon Curve** (`id=dragon`) — The Harter–Heighway dragon curve.
-- **Sierpinski Triangle** (`id=sierpinski`) — The recursive Sierpinski triangle fractal.
-- **Frost** (`id=frost`) — Frost: branching crystals with 6-fold symmetry.
-- **Julia Set** (`id=julia`) — Julia set for a complex quadratic map.
-- **Newton Fractal** (`id=newton`) — The Newton fractal for z³ - 1 = 0: three basins of attraction.
-- **Burning Ship** (`id=burning`) — Burning Ship: |Re|+|Im|, a distorted relative of the Mandelbrot set.
-- **Metaballs** (`id=metaballs`) — Metaballs: marching squares over the isosurface of summed fields.
-- **Fractal Tree** (`id=tree`) — Recursive fractal tree with adjustable branching.
-- **Barnsley Fern** (`id=fern`) — Barnsley fern: IFS points from four affine transforms.
-- **Wire Net** (`id=wire`) — A connected nearest-neighbor graph: edges + nodes.
-- **Cantor Dust** (`id=cantor`) — Cantor dust: quadrant subdivision with a keep probability.
-- **Chains** (`id=chains`) — Chains: linked elliptical rings.
-- **Sorting Art** (`id=sorting`) — Sorting: each frame is a snapshot of an array mid-sort.
-- **Circuit Board** (`id=circuit`) — Circuit board: orthogonal traces and chips.
-- **Lorenz Attractor** (`id=lorenz`) — The Lorenz strange attractor, projected in 3D.
-- **Flowsnake** (`id=flowsnake`) — Gosper curve (flowsnake) — an L-system fractal.
-- **Flowsnake 2** (`id=flowsnake2`) — Peano-Gosper curve, colored by recursion depth.
-- **Branches** (`id=branches`) — Branches with leaves: recursive forking.
-- **Net Graph** (`id=netgraph`) — Network graph: random nodes, edges highlighted by degree.
-- **Messy Hair** (`id=messyhair`) — Tangle: random Bézier curves between points.
-- **Game of Life** (`id=gameoflife`) — Conway's Game of Life: a random soup evolved forward, frozen mid-run.
-- **Elementary CA** (`id=elementaryca`) — Wolfram's 1D cellular automaton (Rule 30 and friends), rows stacked into a field.
-- **Diffusion-Limited Aggregation** (`id=dla`) — DLA: random walkers freeze onto a growing cluster — coral, lichen, frost.
-- **Langton's Ant** (`id=langtonsant`) — A single ant flipping cells by a two-rule law — chaos, then a highway.
-- **Clifford Attractor** (`id=cliffordattractor`) — A million-point density cloud from a simple iterated map — smoky, not linear like Lorenz.
-
-### Dots
-
-- **Stippling** (`id=stippling`) — Thousands of dots whose density follows a noise field.
-- **Phyllotaxis** (`id=phyllotaxis`) — A Fibonacci spiral by the golden angle — sunflower / pine cone.
-- **Glyphs** (`id=glyphs`) — A grid of assorted glyphs and symbols.
-- **Pulse** (`id=pulse`) — Random centers with expanding ring waves.
-- **Scatter** (`id=scatter`) — Dots scattered according to noise density.
-- **Sparkling Stars** (`id=stars`) — Stars with rays: random size, brightness and orientation.
-- **Orbital Trails** (`id=orbital`) — Orbital trails: particle trails flying along smooth loops.
-- **Dot Grid** (`id=dotgrid`) — A dot grid with brightness driven by noise.
-- **Pollen** (`id=pollen`) — Pollen: rings of dots around centers.
-- **Runic** (`id=runic`) — Arcane runes: Unicode glyphs on "parchment".
-- **Blue-Noise Stippling** (`id=bluenoise`) — Poisson-disk sampled dots — evenly spaced, no clumps, no gaps.
-
-### Textures
-
-- **Halftone** (`id=halftone`) — A halftone dot grid, newspaper-print style.
-- **Cracked Earth** (`id=cracked`) — Cracked earth — Voronoi cells filled in earthy tones, with cracks.
-- **Weave** (`id=weave`) — Interwoven horizontal and vertical threads.
-- **Plaid** (`id=plaid`) — Tartan plaid: bands of varying width, crossing.
-- **Portholes** (`id=porthole`) — A grid of portholes: concentric circles with a highlight.
-- **Mosaic** (`id=mosaic`) — Mosaic: Voronoi cells with noisy edges, palette per tile.
-- **Stained Glass** (`id=stainedglass`) — Stained glass: Voronoi cells with a thick dark outline.
-- **Wood** (`id=wood`) — Wood: grain from warped noise.
-- **Marble** (`id=marble`) — Marble: sine-wave bands warped by noise.
-- **Rock** (`id=rock`) — Rock: uneven chunks with noise-driven cracks.
-- **Bubblewrap** (`id=bubblewrap`) — Bubble wrap: a hex grid of bubbles with gradients.
-- **Hatching** (`id=hatching`) — Hatching: parallel lines with noise-driven density.
-- **Sand** (`id=sand`) — Sand: fine grain with noise regions of varying brightness.
-- **Bars** (`id=bars`) — Horizontal bars of random thickness.
-- **Spectrum** (`id=spectrum`) — Spectrum: bars of varying height driven by noise.
-- **Honeycomb 3D** (`id=honeycomb3d`) — Pseudo-3D honeycomb: each hexagon shaded with a gradient and shadow.
-- **Chainmail** (`id=chainmail`) — Chainmail: rings in a checkerboard layout with gradients.
-
-### Organic
-
-- **Caustics** (`id=caustics`) — A sum of traveling waves — underwater light rays.
-- **Asemic Writing** (`id=asemic`) — Generative calligraphy — flowing, unreadable strokes.
-- **Inkblot** (`id=inkblot`) — Symmetric inkblots (Rorschach test).
-- **Waves** (`id=waves`) — Sine waves along two axes.
-- **Water** (`id=water`) — Water surface: Perlin noise + sine waves with a specular highlight.
-- **Fire** (`id=fire`) — Fire: rising noise columns with a color gradient.
-- **Kaleidoscope** (`id=kaleidoscope`) — Kaleidoscope: N symmetric sectors filled with noise.
-- **Lightning** (`id=lightning`) — Lightning: branching discharges from the top edge.
-- **Cloud Puff** (`id=cloudpuff`) — Volumetric clouds: two-tier brightening via noise.
-- **Ripples** (`id=ripples`) — Ripples on water: overlapping wave fronts.
-- **Vortex** (`id=vortex`) — Vortex: a spiral pulling trajectories toward the center.
-- **Tentacles** (`id=tentacles`) — Tentacles: random Bézier curves tapering in width.
-- **Wave Field** (`id=wave_field`) — Wave field: top and bottom edges from two different sine waves.
-- **Echo Rings** (`id=echo`) — Echo: a source curve and its fading copies, rotated around a circle.
-- **Lava** (`id=lava`) — Lava: cracks in the dark with glowing edges.
-- **Bubbles** (`id=bubbles`) — Bubbles with overlaps and realistic highlights.
-- **Calligraphy** (`id=calligraphy`) — Calligraphic flourishes with variable stroke width.
-
-## Palettes
-
-12 curated palettes are available in the side panel: `lava`, `aurora`, `sunset`, `ink`, `ocean`, `botanic`, `bubblegum`, `desert`, `cyber`, `pastel`, `sapphire`, `coral`. Each is a linear interpolation across 5 anchor colors from 0 to 1, also used for the background where needed.
-
-## Running it
+## Quick start
 
 ```bash
+git clone https://github.com/aa-blinov/wallpaper-generator.git
 cd wallpaper-generator
 python3 -m http.server 8765
-# open http://localhost:8765/
 ```
 
-Any static file server works (`npx serve .`, `npx http-server`, `php -S`).
+Then open http://localhost:8765/.
 
-## URL parameters
+A file server is required. The page loads ES modules and a module Web Worker,
+and a browser refuses both over `file://`, so opening `index.html` from the
+disk gives a blank page.
+
+| Server | Command | Notes |
+| --- | --- | --- |
+| Python | `python3 -m http.server 8765` | Already on macOS and on most Linux distributions. |
+| Node | `npx serve .` | Downloads on the first run. |
+| PHP | `php -S localhost:8765` | Already on macOS. |
+| The published site | <https://aa-blinov.github.io/wallpaper-generator/> | The same files, served by GitHub Pages from `master`. |
+
+The application code has no dependencies. The panel around the canvas is styled
+with Bootstrap 5.3.3 and Bootstrap Icons 1.11.3, loaded from jsDelivr by
+`index.html`, so the interface needs a network connection and the canvas does
+not.
+
+## What it does
+
+- **120 generators** in seven categories: Flow 2, Noise 8, Geometry 33,
+  Algorithms 30, Dots 11, Textures 17, Organic 19. They cover flow fields,
+  fractal noise, parametric curves, tessellations, escape-time fractals,
+  L-systems, cellular automata, dot fields, woven textures and organic
+  effects.
+- **539 parameters** in total, between 2 and 10 per generator, each one a
+  slider with its own range and step, or a menu.
+- **12 palettes**, each five anchor colours interpolated from 0 to 1, plus a
+  background colour: `lava`, `aurora`, `sunset`, `ink`, `ocean`, `botanic`,
+  `bubblegum`, `desert`, `cyber`, `pastel`, `sapphire`, `coral`.
+- **A seed you can type.** The seed is a string, and the same seed always
+  gives the same picture, so a wallpaper can be found again later by writing
+  its number down.
+- **Five resolutions**: 1920x1080, 2560x1440, 3840x2160, 1080x1920 and
+  1280x720.
+- **19 generators move.** The rest draw a static pattern, and the Animated
+  button is disabled for them rather than leaving a blank canvas. A speed
+  control runs the animation from 0 to 200, where 100 is real time.
+- **PNG and WebM.** The PNG is the canvas as it stands. The WebM is five
+  seconds recorded from the canvas at 60 frames per second, with VP9 where the
+  browser supports it.
+- **A URL for every picture.** The style, the palette and the seed go into the
+  address, and the same URL gives the same picture on another machine.
+  `lite=1` hides the panel and gives the whole window to the canvas.
+- **A phone layout.** Below 820 pixels the panel becomes a bottom sheet that
+  opens to 84vh, the style list turns into a horizontal strip of cards, and
+  the buttons are sized for a finger.
+
+## Screenshots
+
+| Curl Flow | Domain Warp | Mandelbrot | Voronoi |
+| :---: | :---: | :---: | :---: |
+| ![Curl Flow](docs/preview-curlflow.png) | ![Domain Warp](docs/preview-domainwarp.png) | ![Mandelbrot](docs/preview-mandelbrot.png) | ![Voronoi](docs/preview-voronoi.png) |
+
+All 105 style previews in `docs/` are 320 by 320 crops taken from an earlier
+layout, where the canvas sat in the top-left corner of the page. The picture
+occupies about 270 by 150 pixels of each square and the rest is the page
+background. Six of them, `fern`, `flowsnake`, `flowsnake2`, `halftone`,
+`metaballs` and `wire`, show no picture at all: they were captured before the
+fixes that made those generators draw, and the files have not been taken again.
+`docs/preview-ui.png` is the interface from that same build, before the
+interface was translated into English.
+
+## How it works
 
 ```
-?style=curlflow|domainwarp|topography|logpolar|billow|ridged|nebula|gradient_mesh|
-       sandhills|voronoi|truchet|spirograph|concentric|hexgrid|barcode|brick|
-       lissajous|polarrose|archimedes|clover|tessellation|celtic|triangles|diamonds|
-       compass|spring|gears|shards|azulejo|neon|stripes_curved|stripesdiag|
-       waves_grid|rings3|strings|reactiondiffusion|mandelbrot|lsystem|maze|hilbert|
-       dragon|sierpinski|frost|julia|newton|burning|metaballs|tree|
-       fern|wire|cantor|chains|sorting|circuit|lorenz|flowsnake|
-       flowsnake2|branches|netgraph|messyhair|stippling|phyllotaxis|glyphs|pulse|
-       scatter|stars|orbital|dotgrid|pollen|runic|halftone|cracked|
-       weave|plaid|porthole|mosaic|stainedglass|wood|marble|rock|
-       bubblewrap|hatching|sand|bars|spectrum|honeycomb3d|chainmail|caustics|
-       asemic|inkblot|waves|water|fire|kaleidoscope|lightning|cloudpuff|
-       ripples|squiggles|vortex|tentacles|wave_field|echo|lava|bubbles|
-       calligraphy|gameoflife|elementaryca|dla|langtonsant|penrose|chladni|
-       girih|moire|lowpoly|bluenoise|apollonian|cliffordattractor|stringart|
-       superformula|boids
-&palette=lava|aurora|sunset|ink|ocean|botanic|bubblegum|desert|cyber|pastel|sapphire|coral
-&seed=42
-&resolution=1920x1080|2560x1440|3840x2160|1080x1920|1280x720
-&mode=static|animated
-&lite=1   # hide the UI, give the whole screen to the wallpaper
+url parameters, panel, keyboard
+    -> js/app.js         state, render scheduler, exports
+    -> js/styles.js      registry of 120 generators
+    -> js/styles/<id>.js one module per generator
+    -> canvas 2d
 ```
 
-Examples:
+`index.html` holds the shell: the panel, the canvas, the overlay that carries
+the spinner, and the toast. `js/app.js` holds the state, builds the panel,
+drives the keyboard, reads the URL and performs the exports.
 
+`js/styles.js` is the registry. It imports the 120 style modules, exports them
+as `STYLES`, and groups them under the seven category names. `js/styles/` holds
+one module per generator, plus `rd-worker.js`, the Web Worker that runs the
+Reaction-Diffusion simulation.
+
+A style is an object with a fixed shape. `createState(opts, w, h)` returns a
+cache that survives between frames, `paint(ctx, opts, state)` draws one frame,
+`animate(ctx, opts, state, t)` draws one frame of a moving picture, and
+`paintChunked` is the asynchronous variant for the slow ones. `opts` carries
+the seed, the palette and the style's own parameters.
+
+The rendering is scheduled rather than immediate. `scheduleRender()` in
+`js/app.js` is the single entry point: a heavy change (style, palette, seed,
+resolution) puts a spinner over the canvas, and a slider move renders on the
+next frame with no overlay at all. While a paint is running, a second one does
+not start; the request is kept and picked up when the first one ends.
+
+Randomness is deterministic. `js/rng.js` holds a Mulberry32 generator seeded
+from a string, and 37 of the styles derive a numeric seed of their own with
+FNV-1a over the user seed and a short suffix, so two styles never draw from
+the same stream. The other 34 take no seed at all and are fully determined by
+their parameters. `js/noise.js` holds a 2D Simplex noise implementation in the
+public domain, with fBM and ridge on top of it.
+
+The canvas is sized by the device pixel ratio, up to 2, so the drawing
+coordinates are CSS pixels while the bitmap behind them is larger. Six of the
+slow generators (Billow, Cloud Puff, Kaleidoscope, Marble, Ridged and Wood)
+paint in chunks and yield to the browser between them, which keeps the panel
+responsive while a 4K frame is being computed.
+
+## Configuration
+
+Every parameter is in the URL, either after the `?` or after the `#`. The hash
+wins when both carry a value.
+
+| Parameter | Default | What it does |
+| --- | --- | --- |
+| `style` | `curlflow` | The id of a generator. An id that is not in the registry is ignored and the first style loads instead. |
+| `palette` | `lava` | The id of one of the 12 palettes. An unknown id is ignored. |
+| `seed` | a random number from 0 to 9999998 | Any text. It is hashed rather than parsed, so `42` and `042` give two different pictures. |
+| `resolution` | `1920x1080` | The canvas size, written as `1920x1080`. Any value is accepted, and the canvas follows it. |
+| `mode` | `static` | `static` or `animated`. A generator with no animation falls back to static. |
+| `lite` | off | `1` hides the panel and gives the whole window to the canvas. `0` means the same as leaving it out. |
+
+Changing the style, the palette or the seed writes the three of them into the
+hash as `#style=…&palette=…&seed=…` after a pause of 300 milliseconds. The
+resolution, the mode and `lite` are read from the URL and never written to it.
+
+The panel holds the rest.
+
+| Control | Values | Default |
+| --- | --- | --- |
+| Resolution | 1920x1080, 2560x1440, 3840x2160, 1080x1920, 1280x720 | 1920x1080 |
+| Mode | static, animated | static |
+| Animation speed | 0 to 200, where 100 is real time | 60 |
+| Seed | any text | a random number from 0 to 9999998 |
+| Style parameters | 2 to 10 sliders or menus per style | from the style's `defaults` |
+
+| Key | What it does |
+| --- | --- |
+| `Space` | A new random seed. |
+| `Left`, `Right` | The previous or next style. |
+| `A` | Switch between static and animated. |
+| `S` | Save the PNG. |
+
+## Development
+
+```bash
+python3 -m http.server 8765   # the only command in the repository
 ```
-http://localhost:8765/?style=domainwarp&palette=aurora&seed=42&lite=1
-http://localhost:8765/?style=lsystem&seed=7&lite=1
-http://localhost:8765/?style=julia&palette=cyber&seed=99&lite=1
-```
 
-## Stack
+There is no install, no build, no package manifest, no test suite and no
+linter. The check that matters is opening the page and looking at the canvas.
 
-- Plain ES Modules, no bundler.
-- Canvas 2D for all rendering.
-- A custom 2D Simplex noise implementation (public domain, after Stefan Gustavson).
-- Mulberry32 for deterministic seeding.
-- FNV-1a hashing to derive per-style child seeds.
-- `MediaRecorder` + `canvas.captureStream` for WebM recording.
-- A Web Worker for Reaction-Diffusion (the heavy warmup doesn't block the UI).
-
-## Structure
-
-```
-.
-├── index.html                # panel + canvas + overlay + toast
-├── styles.css                # UI + spinner
-├── docs/                     # preview screenshots
-└── js/
-    ├── app.js                # orchestrator, UI, loader
-    ├── noise.js              # Simplex + fBM/ridge
-    ├── rng.js                # Mulberry32, helpers
-    ├── palettes.js            # 12 palettes + color interpolation
-    ├── utils.js               # resizeCanvas, canvas download
-    ├── styles.js              # the registry of 120 styles, grouped by category
-    └── styles/                # one file per style + rd-worker.js
-```
-
-## Adding your own style
-
-1. Create `js/styles/mystyle.js` and export an object:
+A new generator is one file and one import. Create `js/styles/mystyle.js`:
 
 ```js
 export const mystyle = {
   id: "mystyle",
   name: "My Style",
-  category: "Geometry",   // lands in the matching UI section
-  blurb: "Short description.",
-  defaults: { /* param values */ },
+  category: "Geometry",   // the panel puts it under this heading
+  blurb: "One line about what it draws.",
+  defaults: { density: 0.0005 },
   params: [
     { key: "density", label: "Density", min: 0.0001, max: 0.001, step: 0.00002 },
-    { key: "shape",   label: "Shape",   enum: ["circle", "line"] },
+    { key: "shape", label: "Shape", enum: ["circle", "line"] },
   ],
   createState(opts, w, h) {
-    // Return a cache that survives animation.
-    return { /* ... */ };
+    return { /* the cache that survives between frames */ };
   },
   paint(ctx, opts, state) {
-    // Render one frame.
+    // One frame.
   },
   animate?(ctx, opts, state, t) {
-    // Optional. t is milliseconds since animation start.
+    // Optional. t is milliseconds since the animation started.
   },
 };
 ```
 
-2. Register it in `js/styles.js`:
+Then import it in `js/styles.js` and add it to `STYLES`. The panel finds it
+through the category field, and the search box finds it by name.
 
-```js
-import { mystyle } from "./styles/mystyle.js";
-export const STYLES = [/* ..., */ mystyle];
-```
-
-3. Done — the style shows up under its category in the UI. The search box at the top helps find it by name.
-
-## Performance notes
-
-### Render architecture
-
-In `js/app.js`:
-
-- `scheduleRender({heavy})` is the single entry point.
-  - **`heavy: true`** (style/palette/seed/resolution change) — shows a full-screen overlay with a spinner.
-  - Without `heavy` (slider drag, select change) — renders on the next RAF with no overlay, no UI flicker.
-- `renderBusy` / `renderToken` — while `style.paint` is running, new requests don't kick off a second render right away. Once the current render finishes, `renderPending` is checked and, if new params arrived, another RAF is scheduled.
-- Optional **`paintChunked(ctx, opts, state)`** — an async variant for heavy styles. Between chunks it calls `opts._yield` (rAF by default), so the main thread never blocks and the browser keeps handling clicks, hover, etc. Enabled for **Cloud Puff** (the slowest style, 1.4s/frame at 1280×720).
-
-### Profile at 1280×720 (sync paint)
-
-| Style | Paint, ms |
-|---|---|
-| Cloud Puff | **~1400** (chunked, but the UI stays responsive) |
-| Kaleidoscope | ~990 |
-| Ridged | ~930 |
-| Billow | ~930 |
-| Concentric | ~910 |
-| Wood | ~815 |
-| Chladni | ~700 |
-| Marble | ~625 |
-| Water | ~565 |
-| Domain Warp / Topography | 200–500 |
-| Julia / Mandelbrot / Newton | 130–155 |
-| Simple geometries (Voronoi, Truchet, Spirograph, Phyllotaxis, …) | <50 |
-
-27 of 120 styles render in over 100ms. The rest are effectively instant.
-
-### UI responsiveness
-
-- **Slider drag**: before the fix, the overlay flashed on every input event (50 events → 50 spinner flashes). After the fix — **zero overlay flashes** while dragging; the render is scheduled via RAF with no overlay.
-- **Style switch**: the overlay shows twice (show + hide) — correct for a heavy switch.
-- **Chunked paint (Cloud Puff)**: other styles/the panel stay responsive during a long render; once the current chunked paint finishes, an RAF is scheduled for a new render with the updated params.
-
-### Heavy styles
-
-- **Curl Flow** — most of the work goes into integrating trajectories. At 4K with the default density: 1–3s.
-- **Domain Warp / Topography / Log-Polar** — per-pixel fBM; `sampleStep` is available for downsampling.
-- **Reaction-Diffusion** — the heaviest. A 4000-step warmup runs in a Web Worker. `simResolution` and `stepsPerFrame` control quality. Under `?lite=1` the Worker is disabled and warmup runs sync.
-- **Grid-indexed field arrays (RD, Voronoi)** — fast.
-- **Barnsley Fern, hash-based styles** (Cantor, Branches) — take a fraction of a second even at 4K.
-- **`createImageData`-based images** (Mandelbrot, Julia, Newton, Burning, Wood, Marble, Nebula, Fire, Water, Lorenz) — roughly 50–500ms at 1920×1080, depending on iteration count.
-- **At 4K**, some fractals can take a few seconds. Use `?lite=1` or lower `maxIter`.
-
-## Mobile version (bottom-sheet drawer pattern)
-
-On screens narrower than 820px the UI becomes a **bottom-sheet drawer**:
-
-- **Default state**: only a thin drag handle is visible at the bottom, plus a floating round burger button (bottom-right, portrait only); the rest of the screen is the canvas (a full-screen wallpaper preview).
-- **Tap the burger button, or the handle**: the drawer expands to 84vh, showing all the settings.
-- **Swipe up on the handle**: opens it too.
-- **Tap the canvas** while the drawer is open: closes it.
-- **Tap × in the drawer's corner**: closes it.
-- **Horizontal chip scroll** for the 120 styles (instead of a long vertical list); the selected chip also shows its description.
-- **Tap targets ≥44px** for every button/field.
-- `?lite=1` is available for sharing a finished wallpaper (hides the panel entirely).
-
-Technically: `#panel` is `position: fixed; bottom: 0; height: 64px; max-height: 84vh` with an `is-open` toggle class; the canvas stretches to 100% via CSS `align-items: stretch; justify-content: stretch` on `#stage`.
-
-`?lite=1` turns on "wallpaper mode": the canvas gets the full width/height, the panel is hidden.
-
-For **Reaction-Diffusion** under `?lite=1` the Worker is disabled (sync warmup) — a Worker doesn't reliably get CPU time under headless screenshot tools.
-
-## Algorithm references
-
-- Curl noise: [Bridson 2007](https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-curlnoise.pdf).
-- Domain warping: [Inigo Quilez](https://iquilezles.org/articles/warp/).
-- Reaction-Diffusion: [Robert Munafo's catalog](http://mrob.com/pub/comp/xmorphia/) — feed/kill presets.
-- Voronoi / Worley noise: the original [Steven Worley paper, 1996](https://www.worley.com.au/worley/papers.html).
-- Truchet tiles: the classic idea from [Sébastien Truchet (1704)](https://en.wikipedia.org/wiki/Truchet_tiles).
-- Phyllotaxis / Fibonacci spiral: [Numberphile](https://www.youtube.com/watch?v=14-NdQw-uMQ).
-- Caustics: the classic [ShaderToy caustic shader](https://www.shadertoy.com/view/MdlXz8).
-- L-System: [Wikipedia](https://en.wikipedia.org/wiki/L-system), Lindenmayer 1968.
-- Gosper / Flowsnake: [Wikipedia](https://en.wikipedia.org/wiki/Gosper_curve).
-- Conway's Game of Life: [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), Gardner 1970.
-- Elementary cellular automata: [Wolfram MathWorld](https://mathworld.wolfram.com/ElementaryCellularAutomaton.html).
-- Diffusion-limited aggregation: [Witten & Sander, 1981](https://en.wikipedia.org/wiki/Diffusion-limited_aggregation).
-- Langton's Ant: [Wikipedia](https://en.wikipedia.org/wiki/Langton%27s_ant), Langton 1986.
-- Penrose tiling (kite/dart deflation): [Preshing's walkthrough](https://preshing.com/20110831/penrose-tiling-explained/).
-- Chladni figures: [Wikipedia](https://en.wikipedia.org/wiki/Chladni_figure), Chladni 1787.
-- Poisson-disk / blue-noise sampling: [Bridson 2007](https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-poissondisk.pdf).
-- Apollonian gasket / Descartes' Circle Theorem: [Wikipedia](https://en.wikipedia.org/wiki/Descartes%27_circle_theorem).
-- Clifford / de Jong attractors: [Paul Bourke's collection](http://paulbourke.net/fractals/clifford/).
-- Superformula: [Gielis 2003](https://en.wikipedia.org/wiki/Superformula).
-- Boids: [Craig Reynolds, 1987](https://www.red3d.com/cwr/boids/).
+| Path | What it holds |
+| --- | --- |
+| `index.html` | The shell: the panel, the canvas, the overlay, the toast. |
+| `styles.css` | The panel, the stage, the mobile drawer, and the Bootstrap theme overrides. |
+| `js/app.js` | The state, the panel, the render scheduler, the keyboard, the URL, the exports. |
+| `js/styles.js` | The registry of the 120 generators and the seven categories. |
+| `js/styles/` | One module per generator, and `rd-worker.js`. |
+| `js/rng.js` | Mulberry32 and three helpers over it. |
+| `js/noise.js` | 2D Simplex noise, fBM and ridge. |
+| `js/palettes.js` | The 12 palettes, the colour ramp and the mixing helpers. |
+| `js/utils.js` | Clamp, lerp, smoothstep, the canvas resize and the download. |
+| `docs/` | 105 style previews and one interface screenshot. |
 
 ## License
 
-MIT.
+MIT, © 2026 aa-blinov. See [LICENSE](LICENSE).
