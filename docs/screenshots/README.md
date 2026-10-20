@@ -8,7 +8,7 @@ The images in this folder are the previews of the generators. There are
 `preview-<id>.png`, one per generator, named after the generator's id in
 the registry. `preview-domainwarp.png` is the picture in the README's
 header, and `preview-curlflow.png`, `preview-mandelbrot.png` and
-`preview-voronoi.png` are the four in the README's table.
+`preview-voronoi.png` join it in the README's table, which shows four.
 
 Every one of them is a 320 by 320 crop of a page from an earlier build,
 where the canvas sat in the top-left corner of the window. The picture

@@ -66,9 +66,12 @@ The style module contract is fixed:
 ## The data
 
 Randomness is deterministic. `js/rng.js` holds a Mulberry32 generator
-seeded from a string, and 37 of the styles derive a numeric seed of their
-own with FNV-1a over the user's seed and a short suffix, so two styles
-never draw from the same stream. The other 34 take no seed at all and are
+seeded from a string with a `s * 31 + charCode` hash, and three helpers over
+it. 85 of the 120 styles take the seed. 60 of them call
+`makeRng(opts.seed + ":suffix")`, where the suffix is the style's own short
+name, so two styles never draw from the same stream. 36 of them call a local
+`hashSeed` helper, which is FNV-1a over the raw seed and feeds the noise
+field. Eleven styles use both. The other 35 take no seed at all and are
 fully determined by their parameters.
 
 The colours come from `js/palettes.js`. Each palette is five anchors and a
